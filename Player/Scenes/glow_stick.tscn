@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://cpfjcj5la7alg"]
+
+[ext_resource type="Texture2D" uid="uid://s2576bsckvkv" path="res://Player/Sprites/Glowstick.png" id="1_jklxf"]
+[ext_resource type="Script" uid="uid://c0n68sbvdidt2" path="res://Player/Scripts/glow_stick.gd" id="1_juiia"]
+[ext_resource type="Texture2D" uid="uid://nurf06um3rbe" path="res://Sprites/PointLight128x128.tres" id="2_juiia"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hxcy1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wg41x"]
+size = Vector2(8, 7)
+
+[sub_resource type="Animation" id="Animation_jklxf"]
+resource_name = "Glow"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [2.0, 2.0, 1.8, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_juiia"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wg41x"]
+_data = {
+&"Glow": SubResource("Animation_jklxf"),
+&"RESET": SubResource("Animation_juiia")
+}
+
+[node name="GlowStick" type="RigidBody2D"]
+collision_layer = 0
+physics_material_override = SubResource("PhysicsMaterial_hxcy1")
+gravity_scale = 0.5
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_juiia")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_jklxf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_wg41x")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 0.5)
+color = Color(0.5882353, 1, 0.5882353, 1)
+energy = 2.0
+texture = ExtResource("2_juiia")
+height = 20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wg41x")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

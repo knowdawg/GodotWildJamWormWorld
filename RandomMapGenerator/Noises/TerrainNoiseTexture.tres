@@ -1,0 +1,13 @@
+[gd_resource type="NoiseTexture2D" load_steps=3 format=3 uid="uid://c4hvi2dwtygfr"]
+
+[sub_resource type="Gradient" id="Gradient_xtv45"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.37434554, 0.45728642)
+colors = PackedColorArray(0.015686275, 0, 0, 1, 0.03137255, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ll4ch"]
+
+[resource]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_ll4ch")
+color_ramp = SubResource("Gradient_xtv45")

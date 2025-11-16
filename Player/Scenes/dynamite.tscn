@@ -1,0 +1,212 @@
+[gd_scene load_steps=12 format=3 uid="uid://dsdfoua5eysoq"]
+
+[ext_resource type="Texture2D" uid="uid://dcua2k7d360j3" path="res://Player/Sprites/Dynamite.png" id="1_pwkjs"]
+[ext_resource type="Script" uid="uid://dkqbcvoseljlo" path="res://Player/Scripts/dynamite.gd" id="1_u3hgy"]
+[ext_resource type="Texture2D" uid="uid://nurf06um3rbe" path="res://Sprites/PointLight128x128.tres" id="3_6ye6h"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u3hgy"]
+bounce = 0.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ye6h"]
+size = Vector2(8, 2)
+
+[sub_resource type="Gradient" id="Gradient_u3hgy"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.65445024, 0.6963351)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6ye6h"]
+gradient = SubResource("Gradient_u3hgy")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_bdbaa"]
+resource_name = "Blow"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualEffect/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VisualEffect/Sprite2D:scale")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"explode"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PointLight2D:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PointLight2D:energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [5.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_u3hgy"]
+resource_name = "Charge"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualEffect/Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.2, 0.2), Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VisualEffect/Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0.19607843), Color(1, 0.5882353, 0.5882353, 0.5882353)]
+}
+
+[sub_resource type="Animation" id="Animation_6ye6h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualEffect/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VisualEffect/Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0.19607843)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.39215687, 0.39215687, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PointLight2D:energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ye6h"]
+_data = {
+&"Blow": SubResource("Animation_bdbaa"),
+&"Charge": SubResource("Animation_u3hgy"),
+&"RESET": SubResource("Animation_6ye6h")
+}
+
+[node name="Dynamite" type="RigidBody2D"]
+collision_layer = 0
+physics_material_override = SubResource("PhysicsMaterial_u3hgy")
+script = ExtResource("1_u3hgy")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.39215687, 0.39215687, 1)
+energy = 2.0
+texture = ExtResource("3_6ye6h")
+texture_scale = 2.0
+height = 20.0
+
+[node name="DynamiteSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -3)
+texture = ExtResource("1_pwkjs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6ye6h")
+
+[node name="VisualEffect" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="VisualEffect"]
+modulate = Color(1, 0, 0, 0.19607843)
+texture_filter = 1
+scale = Vector2(1e-05, 1e-05)
+texture = SubResource("GradientTexture2D_6ye6h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6ye6h")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

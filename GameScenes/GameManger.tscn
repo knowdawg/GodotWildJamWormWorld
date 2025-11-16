@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3 uid="uid://dnn7kdakq8pex"]
+
+[ext_resource type="Script" uid="uid://4nxy4cmkha4p" path="res://GameScenes/game_manger.gd" id="1_qvr68"]
+[ext_resource type="PackedScene" uid="uid://b5mwxvmfxtn33" path="res://addons/pixel_sandbox/Scenes/TerrainTexture/terrain_texture.tscn" id="3_gooyy"]
+[ext_resource type="PackedScene" uid="uid://c71bqvsd4dv87" path="res://GameScenes/StartingCave/starting_cave.tscn" id="4_qvr68"]
+[ext_resource type="Shader" uid="uid://dd6cxy2m7c1tb" path="res://addons/pixel_sandbox/Shaders/PixelShaders/ForgroundTextureMapper.gdshader" id="4_vk6pw"]
+[ext_resource type="PackedScene" uid="uid://bs3ob7drvovjj" path="res://addons/pixel_sandbox/Scenes/SDFGenerator/sdf_generator.tscn" id="5_eiutj"]
+[ext_resource type="PackedScene" uid="uid://b22snyd5lo4mp" path="res://addons/pixel_sandbox/Scenes/GlobalIllumination/global_illumination.tscn" id="6_akxxo"]
+[ext_resource type="PackedScene" uid="uid://bywyhourisvim" path="res://addons/pixel_sandbox/Scenes/Sun/sun.tscn" id="7_qvr68"]
+[ext_resource type="Script" uid="uid://bqujbhk108jat" path="res://Test/FPSLabel.gd" id="8_akxxo"]
+[ext_resource type="Texture2D" uid="uid://cjbwghgivmhyw" path="res://RandomMapGenerator/Noises/FuelNoiseTexture.tres" id="9_lyrup"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cbb0s"]
+resource_local_to_scene = true
+shader = ExtResource("4_vk6pw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lyrup"]
+resource_local_to_scene = true
+shader = ExtResource("4_vk6pw")
+
+[node name="GameManger" type="Node" node_paths=PackedStringArray("projectileParent")]
+script = ExtResource("1_qvr68")
+projectileParent = NodePath("World2D/ProjectileParent")
+
+[node name="World2D" type="Node2D" parent="."]
+
+[node name="TerrainTextureBack" parent="World2D" instance=ExtResource("3_gooyy")]
+material = SubResource("ShaderMaterial_cbb0s")
+layer = 1
+
+[node name="TerrainTextureFore" parent="World2D" instance=ExtResource("3_gooyy")]
+material = SubResource("ShaderMaterial_lyrup")
+
+[node name="StartingCave" parent="World2D" instance=ExtResource("4_qvr68")]
+
+[node name="ProjectileParent" type="Node2D" parent="World2D"]
+
+[node name="SDFGenerator" parent="World2D" instance=ExtResource("5_eiutj")]
+
+[node name="GlobalIllumination" parent="World2D/SDFGenerator" node_paths=PackedStringArray("sdfGen") instance=ExtResource("6_akxxo")]
+sdfGen = NodePath("..")
+
+[node name="Sun" parent="World2D" instance=ExtResource("7_qvr68")]
+visible = false
+rotation = -0.50963616
+
+[node name="CanvasModulate" type="CanvasModulate" parent="World2D"]
+visible = false
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="World2D"]
+visible = false
+texture_filter = 1
+position = Vector2(558, 172)
+texture = ExtResource("9_lyrup")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
+
+[node name="Label" type="Label" parent="UI/CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FPS: 60"
+script = ExtResource("8_akxxo")

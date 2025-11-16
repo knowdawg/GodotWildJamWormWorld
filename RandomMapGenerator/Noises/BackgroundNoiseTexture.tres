@@ -1,0 +1,16 @@
+[gd_resource type="NoiseTexture2D" load_steps=3 format=3 uid="uid://4bv2yqqfvsc0"]
+
+[sub_resource type="Gradient" id="Gradient_sceu6"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.46335077, 0.5078534)
+colors = PackedColorArray(0.015686275, 0, 0, 1, 0.03137255, 0, 0, 1, 0.03137255, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gfbvu"]
+fractal_type = 3
+fractal_octaves = 3
+domain_warp_type = 1
+domain_warp_fractal_octaves = 1
+
+[resource]
+noise = SubResource("FastNoiseLite_gfbvu")
+color_ramp = SubResource("Gradient_sceu6")
