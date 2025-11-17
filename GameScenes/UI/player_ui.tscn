@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://e4wtjf2e806w"]
+
+[ext_resource type="Script" uid="uid://cpsv2a07brojm" path="res://GameScenes/UI/player_ui.gd" id="1_blwpt"]
+
+[node name="PlayerUI" type="CanvasLayer"]
+script = ExtResource("1_blwpt")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="FuelLabel" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Fuel : XXX / 500"
+
+[node name="FlightProgressBar" type="ProgressBar" parent="MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+value = 50.0
+fill_mode = 3
+show_percentage = false

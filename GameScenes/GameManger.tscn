@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dnn7kdakq8pex"]
+[gd_scene load_steps=13 format=3 uid="uid://dnn7kdakq8pex"]
 
 [ext_resource type="Script" uid="uid://4nxy4cmkha4p" path="res://GameScenes/game_manger.gd" id="1_qvr68"]
 [ext_resource type="PackedScene" uid="uid://b5mwxvmfxtn33" path="res://addons/pixel_sandbox/Scenes/TerrainTexture/terrain_texture.tscn" id="3_gooyy"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bywyhourisvim" path="res://addons/pixel_sandbox/Scenes/Sun/sun.tscn" id="7_qvr68"]
 [ext_resource type="Script" uid="uid://bqujbhk108jat" path="res://Test/FPSLabel.gd" id="8_akxxo"]
 [ext_resource type="Texture2D" uid="uid://cjbwghgivmhyw" path="res://RandomMapGenerator/Noises/FuelNoiseTexture.tres" id="9_lyrup"]
+[ext_resource type="PackedScene" uid="uid://e4wtjf2e806w" path="res://GameScenes/UI/player_ui.tscn" id="10_lyrup"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cbb0s"]
 resource_local_to_scene = true
@@ -45,7 +46,6 @@ visible = false
 rotation = -0.50963616
 
 [node name="CanvasModulate" type="CanvasModulate" parent="World2D"]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="World2D"]
@@ -63,7 +63,11 @@ offset_bottom = 40.0
 [node name="CanvasLayer" type="CanvasLayer" parent="UI"]
 
 [node name="Label" type="Label" parent="UI/CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 5.0
+offset_top = 335.0
+offset_right = 59.0
+offset_bottom = 358.0
 text = "FPS: 60"
 script = ExtResource("8_akxxo")
+
+[node name="PlayerUI" parent="UI" instance=ExtResource("10_lyrup")]

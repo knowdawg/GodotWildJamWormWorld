@@ -90,6 +90,7 @@ func align():
 		%BumpRaycast.scale.x = -1.0
 
 var glowStick = preload("res://Player/Scenes/glow_stick.tscn")
+var flare = preload("res://Player/Scenes/flare.tscn")
 func throwGlowstick():
 	var gs : Glowstick = glowStick.instantiate()
 	Game.addProjectile(gs)
@@ -98,9 +99,19 @@ func throwGlowstick():
 	var throwDir : Vector2 = global_position - get_global_mouse_position()
 	gs.setup(-throwDir.normalized(), 200.0)
 
+func throwFlare():
+	var f : Flare = flare.instantiate()
+	Game.addProjectile(f)
+	f.global_position = global_position
+	
+	var throwDir : Vector2 = global_position - get_global_mouse_position()
+	f.setup(-throwDir.normalized(), 350.0, global_position)
+
+
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Glowstick"):
-		throwGlowstick()
+		#throwGlowstick()
+		throwFlare()
 	
 	queue_redraw()
 

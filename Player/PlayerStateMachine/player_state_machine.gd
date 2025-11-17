@@ -23,10 +23,12 @@ var jumpBuffer : bool = false
 
 var canLedgeGrab : bool = false
 
-var maxFlightTIme : float = 1.0
+var maxFlightTIme : float = 0.5
 var flightTime : float = 0.0
 func _process(delta):
 	super._process(delta)
+	
+	Game.flightPercentage = (flightTime / maxFlightTIme) * 100.0
 	
 	var p : Player = parent as Player
 	if p.is_on_floor() or current_state is PlayerLedgeGrab:

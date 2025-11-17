@@ -36,10 +36,10 @@ func createWorld():
 	Game.mapGenerated.emit()
 	
 	#generate random torches
-	randomize()
-	for i in range(200):
-		var torchPos = Vector2i(randi_range(0, TerrainRendering.mapSize.x), randi_range(0, TerrainRendering.mapSize.y))
-		if TerrainRendering.getPixel(torchPos, TerrainRendering.LAYER_TYPE.FOREGROUND) == -1:
-			var t : Node2D = torch.instantiate()
-			Game.addProjectile(t)
-			t.global_position = torchPos
+	#randomize()
+	#for i in range(200):
+		#var torchPos = Vector2i(randi_range(0, TerrainRendering.mapSize.x), randi_range(0, TerrainRendering.mapSize.y))
+		#if TerrainRendering.getPixel(torchPos, TerrainRendering.LAYER_TYPE.FOREGROUND) == -1:
+			#var t : Node2D = torch.instantiate()
+			#Game.addProjectile(t)
+			#t.global_position = torchPos
