@@ -1,0 +1,602 @@
+[gd_scene load_steps=33 format=3 uid="uid://cngivas6c0xoj"]
+
+[ext_resource type="Script" uid="uid://vulvoorx4fyh" path="res://GameScenes/EscapePod/escape_pod.gd" id="1_4sd1k"]
+[ext_resource type="Texture2D" uid="uid://dp5er5qex2xxj" path="res://GameScenes/EscapePod/EscapePod.png" id="2_87xhq"]
+[ext_resource type="Texture2D" uid="uid://f8npsbu1nkan" path="res://Sprites/DirectionalGradiant.png" id="3_daknd"]
+[ext_resource type="PackedScene" uid="uid://brujq4dkn34nd" path="res://Components/ProximityAreaComponent/proximity_area.tscn" id="3_n00yq"]
+[ext_resource type="Shader" uid="uid://5u246xyju60e" path="res://Shaders/WarpPortal.gdshader" id="5_xxpj6"]
+[ext_resource type="Texture2D" uid="uid://nurf06um3rbe" path="res://Sprites/PointLight128x128.tres" id="6_k1fc5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_daknd"]
+size = Vector2(20, 22)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xxpj6"]
+light_mode = 1
+
+[sub_resource type="Curve" id="Curve_krw4p"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kjp5j"]
+curve = SubResource("Curve_krw4p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_63lp0"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_max = 75.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_kjp5j")
+color = Color(0.8901961, 0.7137255, 1, 1)
+hue_variation_min = -2.2351742e-08
+hue_variation_max = -2.2351742e-08
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xxpj6"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_kjp5j")
+color = Color(0.8901961, 0.7137255, 1, 1)
+hue_variation_min = -2.2351742e-08
+hue_variation_max = -2.2351742e-08
+
+[sub_resource type="Curve" id="Curve_xxpj6"]
+_data = [Vector2(0, 1), 0.0, -2.6504765, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_k1fc5"]
+curve = SubResource("Curve_xxpj6")
+
+[sub_resource type="Curve" id="Curve_kjp5j"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_63lp0"]
+curve = SubResource("Curve_kjp5j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_shfye"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, 2, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 4.0
+emission_ring_inner_radius = 3.0
+emission_ring_cone_angle = 90.0
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 39.999977
+radial_velocity_curve = SubResource("CurveTexture_k1fc5")
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_63lp0")
+color = Color(1, 1, 1, 0.5882353)
+
+[sub_resource type="Gradient" id="Gradient_xxpj6"]
+colors = PackedColorArray(0.47843137, 0.21176471, 0.48235294, 1, 0.11764706, 0.11372549, 0.22352941, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k1fc5"]
+gradient = SubResource("Gradient_xxpj6")
+
+[sub_resource type="Gradient" id="Gradient_kjp5j"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.11764706, 0.11372549, 0.22352941, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_63lp0"]
+gradient = SubResource("Gradient_kjp5j")
+
+[sub_resource type="Gradient" id="Gradient_shfye"]
+offsets = PackedFloat32Array(0, 0.36090225, 0.6766917, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.25746268, 0.25746268, 0.25746268, 1, 0.7780608, 0.7780608, 0.7780608, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mv3c5"]
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kcf0y"]
+noise = SubResource("FastNoiseLite_mv3c5")
+color_ramp = SubResource("Gradient_shfye")
+seamless = true
+seamless_blend_skirt = 0.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k1fc5"]
+shader = ExtResource("5_xxpj6")
+shader_parameter/resolution = Vector2(32, 32)
+shader_parameter/colorResolution = 100.0
+shader_parameter/distortionIntensity = -1.9999998807903996
+shader_parameter/spiralDistortionIntensity = -4.999999925494
+shader_parameter/holeSize = 0.0999999977648
+shader_parameter/holeColor = SubResource("GradientTexture1D_63lp0")
+shader_parameter/image = SubResource("NoiseTexture2D_kcf0y")
+shader_parameter/rotations = 1.0
+shader_parameter/depth = 0.5
+shader_parameter/spiralIntensity = 1.0
+shader_parameter/shrinkSpeed = 0.30000015348236
+shader_parameter/roationSpeed = -0.09999985247812049
+shader_parameter/haloColor = SubResource("GradientTexture1D_k1fc5")
+
+[sub_resource type="Gradient" id="Gradient_krw4p"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kjp5j"]
+gradient = SubResource("Gradient_krw4p")
+width = 32
+height = 32
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k1fc5"]
+light_mode = 1
+
+[sub_resource type="Animation" id="Animation_daknd"]
+resource_name = "Spin"
+length = 3.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35000002, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.70000005, 0.75, 0.8, 0.85, 0.90000004, 0.95000005, 1, 1.05, 1.1, 1.1500001, 1.2, 1.25, 1.3, 1.35, 1.4000001, 1.45, 1.5, 1.55, 3, 3.1, 3.2, 3.3, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 6, 7, 8, 9, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParticleEffects/Sparks:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.65, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ParticleEffects/PortalElecticity:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Portal:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.95, 1, 1.05, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0.3, 0.3), Vector2(2, 0.2), Vector2(0.5, 1.5), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ParticleEffects/DoorOpen:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PortalGlow:enabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PortalGlow:energy")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.0]
+}
+
+[sub_resource type="Animation" id="Animation_xxpj6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParticleEffects/Sparks:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ParticleEffects/PortalElecticity:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Portal:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ParticleEffects/DoorOpen:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Portal:material:shader_parameter/resolution")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, 32)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ParticleEffects:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Portal:material:shader_parameter/shrinkSpeed")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.30000015348236]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Portal:material:shader_parameter/rotations")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("PortalGlow:enabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("PortalGlow:energy")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_k1fc5"]
+resource_name = "Takeoff"
+length = 3.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [11, 12, 13, 14, 15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Portal:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2.85, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(5, 5), Vector2(4, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Portal:material:shader_parameter/resolution")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2.85, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(32, 32), Vector2(32, 32), Vector2(160, 160), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.85),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ParticleEffects:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.85),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Portal:material:shader_parameter/shrinkSpeed")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.30000015348236, 0.30000015348236, 1.0000001639131995]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Portal:material:shader_parameter/rotations")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 2.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PortalGlow:enabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ParticleEffects/DoorOpen:emitting")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k1fc5"]
+_data = {
+&"RESET": SubResource("Animation_xxpj6"),
+&"Spin": SubResource("Animation_daknd"),
+&"Takeoff": SubResource("Animation_k1fc5")
+}
+
+[node name="EscapePod" type="Node2D" node_paths=PackedStringArray("lights")]
+script = ExtResource("1_4sd1k")
+lights = [NodePath("Sprite2D/PointLight2D"), NodePath("Sprite2D/PointLight2D2"), NodePath("Sprite2D/PointLight2D3"), NodePath("Sprite2D/PointLight2D4")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -2)
+texture = ExtResource("2_87xhq")
+hframes = 16
+frame = 1
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
+position = Vector2(9, 9)
+color = Color(1, 0, 0, 1)
+texture = ExtResource("3_daknd")
+texture_scale = 0.5
+height = 20.0
+
+[node name="PointLight2D2" type="PointLight2D" parent="Sprite2D"]
+position = Vector2(-10, 9)
+rotation = 3.1415927
+color = Color(1, 0, 0, 1)
+texture = ExtResource("3_daknd")
+texture_scale = 0.5
+height = 20.0
+
+[node name="PointLight2D3" type="PointLight2D" parent="Sprite2D"]
+position = Vector2(-5, 5)
+rotation = 3.9269907
+color = Color(1, 0, 0, 1)
+texture = ExtResource("3_daknd")
+texture_scale = 0.5
+height = 20.0
+
+[node name="PointLight2D4" type="PointLight2D" parent="Sprite2D"]
+position = Vector2(5, 5)
+rotation = 5.4105206
+color = Color(1, 0, 0, 1)
+texture = ExtResource("3_daknd")
+texture_scale = 0.5
+height = 20.0
+
+[node name="ProximityArea" parent="." instance=ExtResource("3_n00yq")]
+unique_name_in_owner = true
+position = Vector2(0, 11)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProximityArea"]
+shape = SubResource("RectangleShape2D_daknd")
+
+[node name="ParticleEffects" type="Node2D" parent="."]
+
+[node name="Sparks" type="GPUParticles2D" parent="ParticleEffects"]
+material = SubResource("CanvasItemMaterial_xxpj6")
+position = Vector2(0, -9)
+emitting = false
+lifetime = 0.5
+explosiveness = 0.3
+trail_enabled = true
+trail_lifetime = 0.09999999999999999
+process_material = SubResource("ParticleProcessMaterial_63lp0")
+
+[node name="PortalElecticity" type="GPUParticles2D" parent="ParticleEffects"]
+material = SubResource("CanvasItemMaterial_xxpj6")
+position = Vector2(0, -9)
+emitting = false
+lifetime = 0.2
+explosiveness = 0.3
+trail_enabled = true
+trail_lifetime = 0.09999999999999999
+process_material = SubResource("ParticleProcessMaterial_xxpj6")
+
+[node name="DoorOpen" type="GPUParticles2D" parent="ParticleEffects"]
+position = Vector2(0, 11)
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 1.0
+trail_lifetime = 0.09999999999999999
+process_material = SubResource("ParticleProcessMaterial_shfye")
+
+[node name="Portal" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_k1fc5")
+position = Vector2(0, -9)
+scale = Vector2(1e-05, 1e-05)
+texture = SubResource("GradientTexture2D_kjp5j")
+
+[node name="Label" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_k1fc5")
+offset_left = -137.0
+offset_top = 20.0
+offset_right = 135.0
+offset_bottom = 58.0
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center] (E) : Insert Fuel"
+scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_k1fc5")
+}
+
+[node name="PortalGlow" type="PointLight2D" parent="."]
+position = Vector2(0, -9)
+enabled = false
+color = Color(0.7764706, 0.31764707, 0.5921569, 1)
+energy = 0.0
+texture = ExtResource("6_k1fc5")
+texture_scale = 4.0
+height = 20.0
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

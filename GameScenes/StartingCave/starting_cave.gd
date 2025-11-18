@@ -1,6 +1,6 @@
 extends Node2D
 
-var caveBlueprint : Blueprint = preload("res://RandomMapGenerator/Blueprints/bp_cave.tres")
+var caveBlueprint : Blueprint = preload("uid://b47bpdrw4im71")
 var player = preload("res://Player/player.tscn")
 
 func _ready() -> void:

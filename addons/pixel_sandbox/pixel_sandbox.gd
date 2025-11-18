@@ -3,10 +3,10 @@ extends EditorPlugin
 
 
 var autoloads : Dictionary[String, String] = {
-	#"RuntimeShaderGlobals" : "res://addons/pixel_sandbox/Singletons/RuntimeShaderGlobals.gd",
 	"TerrainRendering" : "res://addons/pixel_sandbox/Singletons/TerrainRendering.gd",
 	"TerrainDestruction" : "res://addons/pixel_sandbox/Singletons/TerrainDestruction.gd",
 	"WorldManager" : "res://addons/pixel_sandbox/Singletons/WorldManager.gd",
+	"BlueprintManager" : "res://addons/pixel_sandbox/Singletons/BlueprintManager.gd",
 }
 
 

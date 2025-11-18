@@ -1,0 +1,42 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5lmuy85ljtkk"]
+
+[ext_resource type="PackedScene" uid="uid://b5mwxvmfxtn33" path="res://addons/pixel_sandbox/Scenes/TerrainTexture/terrain_texture.tscn" id="1_salk0"]
+[ext_resource type="Shader" uid="uid://dd6cxy2m7c1tb" path="res://addons/pixel_sandbox/Shaders/PixelShaders/ForgroundTextureMapper.gdshader" id="2_u6sqo"]
+[ext_resource type="PackedScene" uid="uid://cngivas6c0xoj" path="res://GameScenes/EscapePod/escape_pod.tscn" id="3_dqge8"]
+[ext_resource type="PackedScene" uid="uid://c71bqvsd4dv87" path="res://GameScenes/StartingCave/starting_cave.tscn" id="4_x40tl"]
+[ext_resource type="PackedScene" uid="uid://bs3ob7drvovjj" path="res://addons/pixel_sandbox/Scenes/SDFGenerator/sdf_generator.tscn" id="5_f2wme"]
+[ext_resource type="PackedScene" uid="uid://b22snyd5lo4mp" path="res://addons/pixel_sandbox/Scenes/GlobalIllumination/global_illumination.tscn" id="6_3loc8"]
+[ext_resource type="PackedScene" uid="uid://bywyhourisvim" path="res://addons/pixel_sandbox/Scenes/Sun/sun.tscn" id="7_oetj4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cbb0s"]
+resource_local_to_scene = true
+shader = ExtResource("2_u6sqo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lyrup"]
+resource_local_to_scene = true
+shader = ExtResource("2_u6sqo")
+
+[node name="RandomGenLevel" type="Node2D"]
+
+[node name="TerrainTextureBack" parent="." instance=ExtResource("1_salk0")]
+material = SubResource("ShaderMaterial_cbb0s")
+layer = 1
+
+[node name="TerrainTextureFore" parent="." instance=ExtResource("1_salk0")]
+material = SubResource("ShaderMaterial_lyrup")
+
+[node name="EscapePod" parent="." instance=ExtResource("3_dqge8")]
+
+[node name="StartingCave" parent="." instance=ExtResource("4_x40tl")]
+
+[node name="SDFGenerator" parent="." instance=ExtResource("5_f2wme")]
+
+[node name="GlobalIllumination" parent="SDFGenerator" node_paths=PackedStringArray("sdfGen") instance=ExtResource("6_3loc8")]
+sdfGen = NodePath("..")
+
+[node name="Sun" parent="." instance=ExtResource("7_oetj4")]
+visible = false
+rotation = -0.50963616
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)

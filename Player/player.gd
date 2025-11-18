@@ -12,6 +12,14 @@ var g : float:
 var timeInAir : float:
 	get: return jumpDistance / maxMoveSpeed
 
+func _ready() -> void:
+	Game.escapePodEntered.connect(enterEscapePod)
+	
+	$Camera2D.limit_left = 0.0
+	$Camera2D.limit_top = 0.0
+	$Camera2D.limit_right = TerrainRendering.mapSize.x
+	$Camera2D.limit_bottom = TerrainRendering.mapSize.y
+
 
 var walkVelocity := Vector2.ZERO
 var jumpVelocity := Vector2.ZERO
@@ -107,6 +115,12 @@ func throwFlare():
 	var throwDir : Vector2 = global_position - get_global_mouse_position()
 	f.setup(-throwDir.normalized(), 350.0, global_position)
 
+
+func enterEscapePod():
+	$StateMachine.switchStates("Stun")
+	visible = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Glowstick"):

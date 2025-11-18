@@ -1,6 +1,8 @@
 extends Node
 
 signal mapGenerated
+signal escapePodEntered
+signal escapePodFinished
 
 var gameManager : GameManager
 

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Blueprint" load_steps=4 format=4 uid="uid://b47bpdrw4im71"]
 
-[ext_resource type="Script" uid="uid://du0oypwpkn78j" path="res://RandomMapGenerator/Blueprints/Blueprint.gd" id="1_r5cl1"]
+[ext_resource type="Script" uid="uid://b4bxt1cusepe0" path="res://addons/pixel_sandbox/TileTemplate/Resources/Blueprint.gd" id="1_r5cl1"]
 
 [sub_resource type="Image" id="Image_e64wt"]
 data = {
