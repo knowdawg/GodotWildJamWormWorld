@@ -10,10 +10,11 @@ func addProjectile(p):
 	projectileParent.add_child(p)
 
 func switchScene(scenePath : String, fadeTime : float, clearUI : bool = true) -> void:
+	
 	var t : Tween = create_tween()
 	t.tween_property(%DarknessRect, "modulate", Color(0.0, 0.0, 0.0, 1.0), fadeTime)
 	
-	await t.finished
+	await get_tree().create_timer(fadeTime).timeout#t.finished
 	
 	if clearUI:
 		clearAllUI()
@@ -21,6 +22,7 @@ func switchScene(scenePath : String, fadeTime : float, clearUI : bool = true) ->
 		c.queue_free()
 		
 	%World2D.add_child(load(scenePath).instantiate())
+	t = create_tween()
 	t.tween_property(%DarknessRect, "modulate", Color(0.0, 0.0, 0.0, 0.0), fadeTime)
 
 func addUI(scenePath : String, uiName : String):

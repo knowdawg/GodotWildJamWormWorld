@@ -7,6 +7,9 @@ var exploded : bool = false
 func _ready() -> void:
 	$AnimationPlayer.play("Charge")
 	$AnimationPlayer.queue("Blow")
+	
+	var cs : CircleShape2D = $Hazard/CollisionShape2D.shape
+	cs.radius = explodeRadius
 
 func explode():
 	exploded = true

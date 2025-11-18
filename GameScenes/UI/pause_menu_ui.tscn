@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbtkx0njm2wkf"]
+
+[ext_resource type="Script" uid="uid://cv2tm5v8ujb43" path="res://GameScenes/UI/pause_menu_ui.gd" id="1_b4mqm"]
+[ext_resource type="FontFile" uid="uid://bovi0c1aecn1d" path="res://Fonts/Xirod.otf" id="2_v68u2"]
+[ext_resource type="Theme" uid="uid://caw1xmgv8ypp5" path="res://Fonts/ButtonTheme.tres" id="3_pktxw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyto8"]
+bg_color = Color(0.08235294, 0.11372549, 0.15686275, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.03529412, 0.039215688, 0.078431375, 1)
+corner_radius_top_left = 50
+corner_radius_bottom_right = 50
+shadow_size = 8
+shadow_offset = Vector2(8, 8)
+
+[node name="PauseMenuUI" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_b4mqm")
+
+[node name="Settings" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 70
+
+[node name="Panel" type="Panel" parent="Settings"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jyto8")
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="MenuLabel" type="Label" parent="Settings/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_v68u2")
+theme_override_font_sizes/font_size = 32
+text = "Game Paused"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Settings/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MenuButton" type="Button" parent="Settings/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("3_pktxw")
+theme_override_fonts/font = ExtResource("2_v68u2")
+theme_override_font_sizes/font_size = 16
+text = "Quit To Menu"
+
+[node name="ExitButton" type="Button" parent="Settings/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("3_pktxw")
+theme_override_fonts/font = ExtResource("2_v68u2")
+theme_override_font_sizes/font_size = 16
+text = "Exit game"
+
+[node name="SettingsExit" type="Button" parent="Settings/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("3_pktxw")
+theme_override_fonts/font = ExtResource("2_v68u2")
+theme_override_font_sizes/font_size = 16
+text = "X"
+
+[connection signal="pressed" from="Settings/Panel/MarginContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="Settings/Panel/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Settings/Panel/MarginContainer/SettingsExit" to="." method="_on_settings_exit_pressed"]

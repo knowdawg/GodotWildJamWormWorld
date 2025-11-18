@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpk55ujp27tih"]
+
+[ext_resource type="Script" uid="uid://vab4ubmgfvhe" path="res://GameScenes/Worms/worm.gd" id="1_un2xt"]
+[ext_resource type="Texture2D" uid="uid://2s1qgbpa1jcb" path="res://Sprites/WormParts.png" id="2_06yhp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_un2xt"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_un2xt"]
+resource_name = "Dig"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Parts/Head:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1, 1.3, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(150, 200), Vector2(100, 25), Vector2(0, 0), Vector2(-100, 25), Vector2(-150, 200)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"resetWormPosition"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_06yhp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Parts/Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_48ha7"]
+_data = {
+&"Dig": SubResource("Animation_un2xt"),
+&"RESET": SubResource("Animation_06yhp")
+}
+
+[node name="Worm" type="Node2D"]
+script = ExtResource("1_un2xt")
+
+[node name="Parts" type="Node2D" parent="."]
+
+[node name="Head" type="Sprite2D" parent="Parts"]
+texture_filter = 1
+texture = ExtResource("2_06yhp")
+offset = Vector2(-2, -2)
+hframes = 2
+
+[node name="Hitbox" type="Area2D" parent="Parts/Head"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parts/Head/Hitbox"]
+position = Vector2(-2, -2)
+shape = SubResource("CircleShape2D_un2xt")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+zoom = Vector2(2, 2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_48ha7")
+}
+
+[node name="TerrainDestroyTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="TerrainDestroyTimer" to="." method="_on_terrain_destroy_timer_timeout"]

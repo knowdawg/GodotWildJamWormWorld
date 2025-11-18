@@ -1,4 +1,5 @@
 extends Node2D
+class_name Level
 
 @export_file("*.tscn") var uiScenes : Array[String]
 

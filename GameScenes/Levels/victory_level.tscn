@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbsynlfnh6nhx"]
+
+[ext_resource type="Script" uid="uid://retwydkibvk7" path="res://GameScenes/Levels/level.gd" id="1_fni3m"]
+
+[node name="VictoryLevel" type="Node2D"]
+script = ExtResource("1_fni3m")
+uiScenes = Array[String](["uid://cflr1f7cghh3y"])

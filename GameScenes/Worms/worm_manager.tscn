@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyrrk0ro0e0dd"]
+
+[ext_resource type="Script" uid="uid://b6ud7csief2ud" path="res://GameScenes/Worms/worm_manager.gd" id="1_3oesc"]
+
+[sub_resource type="Gradient" id="Gradient_3oesc"]
+offsets = PackedFloat32Array(0.7250342, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2tq7k"]
+gradient = SubResource("Gradient_3oesc")
+width = 640
+height = 360
+fill_from = Vector2(1, 1)
+
+[node name="WormManager" type="Node2D"]
+script = ExtResource("1_3oesc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+position = Vector2(0, 34)
+texture = SubResource("GradientTexture2D_2tq7k")
+offset = Vector2(0, 146)

@@ -19,7 +19,7 @@ func _ready() -> void:
 	$Camera2D.limit_top = 0.0
 	$Camera2D.limit_right = TerrainRendering.mapSize.x
 	$Camera2D.limit_bottom = TerrainRendering.mapSize.y
-
+	
 
 var walkVelocity := Vector2.ZERO
 var jumpVelocity := Vector2.ZERO
@@ -121,14 +121,39 @@ func enterEscapePod():
 	visible = false
 	$CollisionShape2D.set_deferred("disabled", true)
 	
+	$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
+	
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Glowstick"):
 		#throwGlowstick()
 		throwFlare()
 	
+	if global_position.y > Game.wormHight + 100.0:
+		die()
+	
 	queue_redraw()
 
 func _draw() -> void:
+	if dead:
+		return
 	draw_circle(-%Picaxe.getDirectionVector() * 5.0, 9.5, Color(1.0, 1.0, 1.0, 0.5), false, 0.5)
 	draw_circle(-%Picaxe.getDirectionVector() * 5.0, 9.5, Color(1.0, 1.0, 1.0, 0.1), true)
+
+
+func _on_hurtbox_area_entered(_area: Area2D) -> void:
+	die()
+
+var dead : bool = false
+func die():
+	if !dead:
+		$StateMachine.switchStates("Die")
+		
+		%GeneralLight.visible = false
+		%Directional.visible = false
+		%Picaxe.visible = false
+		%PlayerSprite.visible = false
+		$ParticleEffects/DeathParticles.emitting = true
+		
+		Game.playerDead.emit()
+		dead = true

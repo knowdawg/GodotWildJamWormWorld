@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://e4wtjf2e806w"]
+[gd_scene load_steps=4 format=3 uid="uid://e4wtjf2e806w"]
 
 [ext_resource type="Script" uid="uid://cpsv2a07brojm" path="res://GameScenes/UI/player_ui.gd" id="1_blwpt"]
+[ext_resource type="FontFile" uid="uid://bovi0c1aecn1d" path="res://Fonts/Xirod.otf" id="2_6x3tm"]
+[ext_resource type="FontFile" uid="uid://rdmkk73yo3ar" path="res://Fonts/chary___.ttf" id="3_v1mfh"]
 
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_blwpt")
@@ -16,15 +18,48 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="FuelLabel" type="Label" parent="MarginContainer"]
-unique_name_in_owner = true
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ObjectivesContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "Fuel : XXX / 500"
+
+[node name="ObjectivesLabel" type="Label" parent="MarginContainer/MarginContainer2/ObjectivesContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_6x3tm")
+text = "Objectives"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/MarginContainer2/ObjectivesContainer"]
+layout_mode = 2
+
+[node name="FuelLabel" type="Label" parent="MarginContainer/MarginContainer2/ObjectivesContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_v1mfh")
+theme_override_font_sizes/font_size = 16
+text = "Gather Fuel : XXX / XXX"
+
+[node name="EscapePodLabel" type="Label" parent="MarginContainer/MarginContainer2/ObjectivesContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_v1mfh")
+theme_override_font_sizes/font_size = 16
+text = "Find Escape Pod"
 
 [node name="FlightProgressBar" type="ProgressBar" parent="MarginContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(12, 0)
 layout_mode = 2
 size_flags_horizontal = 8

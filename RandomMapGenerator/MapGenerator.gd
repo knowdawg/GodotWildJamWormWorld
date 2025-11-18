@@ -16,10 +16,23 @@ func _ready() -> void:
 	fuelNoise.width = TerrainRendering.mapSize.x
 	fuelNoise.height = TerrainRendering.mapSize.y
 	
-	call_deferred("createWorld")
+	
+	
+	Game.generateLevel.connect(createWorld)
+	#call_deferred("createWorld")
 
 
 func createWorld():
+	randomize()
+	var tn : FastNoiseLite = terrainNoise.noise
+	tn.seed = randi()
+	tn = backgroundNoise.noise
+	tn.seed = randi()
+	tn = fuelNoise.noise
+	tn.seed = randi()
+	
+	await get_tree().process_frame
+	
 	var fuelIm : Image = fuelNoise.get_image()
 	fuelIm.convert(TerrainRendering.IMAGE_FORMAT)
 	
@@ -27,11 +40,13 @@ func createWorld():
 	var terrainIm : Image = terrainNoise.get_image()
 	terrainIm.convert(TerrainRendering.IMAGE_FORMAT)
 	terrainIm.blend_rect(fuelIm, fuelIm.get_used_rect(), Vector2i.ZERO)
-	TerrainRendering.imageForeground = terrainIm
+	TerrainRendering.imageForeground = terrainIm.duplicate()
 	
 	var backIm : Image = backgroundNoise.get_image()
 	backIm.convert(TerrainRendering.IMAGE_FORMAT)
-	TerrainRendering.imageBackground = backIm
+	TerrainRendering.imageBackground = backIm.duplicate()
+	
+	TerrainRendering.dirtyAll()
 	
 	Game.mapGenerated.emit()
 	

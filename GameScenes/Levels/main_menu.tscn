@@ -4,3 +4,4 @@
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_050hn")
+uiScenes = Array[String](["uid://bdyt18qrq6ne1"])

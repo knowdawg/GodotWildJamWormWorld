@@ -1,0 +1,242 @@
+[gd_scene load_steps=19 format=3 uid="uid://msby4h2qknfh"]
+
+[ext_resource type="Shader" uid="uid://bd2jqx2d4u2dg" path="res://Shaders/BalatroNoiseWarpMask.gdshader" id="1_73mvn"]
+[ext_resource type="Script" uid="uid://b0bus8ljwjnkr" path="res://GameScenes/UI/death_screen.gd" id="1_dw1lh"]
+[ext_resource type="FontFile" uid="uid://bovi0c1aecn1d" path="res://Fonts/Xirod.otf" id="1_vbu5s"]
+[ext_resource type="Theme" uid="uid://caw1xmgv8ypp5" path="res://Fonts/ButtonTheme.tres" id="2_73mvn"]
+
+[sub_resource type="Gradient" id="Gradient_dw1lh"]
+offsets = PackedFloat32Array(0, 0.09543569, 0.6897638, 0.813278)
+colors = PackedColorArray(0.8117647, 0.34117648, 0.23529412, 1, 0.14117648, 0.08235294, 0.15294118, 1, 0.64705884, 0.1882353, 0.1882353, 1, 0.8117647, 0.34117648, 0.23529412, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_sth3l"]
+noise_type = 2
+seed = 1
+fractal_type = 3
+cellular_distance_function = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m50rl"]
+noise = SubResource("FastNoiseLite_sth3l")
+color_ramp = SubResource("Gradient_dw1lh")
+seamless = true
+seamless_blend_skirt = 0.3
+
+[sub_resource type="Gradient" id="Gradient_sth3l"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_m50rl"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h7fre"]
+noise = SubResource("FastNoiseLite_m50rl")
+color_ramp = SubResource("Gradient_sth3l")
+seamless = true
+seamless_blend_skirt = 0.3
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h7fre"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rqgo7"]
+width = 64
+height = 64
+noise = SubResource("FastNoiseLite_h7fre")
+seamless = true
+seamless_blend_skirt = 0.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_okxdn"]
+shader = ExtResource("1_73mvn")
+shader_parameter/maskNoise = SubResource("NoiseTexture2D_h7fre")
+shader_parameter/mainNoise = SubResource("NoiseTexture2D_m50rl")
+shader_parameter/warpNoise = SubResource("NoiseTexture2D_rqgo7")
+shader_parameter/maskSize = 0.30000001425
+shader_parameter/resolution = Vector2(640, 640)
+
+[sub_resource type="Gradient" id="Gradient_02s1w"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_whq4a"]
+gradient = SubResource("Gradient_02s1w")
+width = 640
+height = 640
+
+[sub_resource type="Animation" id="Animation_dw1lh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Balatro:material:shader_parameter/maskSize")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.30000001425]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/RichTextLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/VBoxContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_73mvn"]
+resource_name = "Splat"
+length = 2.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Balatro:material:shader_parameter/maskSize")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.09999995725, 0.30000001425]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/RichTextLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/VBoxContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.05, 1, 2.45),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sth3l"]
+_data = {
+&"RESET": SubResource("Animation_dw1lh"),
+&"Splat": SubResource("Animation_73mvn")
+}
+
+[node name="DeathScreenUI" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_dw1lh")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Balatro" type="Sprite2D" parent="Visuals"]
+material = SubResource("ShaderMaterial_okxdn")
+position = Vector2(322, 172)
+texture = SubResource("GradientTexture2D_whq4a")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 100
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.4862745, 0, 0, 0.39215687)
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 20
+theme_override_fonts/normal_font = ExtResource("1_vbu5s")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[shake rate=10.0 level=0 connected=1][center]Worm Food"
+fit_content = true
+scroll_active = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 4
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+theme = ExtResource("2_73mvn")
+text = "Retry"
+
+[node name="Menu" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 25)
+layout_mode = 2
+theme = ExtResource("2_73mvn")
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 25)
+layout_mode = 2
+theme = ExtResource("2_73mvn")
+text = "Quit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sth3l")
+}
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

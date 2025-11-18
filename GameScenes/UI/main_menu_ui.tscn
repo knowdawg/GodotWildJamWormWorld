@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bdyt18qrq6ne1"]
+[gd_scene load_steps=16 format=3 uid="uid://bdyt18qrq6ne1"]
 
 [ext_resource type="Script" uid="uid://ucyeyjm2m8kc" path="res://GameScenes/UI/main_menu_ui.gd" id="1_5scu0"]
 [ext_resource type="FontFile" uid="uid://bovi0c1aecn1d" path="res://Fonts/Xirod.otf" id="1_mcyb3"]
@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dvyasrxem1qj5" path="res://Sprites/Worm.png" id="3_tcsvs"]
 
 [sub_resource type="Gradient" id="Gradient_tcsvs"]
-offsets = PackedFloat32Array(0, 0.124528304, 0.73207545, 0.84456927, 1)
-colors = PackedColorArray(0.92156863, 0.92941177, 0.9137255, 1, 0.03529412, 0.039215688, 0.078431375, 1, 0.45882353, 0.14117648, 0.21960784, 1, 0.64705884, 0.1882353, 0.1882353, 1, 0.92156863, 0.92941177, 0.9137255, 1)
+offsets = PackedFloat32Array(0, 0.13962264, 0.73207545, 0.84456927, 1)
+colors = PackedColorArray(0.4509804, 0.74509805, 0.827451, 1, 0.23529412, 0.36862746, 0.54509807, 1, 0.30980393, 0.56078434, 0.7294118, 1, 0.4509804, 0.74509805, 0.827451, 1, 0.6431373, 0.8666667, 0.85882354, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_u0thu"]
 noise_type = 5
@@ -48,6 +48,19 @@ seamless_blend_skirt = 0.3
 shader = ExtResource("2_u0thu")
 shader_parameter/mainNoise = SubResource("NoiseTexture2D_tcsvs")
 shader_parameter/warpNoise = SubResource("NoiseTexture2D_0nny5")
+shader_parameter/resolution = Vector2(160, 90)
+
+[sub_resource type="Gradient" id="Gradient_e24kl"]
+offsets = PackedFloat32Array(0.27272728, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.67058825)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0nny5"]
+gradient = SubResource("Gradient_e24kl")
+width = 640
+height = 640
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.8)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mcyb3"]
 bg_color = Color(0.08235294, 0.11372549, 0.15686275, 1)
@@ -61,18 +74,11 @@ corner_radius_bottom_right = 50
 shadow_size = 8
 shadow_offset = Vector2(8, 8)
 
-[node name="MainMenuUI" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MainMenuUI" type="CanvasLayer"]
 script = ExtResource("1_5scu0")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_tcsvs")
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -80,18 +86,19 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="WormImage" type="TextureRect" parent="."]
-visible = false
+modulate = Color(0.78431374, 0.78431374, 0.78431374, 1)
 texture_filter = 1
-layout_mode = 0
-offset_left = 135.0
-offset_top = 162.0
-offset_right = 262.0
-offset_bottom = 226.0
+texture_repeat = 2
+offset_right = 160.0
+offset_bottom = 90.0
 scale = Vector2(4, 4)
 texture = ExtResource("3_tcsvs")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+texture = SubResource("GradientTexture2D_0nny5")
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -105,15 +112,17 @@ theme_override_constants/margin_bottom = 10
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_colors/font_shadow_color = Color(1, 1, 1, 0.39215687)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.4862745, 0, 0, 0.39215687)
 theme_override_constants/shadow_outline_size = 5
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 3
-theme_override_constants/outline_size = 10
+theme_override_constants/outline_size = 20
 theme_override_fonts/normal_font = ExtResource("1_mcyb3")
 theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
-text = "[pulse freq=0.2 color=#a8b5b2 ease=-2.0][tornado radius=3.0 freq=2.0 connected=1][wave amp=20.0 freq=1.0 connected=1][center]Worm  World"
+text = "[tornado radius=3.0 freq=2.0 connected=1][wave amp=20.0 freq=1.0 connected=1][center]Worm  World"
 fit_content = true
 scroll_active = false
 
@@ -144,7 +153,6 @@ text = "Quit"
 [node name="Settings" type="MarginContainer" parent="."]
 unique_name_in_owner = true
 visible = false
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -180,6 +188,9 @@ theme_override_fonts/font = ExtResource("1_mcyb3")
 theme_override_font_sizes/font_size = 32
 text = "Settings"
 horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Settings/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="Master" type="Label" parent="Settings/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2

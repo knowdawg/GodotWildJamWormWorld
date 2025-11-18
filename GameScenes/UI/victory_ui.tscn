@@ -1,0 +1,272 @@
+[gd_scene load_steps=32 format=3 uid="uid://cflr1f7cghh3y"]
+
+[ext_resource type="Shader" uid="uid://5u246xyju60e" path="res://Shaders/WarpPortal.gdshader" id="1_f4dk0"]
+[ext_resource type="Script" uid="uid://bh0drb4d1ogq8" path="res://GameScenes/UI/victory_ui.gd" id="1_olw3m"]
+[ext_resource type="FontFile" uid="uid://bovi0c1aecn1d" path="res://Fonts/Xirod.otf" id="2_olw3m"]
+[ext_resource type="Theme" uid="uid://caw1xmgv8ypp5" path="res://Fonts/ButtonTheme.tres" id="3_2foaq"]
+
+[sub_resource type="Gradient" id="Gradient_olw3m"]
+offsets = PackedFloat32Array(0.91078836, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2foaq"]
+gradient = SubResource("Gradient_olw3m")
+
+[sub_resource type="Gradient" id="Gradient_u2mpu"]
+offsets = PackedFloat32Array(0.78838176, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_reppd"]
+frequency = 0.0396
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i3jyw"]
+height = 64
+noise = SubResource("FastNoiseLite_reppd")
+color_ramp = SubResource("Gradient_u2mpu")
+seamless = true
+seamless_blend_skirt = 0.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aqca6"]
+shader = ExtResource("1_f4dk0")
+shader_parameter/resolution = Vector2(640, 640)
+shader_parameter/colorResolution = 100.0
+shader_parameter/transparent = true
+shader_parameter/distortionIntensity = 1.0
+shader_parameter/spiralDistortionIntensity = 1.0
+shader_parameter/holeSize = 0.0
+shader_parameter/image = SubResource("NoiseTexture2D_i3jyw")
+shader_parameter/rotations = 10.0
+shader_parameter/depth = 10.0
+shader_parameter/spiralIntensity = 1.4901199918426758e-07
+shader_parameter/shrinkSpeed = -0.09999985247812047
+shader_parameter/roationSpeed = 1.4901199918426758e-07
+shader_parameter/haloColor = SubResource("GradientTexture1D_2foaq")
+
+[sub_resource type="Gradient" id="Gradient_02s1w"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4o4hw"]
+gradient = SubResource("Gradient_02s1w")
+width = 640
+height = 640
+
+[sub_resource type="Gradient" id="Gradient_f4dk0"]
+offsets = PackedFloat32Array(0.91078836, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_olw3m"]
+gradient = SubResource("Gradient_f4dk0")
+
+[sub_resource type="Gradient" id="Gradient_2foaq"]
+offsets = PackedFloat32Array(0.78838176, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3ga20"]
+frequency = 0.0396
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u2mpu"]
+height = 64
+noise = SubResource("FastNoiseLite_3ga20")
+color_ramp = SubResource("Gradient_2foaq")
+seamless = true
+seamless_blend_skirt = 0.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f4dk0"]
+shader = ExtResource("1_f4dk0")
+shader_parameter/resolution = Vector2(640, 640)
+shader_parameter/colorResolution = 100.0
+shader_parameter/transparent = true
+shader_parameter/distortionIntensity = 1.0
+shader_parameter/spiralDistortionIntensity = 1.0
+shader_parameter/holeSize = 0.0
+shader_parameter/image = SubResource("NoiseTexture2D_u2mpu")
+shader_parameter/rotations = 7.0
+shader_parameter/depth = 10.0
+shader_parameter/spiralIntensity = 1.4901199918426758e-07
+shader_parameter/shrinkSpeed = -0.9999998658891992
+shader_parameter/roationSpeed = 1.4901199918426758e-07
+shader_parameter/haloColor = SubResource("GradientTexture1D_olw3m")
+
+[sub_resource type="Gradient" id="Gradient_i3jyw"]
+offsets = PackedFloat32Array(0.91078836, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aqca6"]
+gradient = SubResource("Gradient_i3jyw")
+
+[sub_resource type="Gradient" id="Gradient_xdf55"]
+offsets = PackedFloat32Array(0.78838176, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ea1a6"]
+frequency = 0.0396
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_02s1w"]
+height = 64
+noise = SubResource("FastNoiseLite_ea1a6")
+color_ramp = SubResource("Gradient_xdf55")
+seamless = true
+seamless_blend_skirt = 0.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_olw3m"]
+shader = ExtResource("1_f4dk0")
+shader_parameter/resolution = Vector2(640, 640)
+shader_parameter/colorResolution = 100.0
+shader_parameter/transparent = true
+shader_parameter/distortionIntensity = 1.0
+shader_parameter/spiralDistortionIntensity = 1.0
+shader_parameter/holeSize = 0.0
+shader_parameter/image = SubResource("NoiseTexture2D_02s1w")
+shader_parameter/rotations = 5.0
+shader_parameter/depth = 3.0000000447036
+shader_parameter/spiralIntensity = 1.4901199918426758e-07
+shader_parameter/shrinkSpeed = -0.9999998658891992
+shader_parameter/roationSpeed = 1.4901199918426758e-07
+shader_parameter/haloColor = SubResource("GradientTexture1D_aqca6")
+
+[sub_resource type="Gradient" id="Gradient_3ga20"]
+colors = PackedColorArray(0.11764706, 0.11372549, 0.22352941, 1, 0.7764706, 0.31764707, 0.5921569, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u2mpu"]
+gradient = SubResource("Gradient_3ga20")
+
+[sub_resource type="Gradient" id="Gradient_reppd"]
+offsets = PackedFloat32Array(0, 0.32365146)
+colors = PackedColorArray(0.7764706, 0.31764707, 0.5921569, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i3jyw"]
+gradient = SubResource("Gradient_reppd")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_aqca6"]
+noise_type = 2
+cellular_return_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdf55"]
+noise = SubResource("FastNoiseLite_aqca6")
+seamless = true
+seamless_blend_skirt = 0.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ea1a6"]
+shader = ExtResource("1_f4dk0")
+shader_parameter/resolution = Vector2(640, 640)
+shader_parameter/colorResolution = 100.0
+shader_parameter/transparent = false
+shader_parameter/distortionIntensity = 1.4901199918426758e-07
+shader_parameter/spiralDistortionIntensity = 10.0
+shader_parameter/holeSize = 0.0499999988824
+shader_parameter/holeColor = SubResource("GradientTexture1D_i3jyw")
+shader_parameter/image = SubResource("NoiseTexture2D_xdf55")
+shader_parameter/rotations = 5.0
+shader_parameter/depth = 0.20000000298024
+shader_parameter/spiralIntensity = 1.4901199918426758e-07
+shader_parameter/shrinkSpeed = -0.29999985545835983
+shader_parameter/roationSpeed = -0.09999985247812047
+shader_parameter/haloColor = SubResource("GradientTexture1D_u2mpu")
+
+[node name="VictoryUI" type="CanvasLayer"]
+script = ExtResource("1_olw3m")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="BackBufferCopy4" type="BackBufferCopy" parent="Visuals"]
+copy_mode = 2
+
+[node name="Stars3" type="Sprite2D" parent="Visuals"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_aqca6")
+position = Vector2(319, 178)
+scale = Vector2(2, 2)
+texture = SubResource("GradientTexture2D_4o4hw")
+
+[node name="BackBufferCopy3" type="BackBufferCopy" parent="Visuals"]
+copy_mode = 2
+
+[node name="Stars2" type="Sprite2D" parent="Visuals"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_f4dk0")
+position = Vector2(319, 178)
+scale = Vector2(2, 2)
+texture = SubResource("GradientTexture2D_4o4hw")
+
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="Visuals"]
+copy_mode = 2
+
+[node name="Stars" type="Sprite2D" parent="Visuals"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_olw3m")
+position = Vector2(319, 178)
+scale = Vector2(2, 2)
+texture = SubResource("GradientTexture2D_4o4hw")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Visuals"]
+copy_mode = 2
+
+[node name="ColorRect" type="Sprite2D" parent="Visuals"]
+material = SubResource("ShaderMaterial_ea1a6")
+position = Vector2(320, 177)
+texture = SubResource("GradientTexture2D_4o4hw")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.4862745, 0, 0, 0.39215687)
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 20
+theme_override_fonts/normal_font = ExtResource("2_olw3m")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[tornado radius=3.0 freq=2.0 connected=1][wave amp=20.0 freq=1.0 connected=1][center]Escaped"
+fit_content = true
+scroll_active = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 4
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+theme = ExtResource("3_2foaq")
+text = "Play Again"
+
+[node name="Menu" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 25)
+layout_mode = 2
+theme = ExtResource("3_2foaq")
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 25)
+layout_mode = 2
+theme = ExtResource("3_2foaq")
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

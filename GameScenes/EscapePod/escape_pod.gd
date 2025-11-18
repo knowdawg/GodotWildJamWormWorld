@@ -15,6 +15,7 @@ enum STATES {
 var state : int = STATES.DISABLED
 
 func _ready() -> void:
+	Game.escapePod = self
 	$Label.visible = false
 	#escape pod is at the bottom top
 	global_position.x = (float(TerrainRendering.mapSize.x) / 2.0) + 100.0
@@ -37,7 +38,12 @@ func _process(delta: float) -> void:
 			updateLights()
 			updateLabelVisibility()
 			
-			if Input.is_action_just_pressed("Interact") and $ProximityArea.is_player_inside():
+			if Game.amountOfFuel >= Game.amoundOfFuelNeeded:
+				%Label.text = "[center](E) : Insert Fuel"
+			else:
+				%Label.text = "[center]Find More Fuel"
+			
+			if Input.is_action_just_pressed("Interact") and $ProximityArea.is_player_inside() and Game.amountOfFuel >= Game.amoundOfFuelNeeded:
 				$AnimationPlayer.play("Spin")
 				state = STATES.CHARGING
 			return
@@ -72,10 +78,11 @@ func updateLabelVisibility():
 	else:
 		%Label.visible = false
 
-
+var victory : String = "uid://bbsynlfnh6nhx"
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Spin":
-		$Label.text = "[center] Enter"
+		$Label.text = "[center](E) : Enter"
 		state = STATES.READY
 	if anim_name == "Takeoff":
 		Game.escapePodFinished.emit()
+		Game.gameManager.switchScene(victory, 4.0, true)

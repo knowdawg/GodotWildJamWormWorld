@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dsdfoua5eysoq"]
+[gd_scene load_steps=13 format=3 uid="uid://dsdfoua5eysoq"]
 
 [ext_resource type="Texture2D" uid="uid://dcua2k7d360j3" path="res://Player/Sprites/Dynamite.png" id="1_pwkjs"]
 [ext_resource type="Script" uid="uid://dkqbcvoseljlo" path="res://Player/Scripts/dynamite.gd" id="1_u3hgy"]
@@ -87,6 +87,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [5.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hazard/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_u3hgy"]
@@ -240,6 +252,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Hazard/CollisionShape2D:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ye6h"]
 _data = {
@@ -247,6 +271,8 @@ _data = {
 &"Charge": SubResource("Animation_u3hgy"),
 &"RESET": SubResource("Animation_6ye6h")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ye6h"]
 
 [node name="Dynamite" type="RigidBody2D"]
 collision_layer = 0
@@ -281,5 +307,13 @@ texture = SubResource("GradientTexture2D_6ye6h")
 libraries = {
 &"": SubResource("AnimationLibrary_6ye6h")
 }
+
+[node name="Hazard" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hazard"]
+shape = SubResource("CircleShape2D_6ye6h")
+disabled = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

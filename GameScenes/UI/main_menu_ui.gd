@@ -1,9 +1,20 @@
-extends Control
+extends CanvasLayer
 class_name MainMenuUI
 
+var mainLevel : String = "uid://c5lmuy85ljtkk"
+
+
+var noMoreInput : bool = false
 
 func _on_play_pressed() -> void:
-	pass # Replace with function body.
+	if noMoreInput:
+		return
+	noMoreInput = true
+	
+	if Game.gameManager:
+		Game.gameManager.switchScene(mainLevel, 1.0, true)
+	else:
+		printerr("No Game Manager!")
 
 
 func _on_settings_pressed() -> void:

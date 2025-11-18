@@ -1,10 +1,11 @@
 shader_type canvas_item;
 render_mode unshaded;
 
-uniform sampler2D screen : hint_screen_texture;
+uniform sampler2D screen : hint_screen_texture, filter_nearest;
 
 uniform vec2 resolution = vec2(64, 64);
 uniform float colorResolution : hint_range(0.0, 100.0, 1.0) = 100.0; //Amount of colors per channel
+uniform bool transparent = false;
 
 //Warp Uniforms
 uniform float distortionIntensity : hint_range(-10.0, 10.0, 0.1) = 1.0;
@@ -60,6 +61,10 @@ void fragment() {
 	float blackHole = smoothstep(holeSize - 0.05, holeSize, centerDis);
 	vec4 hc = texture(holeColor, vec2(smoothstep(0.0, holeSize, centerDis)));
 	c.rgb = mix(c.rgb, hc.rgb, 1.0 - blackHole);
-
+	
+	if(transparent){
+		c.a = max(c.r, c.g);
+		c.a = max(c.a, c.b);
+	}
 	COLOR = c;
 }
