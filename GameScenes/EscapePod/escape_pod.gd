@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 			else:
 				%Label.text = "[center]Find More Fuel"
 			
-			if Input.is_action_just_pressed("Interact") and $ProximityArea.is_player_inside() and Game.amountOfFuel >= Game.amoundOfFuelNeeded:
+			if PlayerStats.player.dead == false and Input.is_action_just_pressed("Interact") and $ProximityArea.is_player_inside() and Game.amountOfFuel >= Game.amoundOfFuelNeeded:
 				$AnimationPlayer.play("Spin")
 				state = STATES.CHARGING
 			return
@@ -56,7 +56,7 @@ func _process(delta: float) -> void:
 			updateLights()
 			updateLabelVisibility()
 			
-			if Input.is_action_just_pressed("Interact") and $ProximityArea.is_player_inside():
+			if PlayerStats.player.dead == false and Input.is_action_just_pressed("Interact") and $ProximityArea.is_player_inside():
 				$AnimationPlayer.play("Takeoff")
 				state = STATES.TAKEOFF
 				Game.escapePodEntered.emit()

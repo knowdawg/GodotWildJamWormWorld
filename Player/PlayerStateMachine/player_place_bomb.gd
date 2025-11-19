@@ -21,9 +21,10 @@ func update(delta : float):
 		return
 
 func placeBomb():
-	var d : Node2D = dynamite.instantiate()
-	Game.addProjectile(d)
-	d.global_position = parent.global_position
+	if PlayerStats.useDynamite():
+		var d : Node2D = dynamite.instantiate()
+		Game.addProjectile(d)
+		d.global_position = parent.global_position
 
 func update_physics(delta: float):
 	var p : Player = parent as Player

@@ -1,8 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
-@export var jumpHeight : float = 30.0
-@export var jumpDistance : float = 25.0
+@export var jumpHeight : float = 25.0
+@export var jumpDistance : float = 20.0
 @export var maxMoveSpeed : float = 70.0
 
 var jumpForce : float:
@@ -13,6 +13,7 @@ var timeInAir : float:
 	get: return jumpDistance / maxMoveSpeed
 
 func _ready() -> void:
+	PlayerStats.player = self
 	Game.escapePodEntered.connect(enterEscapePod)
 	
 	$Camera2D.limit_left = 0.0
@@ -75,15 +76,15 @@ func ledgeGrabPhysicsUpdate(_delta: float) -> void:
 func processInputs(delta : float):
 	xInput = Input.get_axis("MoveLeft", "MoveRight")
 	yInput = Input.get_axis("MoveUp", "MoveDown")
-	walkVelocity.x = xInput * maxMoveSpeed * delta * 60.0
+	walkVelocity.x = xInput * maxMoveSpeed * delta * 60.0 * PlayerStats.maxMoveSpeedMultiplier
 
 func fall(delta : float):
-	jumpVelocity.y += delta * g
+	jumpVelocity.y += delta * g * PlayerStats.gravityMultiplier
 	if is_on_floor() and jumpVelocity.y > 0.0:
 		jumpVelocity.y = 0.0
 
 func jump():
-	jumpVelocity.y = jumpForce
+	jumpVelocity.y = jumpForce * PlayerStats.jumpForceMultiplier
 
 func align():
 	if velocity.x > 0.0:
@@ -108,12 +109,13 @@ func throwGlowstick():
 	gs.setup(-throwDir.normalized(), 200.0)
 
 func throwFlare():
-	var f : Flare = flare.instantiate()
-	Game.addProjectile(f)
-	f.global_position = global_position
-	
-	var throwDir : Vector2 = global_position - get_global_mouse_position()
-	f.setup(-throwDir.normalized(), 350.0, global_position)
+	if PlayerStats.useFlare():
+		var f : Flare = flare.instantiate()
+		Game.addProjectile(f)
+		f.global_position = global_position
+		
+		var throwDir : Vector2 = global_position - get_global_mouse_position()
+		f.setup(-throwDir.normalized(), 350.0, global_position)
 
 
 func enterEscapePod():

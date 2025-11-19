@@ -1,11 +1,190 @@
-[gd_scene load_steps=4 format=3 uid="uid://e4wtjf2e806w"]
+[gd_scene load_steps=17 format=3 uid="uid://e4wtjf2e806w"]
 
 [ext_resource type="Script" uid="uid://cpsv2a07brojm" path="res://GameScenes/UI/player_ui.gd" id="1_blwpt"]
+[ext_resource type="Script" uid="uid://c2f2evba6vmki" path="res://GameScenes/UI/PlayerUI/dynamite_cooldown.gd" id="2_3pga3"]
 [ext_resource type="FontFile" uid="uid://bovi0c1aecn1d" path="res://Fonts/Xirod.otf" id="2_6x3tm"]
+[ext_resource type="Texture2D" uid="uid://dwsakwbd2k33l" path="res://Sprites/RadialProgress.png" id="2_b3j0l"]
+[ext_resource type="Texture2D" uid="uid://ccxa28n4soi7o" path="res://Sprites/RadialProgressOver.png" id="3_3pga3"]
 [ext_resource type="FontFile" uid="uid://rdmkk73yo3ar" path="res://Fonts/chary___.ttf" id="3_v1mfh"]
+[ext_resource type="Texture2D" uid="uid://6cakfoijdxhd" path="res://Sprites/RadialProgressTNT.png" id="4_4efd6"]
+[ext_resource type="PackedScene" uid="uid://dbdv0k3gt74dl" path="res://GameScenes/UI/upgrade_card.tscn" id="4_ssyxj"]
+[ext_resource type="Texture2D" uid="uid://n63fk72fuev1" path="res://Sprites/UpgradeIconTest.png" id="5_s8ryw"]
+[ext_resource type="Texture2D" uid="uid://4ovcxtvvkblp" path="res://Sprites/RadialProgressFlare.png" id="6_7ml2g"]
+[ext_resource type="Script" uid="uid://4tfm2bnfecya" path="res://GameScenes/UI/PlayerUI/flare_cooldown.gd" id="7_4efd6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plbm5"]
+bg_color = Color(0.03529412, 0.039215688, 0.078431375, 0.5882353)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.92156863, 0.92941177, 0.9137255, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_offset = Vector2(1, 1)
+anti_aliasing = false
+
+[sub_resource type="Animation" id="Animation_test7"]
+resource_name = "Show"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DisplayCard:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_b3j0l"]
+resource_name = "Hide"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DisplayCard:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3pga3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DisplayCard:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4efd6"]
+_data = {
+&"Hide": SubResource("Animation_b3j0l"),
+&"RESET": SubResource("Animation_3pga3"),
+&"Show": SubResource("Animation_test7")
+}
 
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_blwpt")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Dynamite" type="HBoxContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+script = ExtResource("2_3pga3")
+
+[node name="DynamiteProgress" type="TextureProgressBar" parent="MarginContainer2/VBoxContainer/Dynamite"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+value = 33.0
+fill_mode = 4
+texture_under = ExtResource("2_b3j0l")
+texture_over = ExtResource("3_3pga3")
+texture_progress = ExtResource("2_b3j0l")
+tint_under = Color(0.03529412, 0.039215688, 0.078431375, 1)
+tint_progress = Color(0.64705884, 0.1882353, 0.1882353, 1)
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2/VBoxContainer/Dynamite/DynamiteProgress"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_4efd6")
+stretch_mode = 2
+
+[node name="DynamiteCount" type="Label" parent="MarginContainer2/VBoxContainer/Dynamite"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_6x3tm")
+theme_override_font_sizes/font_size = 32
+text = "1"
+horizontal_alignment = 1
+
+[node name="Flare" type="HBoxContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+script = ExtResource("7_4efd6")
+
+[node name="FlareProgress" type="TextureProgressBar" parent="MarginContainer2/VBoxContainer/Flare"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+value = 33.0
+fill_mode = 4
+texture_under = ExtResource("2_b3j0l")
+texture_over = ExtResource("3_3pga3")
+texture_progress = ExtResource("2_b3j0l")
+tint_under = Color(0.03529412, 0.039215688, 0.078431375, 1)
+tint_progress = Color(0.64705884, 0.1882353, 0.1882353, 1)
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2/VBoxContainer/Flare/FlareProgress"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_7ml2g")
+stretch_mode = 2
+
+[node name="FlareCount" type="Label" parent="MarginContainer2/VBoxContainer/Flare"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_6x3tm")
+theme_override_font_sizes/font_size = 32
+text = "1"
+horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -27,7 +206,7 @@ theme_override_constants/margin_bottom = 4
 
 [node name="ObjectivesContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer2"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 8
 size_flags_vertical = 0
 
 [node name="ObjectivesLabel" type="Label" parent="MarginContainer/MarginContainer2/ObjectivesContainer"]
@@ -57,13 +236,76 @@ theme_override_fonts/font = ExtResource("3_v1mfh")
 theme_override_font_sizes/font_size = 16
 text = "Find Escape Pod"
 
-[node name="FlightProgressBar" type="ProgressBar" parent="MarginContainer"]
+[node name="Upgrades" type="HBoxContainer" parent="MarginContainer"]
 unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(12, 0)
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 1
-value = 50.0
-fill_mode = 3
-show_percentage = false
+size_flags_vertical = 8
+
+[node name="UpgradeCard" parent="MarginContainer/Upgrades" instance=ExtResource("4_ssyxj")]
+layout_mode = 2
+
+[node name="UpgradeCard2" parent="MarginContainer/Upgrades" instance=ExtResource("4_ssyxj")]
+layout_mode = 2
+
+[node name="UpgradeCard3" parent="MarginContainer/Upgrades" instance=ExtResource("4_ssyxj")]
+layout_mode = 2
+
+[node name="UpgradeCard4" parent="MarginContainer/Upgrades" instance=ExtResource("4_ssyxj")]
+layout_mode = 2
+
+[node name="DisplayCard" type="Panel" parent="."]
+custom_minimum_size = Vector2(200, 300)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(100, 150)
+theme_override_styles/panel = SubResource("StyleBoxFlat_plbm5")
+
+[node name="MarginContainer" type="MarginContainer" parent="DisplayCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DisplayCard/MarginContainer"]
+layout_mode = 2
+
+[node name="DisplayIcon" type="TextureRect" parent="DisplayCard/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture = ExtResource("5_s8ryw")
+
+[node name="DisplayLabel" type="RichTextLabel" parent="DisplayCard/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("3_v1mfh")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "+ Light Around You
++ Revive"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4efd6")
+}

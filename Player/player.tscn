@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://d1uxb8p7iv5vm"]
+[gd_scene load_steps=39 format=3 uid="uid://d1uxb8p7iv5vm"]
 
 [ext_resource type="Script" uid="uid://v7jho3hsmjon" path="res://Player/player.gd" id="1_k53q1"]
 [ext_resource type="Script" uid="uid://up5bvm7rwjr2" path="res://Player/PlayerStateMachine/player_state_machine.gd" id="2_od3ui"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://cntla71dkr2lv" path="res://Player/Scripts/game_camera.gd" id="13_lfmf2"]
 [ext_resource type="Texture2D" uid="uid://f8npsbu1nkan" path="res://Sprites/DirectionalGradiant.png" id="14_dkpta"]
 [ext_resource type="Script" uid="uid://e06x8ygfbev6" path="res://Player/Scripts/directional_light.gd" id="15_lfmf2"]
+[ext_resource type="Script" uid="uid://douml41dlbuuo" path="res://Player/Scripts/general_light.gd" id="17_7emwf"]
 [ext_resource type="Texture2D" uid="uid://bk11gdlw8kb0m" path="res://Sprites/Pointer.png" id="19_o28un"]
 [ext_resource type="Script" uid="uid://cy5vbga4r2jrf" path="res://Player/Scripts/escape_pod_pointer.gd" id="20_n471f"]
 
@@ -213,8 +214,6 @@ floor_constant_speed = true
 floor_max_angle = 1.3089969
 floor_snap_length = 4.0
 script = ExtResource("1_k53q1")
-jumpHeight = 25.0
-jumpDistance = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -353,6 +352,7 @@ energy = 0.5
 texture = ExtResource("8_od3ui")
 texture_scale = 0.5
 height = 20.0
+script = ExtResource("17_7emwf")
 
 [node name="Directional" type="PointLight2D" parent="."]
 unique_name_in_owner = true

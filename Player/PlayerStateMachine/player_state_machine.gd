@@ -23,16 +23,15 @@ var jumpBuffer : bool = false
 
 var canLedgeGrab : bool = false
 
-var maxFlightTIme : float = 0.5
 var flightTime : float = 0.0
 func _process(delta):
 	super._process(delta)
 	
-	Game.flightPercentage = (flightTime / maxFlightTIme) * 100.0
+	PlayerStats.flightLeft = flightTime
 	
 	var p : Player = parent as Player
 	if p.is_on_floor() or current_state is PlayerLedgeGrab:
-		flightTime = maxFlightTIme
+		flightTime = PlayerStats.maxFlightTime
 		coyoteTimer.start()
 		canJump = true
 	

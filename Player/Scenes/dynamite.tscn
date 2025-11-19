@@ -296,6 +296,7 @@ offset = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_6ye6h")
 
 [node name="VisualEffect" type="Node2D" parent="."]
+visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="VisualEffect"]
 modulate = Color(1, 0, 0, 0.19607843)

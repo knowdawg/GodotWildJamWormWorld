@@ -14,8 +14,7 @@ func setMinimumShake(shake : float):
 
 
 func _process(delta: float) -> void:
-	#if Input.is_action_just_pressed("Glowstick"):
-		#setMinimumShake(10)
+	limit_bottom = int(Game.wormHight + 40.0)
 	
 	screenShake = lerp(screenShake, 0.0, delta * 5.0)
 	

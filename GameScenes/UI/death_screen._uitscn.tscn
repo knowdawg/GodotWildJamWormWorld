@@ -47,7 +47,7 @@ shader_parameter/maskNoise = SubResource("NoiseTexture2D_h7fre")
 shader_parameter/mainNoise = SubResource("NoiseTexture2D_m50rl")
 shader_parameter/warpNoise = SubResource("NoiseTexture2D_rqgo7")
 shader_parameter/maskSize = 0.30000001425
-shader_parameter/resolution = Vector2(640, 640)
+shader_parameter/resolution = Vector2(320, 320)
 
 [sub_resource type="Gradient" id="Gradient_02s1w"]
 offsets = PackedFloat32Array(1)
@@ -135,7 +135,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 2.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.09999995725, 0.30000001425]
+"values": [-0.09999995725, 0.200000057]
 }
 tracks/2/type = "value"
 tracks/2/imported = false

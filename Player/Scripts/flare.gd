@@ -1,15 +1,13 @@
 extends Node2D
 class_name Flare
 
-var duration : float = 20.0
-
 var moveVec : Vector2
 var initPos : Vector2
 
 var t : float = 0.5
 
 func _ready() -> void:
-	$AnimationPlayer.speed_scale = 1.0 / duration
+	$AnimationPlayer.speed_scale = 1.0 / PlayerStats.flareTime
 	$AnimationPlayer.play("Travel")
 	
 
@@ -32,6 +30,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		queue_free()
 
 func _process(_delta: float) -> void:
+	$GlowLight.texture_scale = PlayerStats.flareTextureScale
+	$GlowLight.energy = PlayerStats.flareLightEnergy
 	queue_redraw()
 
 func _draw() -> void:

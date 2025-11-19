@@ -10,7 +10,6 @@ var gameManager : GameManager
 
 var amountOfFuel : int = 0
 var amoundOfFuelNeeded : int = 100.0
-var flightPercentage : float = 0.0
 
 var camera : GameCamera
 var escapePod : EscapePod
