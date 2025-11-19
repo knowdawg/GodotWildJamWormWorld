@@ -6,10 +6,17 @@ var player : Player
 var jumpForceMultiplier : float = 1.0
 var maxMoveSpeedMultiplier : float = 1.0
 var gravityMultiplier : float = 1.0
+
 var maxFlightTime : float = 0.5
+var flightPower : float = 1500.0
+var maxFlightSpeed : float = 100.0
+
 
 var playerGlowScale : float = 0.5
 var playerGlowEnergy : float = 0.5
+
+var playerFlashLighScale : float = 0.5
+var playerFlashLighEnergy : float = 0.5
 
 #Picaxe
 var picaxeUseSpeed : float = 0.35
@@ -17,7 +24,7 @@ var picaxeRadius : int = 9
 
 #Dynamite
 var dynamiteExplosionSpeedScale : float = 1.0
-var dynamitsExplosionRadius : float = 48
+var dynamiteExplosionRadius : float = 48
 var dynamiteRecoverySpeed : float = 30.0
 var dynamiteMaxCount : int = 1
 
@@ -29,8 +36,8 @@ var flareTextureScale : float = 1.0
 var flareLightEnergy : float = 2.0
 
 #Resource Count
-var dynamiteCount : int = 0
-var flareCount : int = 0
+var dynamiteCount : int = 1
+var flareCount : int = 3
 var flightLeft : float = 0.0
 
 

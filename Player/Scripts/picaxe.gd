@@ -1,6 +1,7 @@
 extends Sprite2D
 
 @export var player : Player
+@export var particles : GPUParticles2D
 
 enum STATES{
 	IDLE1,
@@ -24,9 +25,14 @@ func getDirectionVector() -> Vector2:
 	return directionToMouse.normalized()
 
 func destroyTerrain() -> void:
-	var destoryedTiles := TerrainDestruction.addTileRadius(player.global_position - getDirectionVector() * 5.0, -1, PlayerStats.picaxeRadius, TerrainRendering.LAYER_TYPE.FOREGROUND)
+	var pixaxeOffset := (PlayerStats.picaxeRadius + 1) / 2.0
+	var destoryedTiles := TerrainDestruction.addTileRadius(player.global_position - getDirectionVector() * pixaxeOffset, -1, PlayerStats.picaxeRadius, TerrainRendering.LAYER_TYPE.FOREGROUND)
 	Game.amountOfFuel += destoryedTiles[2] #Fuel Index
-	print(Game.amountOfFuel)
+	
+	particles.amount = destoryedTiles[0] + destoryedTiles[1] + destoryedTiles[2] + 1
+	particles.position = -getDirectionVector() * pixaxeOffset
+	particles.restart()
+	particles.emitting = true
 
 func _process(_delta: float) -> void:
 	rotation = getRotation()

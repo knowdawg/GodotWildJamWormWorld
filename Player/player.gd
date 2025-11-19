@@ -139,8 +139,8 @@ func _process(_delta: float) -> void:
 func _draw() -> void:
 	if dead:
 		return
-	draw_circle(-%Picaxe.getDirectionVector() * 5.0, 9.5, Color(1.0, 1.0, 1.0, 0.5), false, 0.5)
-	draw_circle(-%Picaxe.getDirectionVector() * 5.0, 9.5, Color(1.0, 1.0, 1.0, 0.1), true)
+	draw_circle(-%Picaxe.getDirectionVector() * 5.0, PlayerStats.picaxeRadius + 0.5, Color(1.0, 1.0, 1.0, 0.5), false, 0.5)
+	draw_circle(-%Picaxe.getDirectionVector() * 5.0, PlayerStats.picaxeRadius + 0.5, Color(1.0, 1.0, 1.0, 0.1), true)
 
 
 func _on_hurtbox_area_entered(_area: Area2D) -> void:

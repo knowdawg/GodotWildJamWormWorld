@@ -26,7 +26,6 @@ func addTileImage(worldPosition : Vector2, image : Image, tilemapType : int, ski
 			var tile : int = int(floor(pixel.r * TerrainRendering.uniqueTiles)) - 1
 			addTile(curPos, tile, tilemapType)
 
-
 func addTileBitmap(worldPosition : Vector2, tileIndex : int, bitmap : BitMap, tilemapType : int):
 	var offset : Vector2 = bitmap.get_size() / 2.0
 	for x in bitmap.get_size().x:

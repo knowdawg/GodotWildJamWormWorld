@@ -13,12 +13,14 @@ func _ready() -> void:
 		add_child(w)
 
 func _process(_delta: float) -> void:
+	
 	if Game.camera:
 		$Sprite2D.global_position = Vector2(Game.camera.global_position.x, Game.wormHight)
+		$WormParticles.global_position = Vector2(Game.camera.global_position.x, Game.wormHight) + Vector2(0.0, 50.0)
 		
 		if is_instance_valid(PlayerStats.player):
-			var shake : float = 300.0 - clamp(abs(PlayerStats.player.global_position.y - Game.wormHight), 0.0, 300.0)
-			Game.camera.setMinimumShake(shake * 0.006)
+			var shake : float = 150.0 - clamp(abs(PlayerStats.player.global_position.y - Game.wormHight), 0.0, 150.0)
+			Game.camera.setMinimumShake(shake * 0.004)
 			
 
 func getNewPosition() -> Vector2:

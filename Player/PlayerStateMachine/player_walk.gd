@@ -2,9 +2,11 @@ extends State
 class_name PlayerWalk
 
 @export var anim : AnimationPlayer
+@export var particles : GPUParticles2D
 
 func enter(_prevState):
 	anim.play("Walk")
+	particles.emitting = true
 
 
 func update(_delta : float):
@@ -33,3 +35,6 @@ func update_physics(delta: float):
 	var p : Player = parent as Player
 	
 	p.playerAgencyPhysicsUpdate(delta)
+
+func exit(_newState):
+	particles.emitting = false

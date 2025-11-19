@@ -18,8 +18,8 @@ func _ready() -> void:
 	Game.escapePod = self
 	$Label.visible = false
 	#escape pod is at the bottom top
-	global_position.x = (float(TerrainRendering.mapSize.x) / 2.0) + 100.0
-	global_position.y =  float(TerrainRendering.mapSize.y) - 200.0#500.0
+	global_position.x = (float(TerrainRendering.mapSize.x) / 2.0) + 500.0
+	global_position.y =  500.0#float(TerrainRendering.mapSize.y) - 200.0#500.0
 	
 	Game.mapGenerated.connect(createEscapePod)
 

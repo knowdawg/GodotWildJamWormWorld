@@ -2,17 +2,20 @@ extends State
 class_name PlayerJump
 
 @export var anim : AnimationPlayer
+@export var particles : GPUParticles2D
 
 var jumpKilled : bool = false
 func enter(_prevState):
 	anim.play("StartOfJump")
-	
 	var p : Player = parent as Player
 	p.jump()
 	jumpKilled = false
 	if !Input.is_action_pressed("Jump"):
 		p.jumpVelocity.y /= 2.0
 		jumpKilled = true
+	
+	particles.restart()
+	particles.emitting = true
 
 func update(_delta : float):
 	var p : Player = parent as Player

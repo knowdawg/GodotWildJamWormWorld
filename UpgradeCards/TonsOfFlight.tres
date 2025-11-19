@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=2 format=3 uid="uid://dq6oujd2734yd"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_7fjak"]
+
+[resource]
+script = ExtResource("1_7fjak")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"maxFlightTime": 10.0
+})
+text = "+++ Flight Time"
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

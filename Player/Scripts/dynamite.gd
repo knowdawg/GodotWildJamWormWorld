@@ -8,13 +8,13 @@ func _ready() -> void:
 	$AnimationPlayer.queue("Blow")
 	
 	var cs : CircleShape2D = $Hazard/CollisionShape2D.shape
-	cs.radius = PlayerStats.dynamitsExplosionRadius
+	cs.radius = PlayerStats.dynamiteExplosionRadius
 
 func explode():
 	exploded = true
 	gravity_scale = 0.0
 	$DynamiteSprite.visible = false
-	var detroyedTiles : Dictionary[int, int] = TerrainDestruction.addTileRadius(global_position, -1, PlayerStats.dynamitsExplosionRadius, TerrainRendering.LAYER_TYPE.FOREGROUND)
+	var detroyedTiles : Dictionary[int, int] = TerrainDestruction.addTileRadius(global_position, -1, PlayerStats.dynamiteExplosionRadius, TerrainRendering.LAYER_TYPE.FOREGROUND)
 	Game.amountOfFuel += detroyedTiles[2]
 	print(Game.amountOfFuel)
 	
@@ -30,5 +30,5 @@ func _process(_delta: float) -> void:
 
 func _draw() -> void:
 	if !exploded:
-		draw_circle(Vector2.ZERO, PlayerStats.dynamitsExplosionRadius, Color.RED, false, 1.0)
-		draw_circle(Vector2.ZERO, PlayerStats.dynamitsExplosionRadius, Color(1.0, 0.0, 0.0, 0.2), true)
+		draw_circle(Vector2.ZERO, PlayerStats.dynamiteExplosionRadius, Color.RED, false, 1.0)
+		draw_circle(Vector2.ZERO, PlayerStats.dynamiteExplosionRadius, Color(1.0, 0.0, 0.0, 0.2), true)

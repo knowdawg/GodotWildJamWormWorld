@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbdv0k3gt74dl"]
+[gd_scene load_steps=4 format=3 uid="uid://dbdv0k3gt74dl"]
 
 [ext_resource type="Script" uid="uid://dho7osn6p11p6" path="res://GameScenes/UI/upgrade_card.gd" id="1_73gry"]
-[ext_resource type="Texture2D" uid="uid://n63fk72fuev1" path="res://Sprites/UpgradeIconTest.png" id="1_acc8i"]
 [ext_resource type="FontFile" uid="uid://rdmkk73yo3ar" path="res://Fonts/chary___.ttf" id="2_s5ouo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1mfh"]
@@ -46,7 +45,6 @@ unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-texture = ExtResource("1_acc8i")
 
 [node name="Label" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -56,8 +54,6 @@ theme_override_constants/outline_size = 1
 theme_override_fonts/normal_font = ExtResource("2_s5ouo")
 theme_override_font_sizes/normal_font_size = 1
 bbcode_enabled = true
-text = "+ Light Around You
-+ Revive"
 fit_content = true
 scroll_active = false
 autowrap_mode = 2

@@ -63,7 +63,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.8, 0.8)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mcyb3"]
-bg_color = Color(0.08235294, 0.11372549, 0.15686275, 1)
+bg_color = Color(0.08235294, 0.11372549, 0.15686275, 0.78431374)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4

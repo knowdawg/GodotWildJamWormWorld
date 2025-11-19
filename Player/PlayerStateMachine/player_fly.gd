@@ -3,9 +3,11 @@ class_name PlayerFly
 
 @export var anim : AnimationPlayer
 
-@export var flightPower : float = 100.0
+#@export var flightPower : float = 100.0
+#
+#@export var maxFlightPower : float = 20.0
 
-@export var maxFlightPower : float = 20.0
+@export var particles : GPUParticles2D
 
 func enter(_prevState):
 	anim.play("StartOfJump")
@@ -18,8 +20,11 @@ func update(delta : float):
 	
 	if Input.is_action_pressed("Jump") and SM.flightTime > 0:
 		SM.flightTime -= delta
-		p.jumpVelocity.y += -flightPower * delta
-		p.jumpVelocity.y = clamp(p.jumpVelocity.y, -maxFlightPower, 99999999.9)
+		p.jumpVelocity.y += -PlayerStats.flightPower * delta
+		p.jumpVelocity.y = clamp(p.jumpVelocity.y, -PlayerStats.maxFlightSpeed, 99999999.9)
+		particles.emitting = true
+	else:
+		particles.emitting = false
 	
 	if p.jumpVelocity.y > 0 and !p.is_on_floor() and (!Input.is_action_pressed("Jump") or SM.flightTime <= 0):
 		transitioned.emit(self, "Fall")
@@ -33,3 +38,6 @@ func update_physics(delta: float):
 	var p : Player = parent as Player
 	
 	p.playerAgencyPhysicsUpdate(delta)
+
+func exit(_newState):
+	particles.emitting = false

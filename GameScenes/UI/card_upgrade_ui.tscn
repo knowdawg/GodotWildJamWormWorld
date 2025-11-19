@@ -1,0 +1,346 @@
+[gd_scene load_steps=11 format=3 uid="uid://bfd1xw1pctdpi"]
+
+[ext_resource type="Script" uid="uid://ythkm7kakmhm" path="res://GameScenes/UI/CardUpgradeUI/card_upgrade_ui.gd" id="1_5n6i1"]
+[ext_resource type="Script" uid="uid://h6ptlq0rqwft" path="res://GameScenes/UI/CardUpgradeUI/CardOption.gd" id="1_sg1hp"]
+[ext_resource type="Texture2D" uid="uid://n63fk72fuev1" path="res://Sprites/UpgradeIconTest.png" id="2_5n6i1"]
+[ext_resource type="FontFile" uid="uid://rdmkk73yo3ar" path="res://Fonts/chary___.ttf" id="3_qdaac"]
+[ext_resource type="FontFile" uid="uid://bovi0c1aecn1d" path="res://Fonts/Xirod.otf" id="5_qdaac"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bldb"]
+bg_color = Color(0.03529412, 0.039215688, 0.078431375, 0.5882353)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.92156863, 0.92941177, 0.9137255, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_offset = Vector2(1, 1)
+anti_aliasing = false
+
+[sub_resource type="Animation" id="Animation_sg1hp"]
+resource_name = "ShowCards"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Option1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1, 1), Vector2(0.8, 1), Vector2(1, 1), Vector2(0.9, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Option2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.20000002, 0.25000003, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1e-05, 1), Vector2(1, 1), Vector2(0.8, 1), Vector2(1, 1), Vector2(0.9, 1), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Option3:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.24999999, 0.3, 0.35000002, 0.40000004, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1e-05, 1), Vector2(1, 1), Vector2(0.8, 1), Vector2(1, 1), Vector2(0.9, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5n6i1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Option1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Option2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Option3:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qdaac"]
+resource_name = "HideCards"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Option1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Option2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Option3:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5n6i1"]
+_data = {
+&"HideCards": SubResource("Animation_qdaac"),
+&"RESET": SubResource("Animation_5n6i1"),
+&"ShowCards": SubResource("Animation_sg1hp")
+}
+
+[node name="CardUpgradeUI" type="CanvasLayer"]
+script = ExtResource("1_5n6i1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 60
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Option1" type="Panel" parent="." node_paths=PackedStringArray("UI")]
+custom_minimum_size = Vector2(160, 240)
+offset_left = 50.0
+offset_top = 60.0
+offset_right = 210.0
+offset_bottom = 300.0
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(80, 120)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0bldb")
+script = ExtResource("1_sg1hp")
+UI = NodePath("..")
+
+[node name="MarginContainer" type="MarginContainer" parent="Option1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Option1/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="UpgradeIcon" type="TextureRect" parent="Option1/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("2_5n6i1")
+
+[node name="Label" type="RichTextLabel" parent="Option1/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/normal_font = ExtResource("3_qdaac")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "+ Light Around You
++ Revive"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Option2" type="Panel" parent="." node_paths=PackedStringArray("UI")]
+custom_minimum_size = Vector2(160, 240)
+offset_left = 240.0
+offset_top = 60.0
+offset_right = 400.0
+offset_bottom = 300.0
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(80, 120)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0bldb")
+script = ExtResource("1_sg1hp")
+UI = NodePath("..")
+
+[node name="MarginContainer" type="MarginContainer" parent="Option2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Option2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="UpgradeIcon" type="TextureRect" parent="Option2/MarginContainer/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("2_5n6i1")
+
+[node name="Label" type="RichTextLabel" parent="Option2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/normal_font = ExtResource("3_qdaac")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "+ Light Around You
++ Revive"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Option3" type="Panel" parent="." node_paths=PackedStringArray("UI")]
+custom_minimum_size = Vector2(160, 240)
+offset_left = 430.0
+offset_top = 60.0
+offset_right = 590.0
+offset_bottom = 300.0
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(80, 120)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0bldb")
+script = ExtResource("1_sg1hp")
+UI = NodePath("..")
+
+[node name="MarginContainer" type="MarginContainer" parent="Option3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Option3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="UpgradeIcon" type="TextureRect" parent="Option3/MarginContainer/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("2_5n6i1")
+
+[node name="Label" type="RichTextLabel" parent="Option3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/normal_font = ExtResource("3_qdaac")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "+ Light Around You
++ Revive"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -33.5
+offset_top = -40.0
+offset_right = 33.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Pick1Label" type="Label" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("5_qdaac")
+theme_override_font_sizes/font_size = 32
+text = "Choose"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5n6i1")
+}
