@@ -20,7 +20,8 @@ func _physics_process(delta: float) -> void:
 	t -= delta
 	
 	if $Sprite2D/RayCast2D.is_colliding():
-		global_position = $Sprite2D/RayCast2D.get_collision_point() - (moveVec.normalized() * 3.0)
+		#global_position = $Sprite2D/RayCast2D.get_collision_point() - (moveVec.normalized() * 3.0)
+		position += $Sprite2D/RayCast2D.get_closest_collision_safe_fraction() * $Sprite2D/RayCast2D.target_position.length() * moveVec.normalized()
 		moveVec = Vector2.ZERO
 		$AnimationPlayer.play("Glow")
 		$Sprite2D/RayCast2D.set_deferred("enabled", false)

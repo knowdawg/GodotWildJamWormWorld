@@ -3,49 +3,91 @@ extends Node
 var player : Player
 
 #Player Stats
-var jumpForceMultiplier : float = 1.0
-var maxMoveSpeedMultiplier : float = 1.0
-var gravityMultiplier : float = 1.0
+var jumpForceMultiplier : float
+var maxMoveSpeedMultiplier : float
+var gravityMultiplier : float
 
-var maxFlightTime : float = 0.5
-var flightPower : float = 1500.0
-var maxFlightSpeed : float = 100.0
+var maxFlightTime : float
+var flightPower : float
+var maxFlightSpeed : float
 
 
-var playerGlowScale : float = 0.5
-var playerGlowEnergy : float = 0.5
+var playerGlowScale : float
+var playerGlowEnergy : float
 
-var playerFlashLighScale : float = 0.5
-var playerFlashLighEnergy : float = 0.5
+var playerFlashLighScale : float
+var playerFlashLighEnergy : float
 
 #Picaxe
-var picaxeUseSpeed : float = 0.35
-var picaxeRadius : int = 9
+var picaxeUseSpeed : float
+var picaxeRadius : int
 
 #Dynamite
-var dynamiteExplosionSpeedScale : float = 1.0
-var dynamiteExplosionRadius : float = 48
-var dynamiteRecoverySpeed : float = 30.0
-var dynamiteMaxCount : int = 1
+var dynamiteExplosionSpeedScale : float
+var dynamiteExplosionRadius : float
+var dynamiteRecoverySpeed : float
+var dynamiteMaxCount : int
 
 #Flares
-var flareTime : float = 5.0
-var flareRecoverySpeed : float = 3.0
-var flareMaxCount : int = 3
-var flareTextureScale : float = 1.0
-var flareLightEnergy : float = 2.0
+var flareTime : float
+var flareRecoverySpeed : float
+var flareMaxCount : int
+var flareTextureScale : float
+var flareLightEnergy : float
 
 #Resource Count
-var dynamiteCount : int = 1
-var flareCount : int = 3
-var flightLeft : float = 0.0
+var dynamiteCount : int
+var flareCount : int
+var flightLeft : float
 
+
+func resetPlayerStats():
+	#Player Stats
+	jumpForceMultiplier = 1.0
+	maxMoveSpeedMultiplier = 1.0
+	gravityMultiplier = 1.0
+
+	maxFlightTime = 0.5
+	flightPower = 1500.0
+	maxFlightSpeed = 100.0
+
+
+	playerGlowScale = 0.5
+	playerGlowEnergy = 0.5
+
+	playerFlashLighScale = 0.5
+	playerFlashLighEnergy = 0.5
+
+	#Picaxe
+	picaxeUseSpeed = 0.35
+	picaxeRadius = 9
+
+	#Dynamite
+	dynamiteExplosionSpeedScale = 1.0
+	dynamiteExplosionRadius = 48
+	dynamiteRecoverySpeed = 30.0
+	dynamiteMaxCount = 1
+
+	#Flares
+	flareTime = 5.0
+	flareRecoverySpeed = 3.0
+	flareMaxCount = 3
+	flareTextureScale = 1.0
+	flareLightEnergy = 2.0
+
+	#Resource Count
+	dynamiteCount = 1
+	flareCount = 3
+	flightLeft = 0.0
+
+
+func _ready() -> void:
+	Game.mapGenerated.connect(resetPlayerStats)
 
 var flareFull : bool :
 	get : return flareCount == flareMaxCount
 var dynamiteFull : bool :
 	get : return dynamiteCount == dynamiteMaxCount
-
 
 
 func useDynamite() -> bool:

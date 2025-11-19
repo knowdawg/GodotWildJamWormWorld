@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://d1uxb8p7iv5vm"]
+[gd_scene load_steps=72 format=3 uid="uid://d1uxb8p7iv5vm"]
 
 [ext_resource type="Script" uid="uid://v7jho3hsmjon" path="res://Player/player.gd" id="1_k53q1"]
 [ext_resource type="Script" uid="uid://up5bvm7rwjr2" path="res://Player/PlayerStateMachine/player_state_machine.gd" id="2_od3ui"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://bk11gdlw8kb0m" path="res://Sprites/Pointer.png" id="19_o28un"]
 [ext_resource type="Script" uid="uid://cy5vbga4r2jrf" path="res://Player/Scripts/escape_pod_pointer.gd" id="20_n471f"]
 [ext_resource type="Script" uid="uid://xc6udvxxkovw" path="res://Player/Scripts/flightprogress.gd" id="22_hshwv"]
+[ext_resource type="Script" uid="uid://df0kejoimicrm" path="res://Player/Scripts/pickaxe_attack.gd" id="23_gpjlu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_buux6"]
 size = Vector2(6, 13)
@@ -372,6 +373,8 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 anti_aliasing = false
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_hshwv"]
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 floor_constant_speed = true
@@ -454,7 +457,7 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
-[node name="Picaxe" type="Sprite2D" parent="." node_paths=PackedStringArray("player", "particles")]
+[node name="Picaxe" type="Sprite2D" parent="." node_paths=PackedStringArray("player", "particles", "attackArea")]
 unique_name_in_owner = true
 texture_filter = 1
 texture = ExtResource("9_x3vf3")
@@ -462,6 +465,7 @@ offset = Vector2(-8, -8)
 script = ExtResource("10_apopc")
 player = NodePath("..")
 particles = NodePath("../ParticleEffects/TerrainParticles")
+attackArea = NodePath("../PickaxeAttack")
 offsetAngle = 2.09240734641021
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
@@ -606,6 +610,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_hshwv")
 value = 33.0
 show_percentage = false
 script = ExtResource("22_hshwv")
+
+[node name="PickaxeAttack" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("23_gpjlu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickaxeAttack"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_hshwv")
+disabled = true
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="Timers/InputBuffer" to="StateMachine" method="_on_input_buffer_timeout"]

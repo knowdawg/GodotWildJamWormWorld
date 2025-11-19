@@ -9,6 +9,9 @@ func _process(delta: float) -> void:
 		%FlareProgress.value = 100.0
 		return
 	
+	if get_tree().paused:
+		return
+	
 	t += delta
 	if t >= PlayerStats.flareRecoverySpeed:
 		t -= PlayerStats.flareRecoverySpeed

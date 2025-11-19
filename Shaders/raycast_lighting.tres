@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bxrj30vylkpy5"]
+
+[ext_resource type="Shader" uid="uid://cwor8k7kvdtr" path="res://Shaders/RaycastLighting.gdshader" id="1_ao5vo"]
+
+[resource]
+shader = ExtResource("1_ao5vo")

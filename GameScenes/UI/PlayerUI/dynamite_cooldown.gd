@@ -10,6 +10,9 @@ func _process(delta: float) -> void:
 		%DynamiteProgress.value = 100.0
 		return
 	
+	if get_tree().paused:
+		return
+	
 	t += delta
 	if t >= PlayerStats.dynamiteRecoverySpeed:
 		t -= PlayerStats.dynamiteRecoverySpeed

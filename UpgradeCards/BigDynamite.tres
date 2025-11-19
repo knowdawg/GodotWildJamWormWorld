@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://2d11kgm44abf"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_pptfd"]
+[ext_resource type="Texture2D" uid="uid://n63fk72fuev1" path="res://Sprites/UpgradeIconTest.png" id="2_jrnwp"]
+
+[resource]
+script = ExtResource("1_pptfd")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"dynamiteExplosionRadius": 50.0
+})
+text = "++ Bomb Size"
+tex = ExtResource("2_jrnwp")
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

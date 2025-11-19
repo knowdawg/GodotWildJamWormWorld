@@ -103,7 +103,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_u3hgy"]
 resource_name = "Charge"
-length = 3.0
+length = 3.1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -112,7 +112,7 @@ tracks/0/path = NodePath("VisualEffect/Sprite2D:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3),
+"times": PackedFloat32Array(0, 1, 2, 3.1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0.2, 0.2), Vector2(0.9, 0.9), Vector2(1, 1)]
@@ -124,7 +124,7 @@ tracks/1/path = NodePath("VisualEffect/Sprite2D:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 3),
+"times": PackedFloat32Array(0, 3.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 0, 0, 0.19607843), Color(1, 0.5882353, 0.5882353, 0.5882353)]
@@ -136,10 +136,10 @@ tracks/2/path = NodePath("DynamiteSprite:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.099999994, 0.20000002, 0.6, 1, 1.1, 1.2, 1.6, 2, 2.1, 2.1999998, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.099999994, 0.20000002, 0.6, 1, 1.1, 1.2, 1.6, 2, 2.1, 2.1999998, 3, 3.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(18.892157, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(18.892157, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(18.892157, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(18.892157, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(18.892157, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(18.892157, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(18.892157, 0, 0, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -148,10 +148,10 @@ tracks/3/path = NodePath("DynamiteSprite:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.099999994, 0.20000002, 0.6, 1, 1.1, 1.2, 1.6, 2, 2.1, 2.1999998, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.099999994, 0.20000002, 0.6, 1, 1.1, 1.2, 1.6, 2, 2.1, 2.1999998, 3, 3.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(2, 2), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(3, 3), Vector2(1, 1), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(2, 2), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(3, 3), Vector2(1, 1), Vector2(1, 1), Vector2(6, 6)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -160,10 +160,10 @@ tracks/4/path = NodePath("DynamiteSprite:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.099999994, 0.20000002, 0.29999998, 1, 1.1, 1.2, 1.3000001, 2, 2.1, 2.2, 2.3000002),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.099999994, 0.20000002, 0.29999998, 1, 1.1, 1.2, 1.3000001, 2, 2.1, 2.2, 2.3000002, 3, 3.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -0.2617993877991494, 0.2617993877991494, 0.0, 0.0, 0.2617993877991494, -0.2617993877991494, 0.0, 0.0, -0.2617993877991494, 0.2617993877991494, 0.0]
+"values": [0.0, -0.2617993877991494, 0.2617993877991494, 0.0, 0.0, 0.2617993877991494, -0.2617993877991494, 0.0, 0.0, -0.2617993877991494, 0.2617993877991494, 0.0, 0.0, 0.2617993877991494]
 }
 
 [sub_resource type="Animation" id="Animation_6ye6h"]

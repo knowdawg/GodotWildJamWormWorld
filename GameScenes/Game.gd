@@ -5,6 +5,8 @@ signal escapePodEntered
 signal escapePodFinished
 signal generateLevel
 signal playerDead 
+signal cardPicked(upgrade :  UpgradeResource)
+signal createCardUpgrade()
 
 var gameManager : GameManager
 
@@ -25,12 +27,16 @@ func _process(delta: float) -> void:
 func addProjectile(p):
 	gameManager.addProjectile(p)
 
-
+var pauseInstances : int = 0
 func pauseGame():
-	get_tree().paused = true
+	pauseInstances += 1
+	if pauseInstances > 0:
+		get_tree().paused = true
 
 func resumeGame():
-	get_tree().paused = false
+	pauseInstances -= 1
+	if pauseInstances <= 0:
+		get_tree().paused = false
 
 func startGame():
 	amountOfFuel = 0.0

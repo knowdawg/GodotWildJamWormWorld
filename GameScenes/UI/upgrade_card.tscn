@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbdv0k3gt74dl"]
+[gd_scene load_steps=11 format=3 uid="uid://dbdv0k3gt74dl"]
 
 [ext_resource type="Script" uid="uid://dho7osn6p11p6" path="res://GameScenes/UI/upgrade_card.gd" id="1_73gry"]
 [ext_resource type="FontFile" uid="uid://rdmkk73yo3ar" path="res://Fonts/chary___.ttf" id="2_s5ouo"]
@@ -16,6 +16,45 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 shadow_offset = Vector2(1, 1)
 anti_aliasing = false
+
+[sub_resource type="Gradient" id="Gradient_s5ouo"]
+colors = PackedColorArray(0.5882353, 0.5882353, 0.5882353, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_73gry"]
+gradient = SubResource("Gradient_s5ouo")
+
+[sub_resource type="Curve" id="Curve_r7fwn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_k5hpm"]
+curve = SubResource("Curve_r7fwn")
+
+[sub_resource type="Curve" id="Curve_741hv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rr2aj"]
+curve = SubResource("Curve_741hv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3yau8"]
+resource_local_to_scene = true
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 15, 1)
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 372.15997
+radial_velocity_min = 19.999977
+radial_velocity_max = 99.99998
+radial_velocity_curve = SubResource("CurveTexture_k5hpm")
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_rr2aj")
+color_initial_ramp = SubResource("GradientTexture1D_73gry")
 
 [node name="UpgradeCard" type="Panel"]
 custom_minimum_size = Vector2(20, 30)
@@ -57,6 +96,14 @@ bbcode_enabled = true
 fit_content = true
 scroll_active = false
 autowrap_mode = 2
+
+[node name="SelectParticles" type="GPUParticles2D" parent="."]
+position = Vector2(10, 15)
+emitting = false
+amount = 128
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_3yau8")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

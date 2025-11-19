@@ -3,6 +3,8 @@ class_name CardOption
 
 @export var UI : CardUpgradeUI
 
+var upgrade : UpgradeResource
+
 var initPos : Vector2
 func _ready() -> void:
 	mouse_entered.connect(hover)
@@ -30,3 +32,12 @@ func unHover():
 func onInput(event : InputEvent):
 	if event.is_action_pressed("Use"):
 		UI.cardPicked(self)
+
+func setUpgrade(up: UpgradeResource):
+	upgrade = up
+	updateUpgrade()
+
+func updateUpgrade():
+	if upgrade:
+		$MarginContainer/VBoxContainer/UpgradeIcon.texture = upgrade.tex
+		$MarginContainer/VBoxContainer/Label.text = upgrade.text

@@ -199,7 +199,7 @@ void light() {
 			closestSdfVal = min(sdfVal * 200.0 * textureScalling, closestSdfVal);
 			
 			if(sdfVal <= threshold){
-				finished = 0.3;
+				finished = 0.0;
 				break;
 			}
 			if(disTraveled > distanceNeededToTravel){

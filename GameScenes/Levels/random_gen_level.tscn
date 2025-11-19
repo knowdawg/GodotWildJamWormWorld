@@ -20,7 +20,7 @@ shader = ExtResource("2_u6sqo")
 
 [node name="RandomGenLevel" type="Node2D"]
 script = ExtResource("1_u6sqo")
-uiScenes = Array[String](["uid://e4wtjf2e806w", "uid://msby4h2qknfh", "uid://dbtkx0njm2wkf"])
+uiScenes = Array[String](["uid://e4wtjf2e806w", "uid://bfd1xw1pctdpi", "uid://msby4h2qknfh", "uid://dbtkx0njm2wkf"])
 
 [node name="TerrainTextureBack" parent="." instance=ExtResource("1_salk0")]
 material = SubResource("ShaderMaterial_cbb0s")

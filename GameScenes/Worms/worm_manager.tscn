@@ -28,6 +28,7 @@ point_count = 3
 curve = SubResource("Curve_d2vlb")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bot2k"]
+lifetime_randomness = 1.0
 particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(200, 1, 1)
@@ -41,8 +42,6 @@ angular_velocity_max = 499.99997
 radial_velocity_min = -2.2351742e-05
 radial_velocity_max = -2.2351742e-05
 gravity = Vector3(0, 98, 0)
-scale_min = 0.5
-scale_max = 3.0
 scale_curve = SubResource("CurveTexture_e17lv")
 color_initial_ramp = SubResource("GradientTexture1D_khnhk")
 
@@ -57,6 +56,6 @@ texture = SubResource("GradientTexture2D_2tq7k")
 offset = Vector2(0, 146)
 
 [node name="WormParticles" type="GPUParticles2D" parent="."]
-amount = 512
+amount = 1024
 lifetime = 4.0
 process_material = SubResource("ParticleProcessMaterial_bot2k")

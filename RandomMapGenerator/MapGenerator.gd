@@ -5,6 +5,7 @@ var backgroundNoise : NoiseTexture2D = preload("res://RandomMapGenerator/Noises/
 var fuelNoise : NoiseTexture2D = preload("res://RandomMapGenerator/Noises/FuelNoiseTexture.tres")
 
 var torch = preload("res://GameScenes/Torch/torch.tscn")
+var chest = preload("uid://c2lk7shvmrjj3")
 
 func _ready() -> void:
 	terrainNoise.width = TerrainRendering.mapSize.x
@@ -50,11 +51,11 @@ func createWorld():
 	
 	Game.mapGenerated.emit()
 	
-	#generate random torches
-	#randomize()
-	#for i in range(200):
-		#var torchPos = Vector2i(randi_range(0, TerrainRendering.mapSize.x), randi_range(0, TerrainRendering.mapSize.y))
-		#if TerrainRendering.getPixel(torchPos, TerrainRendering.LAYER_TYPE.FOREGROUND) == -1:
-			#var t : Node2D = torch.instantiate()
-			#Game.addProjectile(t)
-			#t.global_position = torchPos
+	#generate random chests
+	randomize()
+	for i in range(200):
+		var chestPos = Vector2i(randi_range(0, TerrainRendering.mapSize.x), randi_range(0, TerrainRendering.mapSize.y))
+		if TerrainRendering.getPixel(chestPos, TerrainRendering.LAYER_TYPE.FOREGROUND) == -1:
+			var c : Node2D = chest.instantiate()
+			Game.addProjectile(c)
+			c.global_position = chestPos

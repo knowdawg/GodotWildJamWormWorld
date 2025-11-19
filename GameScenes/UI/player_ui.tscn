@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://e4wtjf2e806w"]
+[gd_scene load_steps=16 format=3 uid="uid://e4wtjf2e806w"]
 
 [ext_resource type="Script" uid="uid://cpsv2a07brojm" path="res://GameScenes/UI/player_ui.gd" id="1_blwpt"]
 [ext_resource type="Script" uid="uid://c2f2evba6vmki" path="res://GameScenes/UI/PlayerUI/dynamite_cooldown.gd" id="2_3pga3"]
@@ -7,12 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://ccxa28n4soi7o" path="res://Sprites/RadialProgressOver.png" id="3_3pga3"]
 [ext_resource type="FontFile" uid="uid://rdmkk73yo3ar" path="res://Fonts/chary___.ttf" id="3_v1mfh"]
 [ext_resource type="Texture2D" uid="uid://6cakfoijdxhd" path="res://Sprites/RadialProgressTNT.png" id="4_4efd6"]
-[ext_resource type="PackedScene" uid="uid://dbdv0k3gt74dl" path="res://GameScenes/UI/upgrade_card.tscn" id="4_ssyxj"]
 [ext_resource type="Texture2D" uid="uid://n63fk72fuev1" path="res://Sprites/UpgradeIconTest.png" id="5_s8ryw"]
 [ext_resource type="Texture2D" uid="uid://4ovcxtvvkblp" path="res://Sprites/RadialProgressFlare.png" id="6_7ml2g"]
 [ext_resource type="Script" uid="uid://4tfm2bnfecya" path="res://GameScenes/UI/PlayerUI/flare_cooldown.gd" id="7_4efd6"]
-[ext_resource type="Resource" uid="uid://dbyxa3iubvvht" path="res://UpgradeCards/TestUpgrade.tres" id="11_7ml2g"]
-[ext_resource type="Resource" uid="uid://dq6oujd2734yd" path="res://UpgradeCards/TonsOfFlight.tres" id="12_b3efj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plbm5"]
 bg_color = Color(0.03529412, 0.039215688, 0.078431375, 0.5882353)
@@ -27,22 +24,6 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 shadow_offset = Vector2(1, 1)
 anti_aliasing = false
-
-[sub_resource type="Animation" id="Animation_test7"]
-resource_name = "Show"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DisplayCard:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1e-05, 1), Vector2(1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_b3j0l"]
 resource_name = "Hide"
@@ -74,6 +55,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_test7"]
+resource_name = "Show"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DisplayCard:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4efd6"]
@@ -243,14 +240,6 @@ text = "Find Escape Pod"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
-
-[node name="UpgradeCard" parent="MarginContainer/Upgrades" instance=ExtResource("4_ssyxj")]
-layout_mode = 2
-upgrade = ExtResource("11_7ml2g")
-
-[node name="UpgradeCard2" parent="MarginContainer/Upgrades" instance=ExtResource("4_ssyxj")]
-layout_mode = 2
-upgrade = ExtResource("12_b3efj")
 
 [node name="DisplayCard" type="Panel" parent="."]
 custom_minimum_size = Vector2(200, 300)

@@ -25,3 +25,6 @@ func switchVisibilty():
 		Game.pauseGame()
 	else:
 		Game.resumeGame()
+
+func _on_resume_button_pressed() -> void:
+	switchVisibilty()

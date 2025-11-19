@@ -6,7 +6,7 @@ var worms : Array[Worm]
 
 func _ready() -> void:
 	$Sprite2D.visible = true
-	for i in range(20):
+	for i in range(40):
 		var w : Worm = worm.instantiate()
 		w.manager = self
 		worms.append(w)

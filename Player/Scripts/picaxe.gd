@@ -3,6 +3,8 @@ extends Sprite2D
 @export var player : Player
 @export var particles : GPUParticles2D
 
+@export var attackArea : PicaxeAttack
+
 enum STATES{
 	IDLE1,
 	SWING1,
@@ -46,6 +48,7 @@ func _process(_delta: float) -> void:
 				tween.tween_property(self, "rotation", swingFinalRotation, PlayerStats.picaxeUseSpeed).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SPRING)
 				
 				destroyTerrain()
+				attackArea.enable()
 			return
 			
 		STATES.SWING1:
@@ -63,6 +66,7 @@ func _process(_delta: float) -> void:
 				tween.tween_property(self, "rotation", swingFinalRotation, PlayerStats.picaxeUseSpeed).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SPRING)
 				
 				destroyTerrain()
+				attackArea.enable()
 			return
 			
 		STATES.SWING2:

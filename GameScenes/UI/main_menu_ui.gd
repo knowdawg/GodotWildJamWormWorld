@@ -6,6 +6,9 @@ var mainLevel : String = "uid://c5lmuy85ljtkk"
 
 var noMoreInput : bool = false
 
+func _process(delta: float) -> void:
+	$Sprite2D.position = lerp($Sprite2D.position, $Sprite2D.get_global_mouse_position(), 10.0 * delta)
+
 func _on_play_pressed() -> void:
 	if noMoreInput:
 		return

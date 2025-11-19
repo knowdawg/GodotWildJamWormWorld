@@ -13,6 +13,8 @@ var numOfSegments : int = 20
 
 var bodyTex = preload("res://Sprites/WormParts.png")
 
+var lightingMaterial : ShaderMaterial = preload("res://Shaders/raycast_lighting.tres")
+
 func _ready() -> void:
 	$AnimationPlayer.speed_scale = randf_range(0.8, 1.2)
 	
@@ -27,6 +29,7 @@ func _ready() -> void:
 		s.hframes = 2
 		s.frame = 1
 		s.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		s.material = lightingMaterial
 		parts.append(s)
 		$Parts.add_child(s)
 	

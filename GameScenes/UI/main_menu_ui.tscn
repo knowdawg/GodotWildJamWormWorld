@@ -49,15 +49,17 @@ shader = ExtResource("2_u0thu")
 shader_parameter/mainNoise = SubResource("NoiseTexture2D_tcsvs")
 shader_parameter/warpNoise = SubResource("NoiseTexture2D_0nny5")
 shader_parameter/resolution = Vector2(160, 90)
+shader_parameter/speed = 2.0000000298024
 
 [sub_resource type="Gradient" id="Gradient_e24kl"]
-offsets = PackedFloat32Array(0.27272728, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.67058825)
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.105968334, 0.25091353)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.8645739, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_0nny5"]
 gradient = SubResource("Gradient_e24kl")
-width = 640
-height = 640
+width = 2560
+height = 2560
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.8, 0.8)
@@ -95,7 +97,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("3_tcsvs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(320, 180)
+position = Vector2(360, 180)
 texture = SubResource("GradientTexture2D_0nny5")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
