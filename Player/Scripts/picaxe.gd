@@ -5,6 +5,9 @@ extends Sprite2D
 
 @export var attackArea : PicaxeAttack
 
+@export var swingSound : AudioStreamPlayer2D
+@export var terrainDestoySound : AudioStreamPlayer2D
+
 enum STATES{
 	IDLE1,
 	SWING1,
@@ -31,12 +34,17 @@ func destroyTerrain() -> void:
 	var destoryedTiles := TerrainDestruction.addTileRadius(player.global_position - getDirectionVector() * pixaxeOffset, -1, PlayerStats.picaxeRadius, TerrainRendering.LAYER_TYPE.FOREGROUND)
 	Game.amountOfFuel += destoryedTiles[2] #Fuel Index
 	
+	if destoryedTiles[0] + destoryedTiles[1] + destoryedTiles[2] > 0:
+		terrainDestoySound.play()
+	
 	particles.amount = destoryedTiles[0] + destoryedTiles[1] + destoryedTiles[2] + 1
 	particles.position = -getDirectionVector() * pixaxeOffset
 	particles.restart()
 	particles.emitting = true
 
 func _process(_delta: float) -> void:
+	if player.dead: 
+		return
 	rotation = getRotation()
 	match state:
 		STATES.IDLE1:
@@ -49,6 +57,7 @@ func _process(_delta: float) -> void:
 				
 				destroyTerrain()
 				attackArea.enable()
+				swingSound.play()
 			return
 			
 		STATES.SWING1:
@@ -67,6 +76,7 @@ func _process(_delta: float) -> void:
 				
 				destroyTerrain()
 				attackArea.enable()
+				swingSound.play()
 			return
 			
 		STATES.SWING2:

@@ -116,6 +116,8 @@ func throwFlare():
 		
 		var throwDir : Vector2 = global_position - get_global_mouse_position()
 		f.setup(-throwDir.normalized(), 350.0, global_position)
+		
+		$Sounds/ShootFlare.play()
 
 
 func enterEscapePod():
@@ -129,7 +131,7 @@ func enterEscapePod():
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Glowstick"):
 		#throwGlowstick()
-		throwFlare()
+		throwFlare() 
 	
 	if global_position.y > Game.wormHight + 100.0:
 		die()
@@ -163,6 +165,8 @@ func die():
 		%Picaxe.visible = false
 		%PlayerSprite.visible = false
 		$ParticleEffects/DeathParticles.emitting = true
+		$AnimationPlayer.stop()
 		
 		Game.playerDead.emit()
 		dead = true
+		$Sounds/Death.play()

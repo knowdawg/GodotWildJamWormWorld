@@ -1,9 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://msby4h2qknfh"]
+[gd_scene load_steps=22 format=3 uid="uid://msby4h2qknfh"]
 
 [ext_resource type="Shader" uid="uid://bd2jqx2d4u2dg" path="res://Shaders/BalatroNoiseWarpMask.gdshader" id="1_73mvn"]
 [ext_resource type="Script" uid="uid://b0bus8ljwjnkr" path="res://GameScenes/UI/death_screen.gd" id="1_dw1lh"]
 [ext_resource type="FontFile" uid="uid://bovi0c1aecn1d" path="res://Fonts/Xirod.otf" id="1_vbu5s"]
 [ext_resource type="Theme" uid="uid://caw1xmgv8ypp5" path="res://Fonts/ButtonTheme.tres" id="2_73mvn"]
+[ext_resource type="AudioStream" uid="uid://sw5vqdv3ikpm" path="res://Sounds/ButtonHover.wav" id="5_m50rl"]
+[ext_resource type="AudioStream" uid="uid://blc2wijh2ecn3" path="res://Sounds/ButtonPressed.wav" id="6_h7fre"]
+[ext_resource type="AudioStream" uid="uid://b4vowumqiwx41" path="res://Sounds/PlayButtonPressed.wav" id="7_h7fre"]
 
 [sub_resource type="Gradient" id="Gradient_dw1lh"]
 offsets = PackedFloat32Array(0, 0.09543569, 0.6897638, 0.813278)
@@ -237,6 +240,27 @@ libraries = {
 &"": SubResource("AnimationLibrary_sth3l")
 }
 
+[node name="ButtonHover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_m50rl")
+volume_db = -5.0
+max_polyphony = 3
+bus = &"SoundEffects"
+
+[node name="ButtonPressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_h7fre")
+volume_db = -20.0
+max_polyphony = 3
+bus = &"SoundEffects"
+
+[node name="PlayButtonPressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_h7fre")
+volume_db = -5.0
+max_polyphony = 3
+bus = &"SoundEffects"
+
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Menu" to="." method="_on_menu_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

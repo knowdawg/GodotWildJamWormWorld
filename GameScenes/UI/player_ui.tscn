@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://e4wtjf2e806w"]
+[gd_scene load_steps=18 format=3 uid="uid://e4wtjf2e806w"]
 
 [ext_resource type="Script" uid="uid://cpsv2a07brojm" path="res://GameScenes/UI/player_ui.gd" id="1_blwpt"]
 [ext_resource type="Script" uid="uid://c2f2evba6vmki" path="res://GameScenes/UI/PlayerUI/dynamite_cooldown.gd" id="2_3pga3"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://n63fk72fuev1" path="res://Sprites/UpgradeIconTest.png" id="5_s8ryw"]
 [ext_resource type="Texture2D" uid="uid://4ovcxtvvkblp" path="res://Sprites/RadialProgressFlare.png" id="6_7ml2g"]
 [ext_resource type="Script" uid="uid://4tfm2bnfecya" path="res://GameScenes/UI/PlayerUI/flare_cooldown.gd" id="7_4efd6"]
+[ext_resource type="AudioStream" uid="uid://bs50sxck1m0i4" path="res://Sounds/CardFlick.wav" id="11_4efd6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plbm5"]
 bg_color = Color(0.03529412, 0.039215688, 0.078431375, 0.5882353)
@@ -80,6 +81,11 @@ _data = {
 &"Show": SubResource("Animation_test7")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7ml2g"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("11_4efd6")
+
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_blwpt")
 
@@ -123,8 +129,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -16.0
 offset_top = -16.0
-offset_right = 24.0
-offset_bottom = 24.0
+offset_right = 16.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_4efd6")
@@ -168,8 +174,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -16.0
 offset_top = -16.0
-offset_right = 24.0
-offset_bottom = 24.0
+offset_right = 16.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_7ml2g")
@@ -297,3 +303,9 @@ autowrap_mode = 2
 libraries = {
 &"": SubResource("AnimationLibrary_4efd6")
 }
+
+[node name="CardFlick" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_7ml2g")
+volume_db = -5.0
+max_polyphony = 3
+bus = &"SoundEffects"

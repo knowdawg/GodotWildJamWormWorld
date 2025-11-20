@@ -32,3 +32,4 @@ func destroy():
 		$DeathParticles.emitting = true
 		$PointLight2D.visible = false
 		$Sprite2D.visible = false
+		$ChestBreak.play()

@@ -4,12 +4,15 @@ class_name PlayerIdle
 @export var anim : AnimationPlayer
 @export var particles : GPUParticles2D
 
+@export var landSound : AudioStreamPlayer2D
+
 func enter(prevState : State):
 	if prevState is PlayerFall:
 		particles.restart()
 		particles.emitting = true
 		anim.play("JumpLand")
 		anim.queue("Idle")
+		landSound.play()
 	else:
 		anim.play("Idle")
 

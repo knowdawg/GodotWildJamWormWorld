@@ -32,6 +32,7 @@ func cardPicked(card : CardOption):
 	
 	$AnimationPlayer.play("HideCards")
 	inSelection = false
+	$CardPicked.play()
 
 func createCardSelection():
 	inSelection = true

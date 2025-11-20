@@ -11,12 +11,21 @@ func _ready() -> void:
 		w.manager = self
 		worms.append(w)
 		add_child(w)
+	
+	
+	$RockNoises/WormRocksAmbience1.play()
+	await get_tree().create_timer(1).timeout
+	$RockNoises/WormRocksAmbience2.play()
+	await get_tree().create_timer(1).timeout
+	$RockNoises/WormRocksAmbience3.play()
 
 func _process(_delta: float) -> void:
 	
 	if Game.camera:
 		$Sprite2D.global_position = Vector2(Game.camera.global_position.x, Game.wormHight)
 		$WormParticles.global_position = Vector2(Game.camera.global_position.x, Game.wormHight) + Vector2(0.0, 50.0)
+		$WormAmbience.position = Vector2(Game.camera.global_position.x, Game.wormHight)
+		$RockNoises.position = Vector2(Game.camera.global_position.x, Game.wormHight)
 		
 		if is_instance_valid(PlayerStats.player):
 			var shake : float = 150.0 - clamp(abs(PlayerStats.player.global_position.y - Game.wormHight), 0.0, 150.0)

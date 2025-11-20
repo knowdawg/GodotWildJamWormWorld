@@ -1,10 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://bdyt18qrq6ne1"]
+[gd_scene load_steps=20 format=3 uid="uid://bdyt18qrq6ne1"]
 
 [ext_resource type="Script" uid="uid://ucyeyjm2m8kc" path="res://GameScenes/UI/main_menu_ui.gd" id="1_5scu0"]
 [ext_resource type="FontFile" uid="uid://bovi0c1aecn1d" path="res://Fonts/Xirod.otf" id="1_mcyb3"]
 [ext_resource type="Theme" uid="uid://caw1xmgv8ypp5" path="res://Fonts/ButtonTheme.tres" id="2_5scu0"]
 [ext_resource type="Shader" uid="uid://jstwmauhr8e3" path="res://Shaders/BalatroNoiseWarp.gdshader" id="2_u0thu"]
 [ext_resource type="Texture2D" uid="uid://dvyasrxem1qj5" path="res://Sprites/Worm.png" id="3_tcsvs"]
+[ext_resource type="AudioStream" uid="uid://sw5vqdv3ikpm" path="res://Sounds/ButtonHover.wav" id="6_pehnv"]
+[ext_resource type="AudioStream" uid="uid://blc2wijh2ecn3" path="res://Sounds/ButtonPressed.wav" id="7_6v5ye"]
+[ext_resource type="AudioStream" uid="uid://b4vowumqiwx41" path="res://Sounds/PlayButtonPressed.wav" id="8_bb2d4"]
 
 [sub_resource type="Gradient" id="Gradient_tcsvs"]
 offsets = PackedFloat32Array(0, 0.13962264, 0.73207545, 0.84456927, 1)
@@ -75,6 +78,11 @@ corner_radius_top_left = 50
 corner_radius_bottom_right = 50
 shadow_size = 8
 shadow_offset = Vector2(8, 8)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a2jls"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("6_pehnv")
 
 [node name="MainMenuUI" type="CanvasLayer"]
 script = ExtResource("1_5scu0")
@@ -236,8 +244,29 @@ theme_override_fonts/font = ExtResource("1_mcyb3")
 theme_override_font_sizes/font_size = 16
 text = "X"
 
+[node name="ButtonHover" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_a2jls")
+volume_db = -5.0
+max_polyphony = 3
+bus = &"SoundEffects"
+
+[node name="ButtonPressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_6v5ye")
+volume_db = -20.0
+max_polyphony = 3
+bus = &"SoundEffects"
+
+[node name="PlayButtonPressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_bb2d4")
+volume_db = -5.0
+max_polyphony = 3
+bus = &"SoundEffects"
+
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="value_changed" from="Settings/Panel/MarginContainer/VBoxContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="Settings/Panel/MarginContainer/VBoxContainer/SoundSlider" to="." method="_on_sound_slider_value_changed"]

@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbtkx0njm2wkf"]
+[gd_scene load_steps=9 format=3 uid="uid://dbtkx0njm2wkf"]
 
 [ext_resource type="Script" uid="uid://cv2tm5v8ujb43" path="res://GameScenes/UI/pause_menu_ui.gd" id="1_b4mqm"]
 [ext_resource type="FontFile" uid="uid://bovi0c1aecn1d" path="res://Fonts/Xirod.otf" id="2_v68u2"]
 [ext_resource type="Theme" uid="uid://caw1xmgv8ypp5" path="res://Fonts/ButtonTheme.tres" id="3_pktxw"]
+[ext_resource type="AudioStream" uid="uid://csdf80tdpv2m" path="res://Sounds/PauseMenu.wav" id="4_pktxw"]
+[ext_resource type="AudioStream" uid="uid://sw5vqdv3ikpm" path="res://Sounds/ButtonHover.wav" id="5_jyto8"]
+[ext_resource type="AudioStream" uid="uid://blc2wijh2ecn3" path="res://Sounds/ButtonPressed.wav" id="6_xvcpt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyto8"]
 bg_color = Color(0.08235294, 0.11372549, 0.15686275, 0.78431374)
@@ -15,6 +18,11 @@ corner_radius_top_left = 50
 corner_radius_bottom_right = 50
 shadow_size = 8
 shadow_offset = Vector2(8, 8)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xvcpt"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("5_jyto8")
 
 [node name="PauseMenuUI" type="CanvasLayer"]
 visible = false
@@ -101,7 +109,27 @@ theme_override_fonts/font = ExtResource("2_v68u2")
 theme_override_font_sizes/font_size = 16
 text = "X"
 
+[node name="PauseMenuShow" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pktxw")
+volume_db = -5.0
+bus = &"SoundEffects"
+
+[node name="ButtonHover" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_xvcpt")
+volume_db = -5.0
+max_polyphony = 3
+bus = &"SoundEffects"
+
+[node name="ButtonPressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_xvcpt")
+volume_db = -20.0
+max_polyphony = 3
+bus = &"SoundEffects"
+
+[connection signal="mouse_entered" from="Settings/Panel/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_mouse_entered"]
 [connection signal="pressed" from="Settings/Panel/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="mouse_entered" from="Settings/Panel/MarginContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_mouse_entered"]
 [connection signal="pressed" from="Settings/Panel/MarginContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="mouse_entered" from="Settings/Panel/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_mouse_entered"]
 [connection signal="pressed" from="Settings/Panel/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Settings/Panel/MarginContainer/SettingsExit" to="." method="_on_settings_exit_pressed"]

@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bfd1xw1pctdpi"]
+[gd_scene load_steps=13 format=3 uid="uid://bfd1xw1pctdpi"]
 
 [ext_resource type="Script" uid="uid://ythkm7kakmhm" path="res://GameScenes/UI/CardUpgradeUI/card_upgrade_ui.gd" id="1_5n6i1"]
 [ext_resource type="Script" uid="uid://h6ptlq0rqwft" path="res://GameScenes/UI/CardUpgradeUI/CardOption.gd" id="1_sg1hp"]
 [ext_resource type="Texture2D" uid="uid://n63fk72fuev1" path="res://Sprites/UpgradeIconTest.png" id="2_5n6i1"]
 [ext_resource type="FontFile" uid="uid://rdmkk73yo3ar" path="res://Fonts/chary___.ttf" id="3_qdaac"]
+[ext_resource type="AudioStream" uid="uid://ehf2nhhs3ei0" path="res://Sounds/CardPicked.wav" id="5_qdaac"]
+[ext_resource type="AudioStream" uid="uid://bs50sxck1m0i4" path="res://Sounds/CardFlick.wav" id="6_0bldb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bldb"]
 bg_color = Color(0.03529412, 0.039215688, 0.078431375, 0.5882353)
@@ -18,86 +20,6 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 shadow_offset = Vector2(1, 1)
 anti_aliasing = false
-
-[sub_resource type="Animation" id="Animation_sg1hp"]
-resource_name = "ShowCards"
-length = 0.5
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Option1:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1e-05, 1), Vector2(1, 1), Vector2(0.8, 1), Vector2(1, 1), Vector2(0.9, 1), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Option2:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.15, 0.20000002, 0.25000003, 0.3, 0.35),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1e-05, 1), Vector2(1e-05, 1), Vector2(1, 1), Vector2(0.8, 1), Vector2(1, 1), Vector2(0.9, 1), Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Option3:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.24999999, 0.3, 0.35000002, 0.40000004, 0.45),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1e-05, 1), Vector2(1e-05, 1), Vector2(1, 1), Vector2(0.8, 1), Vector2(1, 1), Vector2(0.9, 1), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_5n6i1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Option1:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1e-05, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Option2:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1e-05, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Option3:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1e-05, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_qdaac"]
 resource_name = "HideCards"
@@ -140,12 +62,117 @@ tracks/2/keys = {
 "values": [Vector2(1, 1), Vector2(0, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_5n6i1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Option1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Option2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Option3:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sg1hp"]
+resource_name = "ShowCards"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Option1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1, 1), Vector2(0.8, 1), Vector2(1, 1), Vector2(0.9, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Option2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.20000002, 0.25000003, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1e-05, 1), Vector2(1, 1), Vector2(0.8, 1), Vector2(1, 1), Vector2(0.9, 1), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Option3:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.24999999, 0.3, 0.35000002, 0.40000004, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1e-05, 1), Vector2(1, 1), Vector2(0.8, 1), Vector2(1, 1), Vector2(0.9, 1), Vector2(1, 1)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CardFlick")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5n6i1"]
 _data = {
 &"HideCards": SubResource("Animation_qdaac"),
 &"RESET": SubResource("Animation_5n6i1"),
 &"ShowCards": SubResource("Animation_sg1hp")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0bldb"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("6_0bldb")
 
 [node name="CardUpgradeUI" type="CanvasLayer"]
 script = ExtResource("1_5n6i1")
@@ -166,7 +193,7 @@ theme_override_constants/margin_bottom = 60
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="Option1" type="Panel" parent="." node_paths=PackedStringArray("UI")]
+[node name="Option1" type="Panel" parent="." node_paths=PackedStringArray("UI", "hoverSound")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(160, 240)
 offset_left = 50.0
@@ -180,6 +207,7 @@ size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_0bldb")
 script = ExtResource("1_sg1hp")
 UI = NodePath("..")
+hoverSound = NodePath("../CardFlick")
 
 [node name="MarginContainer" type="MarginContainer" parent="Option1"]
 layout_mode = 1
@@ -216,7 +244,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 2
 
-[node name="Option2" type="Panel" parent="." node_paths=PackedStringArray("UI")]
+[node name="Option2" type="Panel" parent="." node_paths=PackedStringArray("UI", "hoverSound")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(160, 240)
 offset_left = 240.0
@@ -230,6 +258,7 @@ size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_0bldb")
 script = ExtResource("1_sg1hp")
 UI = NodePath("..")
+hoverSound = NodePath("../CardFlick")
 
 [node name="MarginContainer" type="MarginContainer" parent="Option2"]
 layout_mode = 1
@@ -266,7 +295,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 2
 
-[node name="Option3" type="Panel" parent="." node_paths=PackedStringArray("UI")]
+[node name="Option3" type="Panel" parent="." node_paths=PackedStringArray("UI", "hoverSound")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(160, 240)
 offset_left = 430.0
@@ -280,6 +309,7 @@ size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_0bldb")
 script = ExtResource("1_sg1hp")
 UI = NodePath("..")
+hoverSound = NodePath("../CardFlick")
 
 [node name="MarginContainer" type="MarginContainer" parent="Option3"]
 layout_mode = 1
@@ -324,5 +354,16 @@ libraries = {
 [node name="CardSelectionQueueTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="CardPicked" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_qdaac")
+volume_db = -5.0
+bus = &"SoundEffects"
+
+[node name="CardFlick" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_0bldb")
+volume_db = -5.0
+max_polyphony = 3
+bus = &"SoundEffects"
 
 [connection signal="timeout" from="CardSelectionQueueTimer" to="." method="_on_card_selection_queue_timer_timeout"]

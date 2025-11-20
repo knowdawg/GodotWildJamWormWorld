@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://c2lk7shvmrjj3"]
+[gd_scene load_steps=23 format=3 uid="uid://c2lk7shvmrjj3"]
 
 [ext_resource type="Script" uid="uid://b75uqq6sd8ro3" path="res://GameScenes/UpgradeChest/upgrade_chest.gd" id="1_ekny6"]
 [ext_resource type="Texture2D" uid="uid://b7b2yswkjlhby" path="res://Sprites/Chest.png" id="1_ogamu"]
 [ext_resource type="Material" uid="uid://bxrj30vylkpy5" path="res://Shaders/raycast_lighting.tres" id="2_778w8"]
 [ext_resource type="Texture2D" uid="uid://nurf06um3rbe" path="res://Sprites/PointLight128x128.tres" id="3_1oo4p"]
+[ext_resource type="AudioStream" uid="uid://qft2si3h8bns" path="res://Sounds/BreakChest.wav" id="5_778w8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ekny6"]
 
@@ -104,6 +105,11 @@ _data = {
 &"RESET": SubResource("Animation_778w8")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a3if0"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("5_778w8")
+
 [node name="UpgradeChest" type="RigidBody2D"]
 collision_layer = 0
 mass = 10.0
@@ -155,5 +161,10 @@ shape = SubResource("RectangleShape2D_1oo4p")
 libraries = {
 &"": SubResource("AnimationLibrary_a3if0")
 }
+
+[node name="ChestBreak" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = SubResource("AudioStreamRandomizer_a3if0")
+bus = &"SoundEffects"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

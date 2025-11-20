@@ -14,6 +14,7 @@ func animate():
 	$AnimationPlayer.play("Splat")
 
 func _on_play_pressed() -> void:
+	$PlayButtonPressed.play()
 	if noMoreInput:
 		return
 	noMoreInput = true
@@ -22,6 +23,7 @@ func _on_play_pressed() -> void:
 
 
 func _on_menu_pressed() -> void:
+	$ButtonPressed.play()
 	if noMoreInput:
 		return
 	noMoreInput = true
@@ -30,4 +32,16 @@ func _on_menu_pressed() -> void:
 
 
 func _on_quit_pressed() -> void:
+	$ButtonPressed.play()
 	get_tree().quit()
+
+
+
+func _on_play_mouse_entered() -> void:
+	$ButtonHover.play()
+
+func _on_menu_mouse_entered() -> void:
+	$ButtonHover.play()
+
+func _on_quit_mouse_entered() -> void:
+	$ButtonHover.play()

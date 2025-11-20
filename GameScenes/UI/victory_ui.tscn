@@ -1,9 +1,12 @@
-[gd_scene load_steps=32 format=3 uid="uid://cflr1f7cghh3y"]
+[gd_scene load_steps=36 format=3 uid="uid://cflr1f7cghh3y"]
 
 [ext_resource type="Shader" uid="uid://5u246xyju60e" path="res://Shaders/WarpPortal.gdshader" id="1_f4dk0"]
 [ext_resource type="Script" uid="uid://bh0drb4d1ogq8" path="res://GameScenes/UI/victory_ui.gd" id="1_olw3m"]
 [ext_resource type="FontFile" uid="uid://bovi0c1aecn1d" path="res://Fonts/Xirod.otf" id="2_olw3m"]
 [ext_resource type="Theme" uid="uid://caw1xmgv8ypp5" path="res://Fonts/ButtonTheme.tres" id="3_2foaq"]
+[ext_resource type="AudioStream" uid="uid://sw5vqdv3ikpm" path="res://Sounds/ButtonHover.wav" id="5_u2mpu"]
+[ext_resource type="AudioStream" uid="uid://blc2wijh2ecn3" path="res://Sounds/ButtonPressed.wav" id="6_reppd"]
+[ext_resource type="AudioStream" uid="uid://b4vowumqiwx41" path="res://Sounds/PlayButtonPressed.wav" id="7_i3jyw"]
 
 [sub_resource type="Gradient" id="Gradient_olw3m"]
 offsets = PackedFloat32Array(0.91078836, 1)
@@ -37,9 +40,9 @@ shader_parameter/holeSize = 0.0
 shader_parameter/image = SubResource("NoiseTexture2D_i3jyw")
 shader_parameter/rotations = 10.0
 shader_parameter/depth = 10.0
-shader_parameter/spiralIntensity = 1.4901199918426758e-07
+shader_parameter/spiralIntensity = 1.490119991842676e-07
 shader_parameter/shrinkSpeed = -0.09999985247812047
-shader_parameter/roationSpeed = 1.4901199918426758e-07
+shader_parameter/roationSpeed = 1.490119991842676e-07
 shader_parameter/haloColor = SubResource("GradientTexture1D_2foaq")
 
 [sub_resource type="Gradient" id="Gradient_02s1w"]
@@ -83,9 +86,9 @@ shader_parameter/holeSize = 0.0
 shader_parameter/image = SubResource("NoiseTexture2D_u2mpu")
 shader_parameter/rotations = 7.0
 shader_parameter/depth = 10.0
-shader_parameter/spiralIntensity = 1.4901199918426758e-07
+shader_parameter/spiralIntensity = 1.490119991842676e-07
 shader_parameter/shrinkSpeed = -0.9999998658891992
-shader_parameter/roationSpeed = 1.4901199918426758e-07
+shader_parameter/roationSpeed = 1.490119991842676e-07
 shader_parameter/haloColor = SubResource("GradientTexture1D_olw3m")
 
 [sub_resource type="Gradient" id="Gradient_i3jyw"]
@@ -120,9 +123,9 @@ shader_parameter/holeSize = 0.0
 shader_parameter/image = SubResource("NoiseTexture2D_02s1w")
 shader_parameter/rotations = 5.0
 shader_parameter/depth = 3.0000000447036
-shader_parameter/spiralIntensity = 1.4901199918426758e-07
+shader_parameter/spiralIntensity = 1.490119991842676e-07
 shader_parameter/shrinkSpeed = -0.9999998658891992
-shader_parameter/roationSpeed = 1.4901199918426758e-07
+shader_parameter/roationSpeed = 1.490119991842676e-07
 shader_parameter/haloColor = SubResource("GradientTexture1D_aqca6")
 
 [sub_resource type="Gradient" id="Gradient_3ga20"]
@@ -152,17 +155,22 @@ shader = ExtResource("1_f4dk0")
 shader_parameter/resolution = Vector2(640, 640)
 shader_parameter/colorResolution = 100.0
 shader_parameter/transparent = false
-shader_parameter/distortionIntensity = 1.4901199918426758e-07
+shader_parameter/distortionIntensity = 1.490119991842676e-07
 shader_parameter/spiralDistortionIntensity = 10.0
 shader_parameter/holeSize = 0.0499999988824
 shader_parameter/holeColor = SubResource("GradientTexture1D_i3jyw")
 shader_parameter/image = SubResource("NoiseTexture2D_xdf55")
 shader_parameter/rotations = 5.0
 shader_parameter/depth = 0.20000000298024
-shader_parameter/spiralIntensity = 1.4901199918426758e-07
+shader_parameter/spiralIntensity = 1.490119991842676e-07
 shader_parameter/shrinkSpeed = -0.29999985545835983
 shader_parameter/roationSpeed = -0.09999985247812047
 shader_parameter/haloColor = SubResource("GradientTexture1D_u2mpu")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_aqca6"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("5_u2mpu")
 
 [node name="VictoryUI" type="CanvasLayer"]
 script = ExtResource("1_olw3m")
@@ -267,6 +275,27 @@ layout_mode = 2
 theme = ExtResource("3_2foaq")
 text = "Quit"
 
+[node name="ButtonHover" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_aqca6")
+volume_db = -5.0
+max_polyphony = 3
+bus = &"SoundEffects"
+
+[node name="ButtonPressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_reppd")
+volume_db = -20.0
+max_polyphony = 3
+bus = &"SoundEffects"
+
+[node name="PlayButtonPressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_i3jyw")
+volume_db = -5.0
+max_polyphony = 3
+bus = &"SoundEffects"
+
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Menu" to="." method="_on_menu_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

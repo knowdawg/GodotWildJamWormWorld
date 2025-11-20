@@ -9,8 +9,12 @@ class_name PlayerFly
 
 @export var particles : GPUParticles2D
 
+@export var flySound : AudioStreamPlayer2D
+@export var flyEndSound : AudioStreamPlayer2D
+
 func enter(_prevState):
 	anim.play("StartOfJump")
+	flySound.play()
 
 func update(delta : float):
 	var p : Player = parent as Player
@@ -41,3 +45,6 @@ func update_physics(delta: float):
 
 func exit(_newState):
 	particles.emitting = false
+	flyEndSound.play()
+	await get_tree().physics_frame
+	flySound.call_deferred("stop")

@@ -1,8 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://dsdfoua5eysoq"]
+[gd_scene load_steps=18 format=3 uid="uid://dsdfoua5eysoq"]
 
 [ext_resource type="Texture2D" uid="uid://dcua2k7d360j3" path="res://Player/Sprites/Dynamite.png" id="1_pwkjs"]
 [ext_resource type="Script" uid="uid://dkqbcvoseljlo" path="res://Player/Scripts/dynamite.gd" id="1_u3hgy"]
 [ext_resource type="Texture2D" uid="uid://nurf06um3rbe" path="res://Sprites/PointLight128x128.tres" id="3_6ye6h"]
+[ext_resource type="AudioStream" uid="uid://bml51i7opuclv" path="res://Sounds/BombTick1.wav" id="4_dqfqm"]
+[ext_resource type="AudioStream" uid="uid://dp32fbk25q0up" path="res://Sounds/BombTick2.wav" id="5_fapvg"]
+[ext_resource type="AudioStream" uid="uid://dko2rbhvgrl0b" path="res://Sounds/BombBoom.wav" id="5_xr63g"]
+[ext_resource type="AudioStream" uid="uid://b8056y156pmil" path="res://Sounds/BombTick3.wav" id="6_3r1ym"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u3hgy"]
 bounce = 0.2
@@ -100,6 +104,20 @@ tracks/5/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Boom")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_u3hgy"]
 resource_name = "Charge"
@@ -164,6 +182,48 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, -0.2617993877991494, 0.2617993877991494, 0.0, 0.0, 0.2617993877991494, -0.2617993877991494, 0.0, 0.0, -0.2617993877991494, 0.2617993877991494, 0.0, 0.0, 0.2617993877991494]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Tick1")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Tick2")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Tick3")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_6ye6h"]
@@ -274,6 +334,11 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6ye6h"]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dqfqm"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("5_xr63g")
+
 [node name="Dynamite" type="RigidBody2D"]
 collision_layer = 0
 physics_material_override = SubResource("PhysicsMaterial_u3hgy")
@@ -316,5 +381,21 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hazard"]
 shape = SubResource("CircleShape2D_6ye6h")
 disabled = true
+
+[node name="Tick1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_dqfqm")
+bus = &"SoundEffects"
+
+[node name="Tick2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_fapvg")
+bus = &"SoundEffects"
+
+[node name="Tick3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_3r1ym")
+bus = &"SoundEffects"
+
+[node name="Boom" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_dqfqm")
+bus = &"SoundEffects"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

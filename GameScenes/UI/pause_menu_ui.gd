@@ -9,22 +9,39 @@ func _process(_delta: float) -> void:
 		switchVisibilty()
 
 func _on_menu_button_pressed() -> void:
+	$ButtonPressed.play()
 	switchVisibilty()
 	Game.gameManager.switchScene(mainMenu, 1.0, true)
 
 func _on_exit_button_pressed() -> void:
+	$ButtonPressed.play()
 	get_tree().quit()
 
 
 func _on_settings_exit_pressed() -> void:
+	$ButtonPressed.play()
+	switchVisibilty()
+
+func _on_resume_button_pressed() -> void:
+	$ButtonPressed.play()
 	switchVisibilty()
 
 func switchVisibilty():
 	visible = !visible
 	if visible:
 		Game.pauseGame()
+		$PauseMenuShow.play()
 	else:
 		Game.resumeGame()
 
-func _on_resume_button_pressed() -> void:
-	switchVisibilty()
+
+
+
+func _on_resume_button_mouse_entered() -> void:
+	$ButtonHover.play()
+
+func _on_menu_button_mouse_entered() -> void:
+	$ButtonHover.play()
+
+func _on_exit_button_mouse_entered() -> void:
+	$ButtonHover.play()

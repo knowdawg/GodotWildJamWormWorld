@@ -29,6 +29,7 @@ func cardFocus(texture : Texture2D, text : String):
 	%DisplayIcon.texture = texture
 	%DisplayLabel.text = text
 	$AnimationPlayer.play("Show")
+	$CardFlick.play()
 
 func cardUnFocused():
 	$AnimationPlayer.play("Hide")

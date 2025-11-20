@@ -3,6 +3,8 @@ class_name CardOption
 
 @export var UI : CardUpgradeUI
 
+@export var hoverSound : AudioStreamPlayer
+
 var upgrade : UpgradeResource
 
 var initPos : Vector2
@@ -25,6 +27,7 @@ func _process(delta: float) -> void:
 
 func hover():
 	modulate = Color(1.0, 1.0, 1.0, 1.0)
+	hoverSound.play()
 
 func unHover():
 	modulate = Color(0.8, 0.8, 0.8, 1.0)
