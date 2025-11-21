@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://cqlqoh63i1vow"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_k4wfo"]
+[ext_resource type="Texture2D" uid="uid://cxmujyyd26q5y" path="res://Sprites/UpgradIcons/UpgradeIcon30.png" id="2_k4wfo"]
+
+[resource]
+script = ExtResource("1_k4wfo")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"bombBootsRadius": 15
+})
+text = "+ Boots Explosion"
+tex = ExtResource("2_k4wfo")
+rarity = 2
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

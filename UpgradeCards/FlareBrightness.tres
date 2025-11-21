@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://b080jirw07jge"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_qgel6"]
+[ext_resource type="Texture2D" uid="uid://ewk3fppfrb00" path="res://Sprites/UpgradIcons/UpgradeIcon13.png" id="2_xpfsc"]
+
+[resource]
+script = ExtResource("1_qgel6")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"flareLightEnergy": 0.3,
+"flareTextureScale": 0.5
+})
+text = "+ Flare Brightness"
+tex = ExtResource("2_xpfsc")
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://d1uxb8p7iv5vm"]
+[gd_scene load_steps=104 format=3 uid="uid://d1uxb8p7iv5vm"]
 
 [ext_resource type="Script" uid="uid://v7jho3hsmjon" path="res://Player/player.gd" id="1_k53q1"]
 [ext_resource type="Script" uid="uid://up5bvm7rwjr2" path="res://Player/PlayerStateMachine/player_state_machine.gd" id="2_od3ui"]
@@ -21,7 +21,9 @@
 [ext_resource type="Script" uid="uid://douml41dlbuuo" path="res://Player/Scripts/general_light.gd" id="17_7emwf"]
 [ext_resource type="Texture2D" uid="uid://bk11gdlw8kb0m" path="res://Sprites/Pointer.png" id="19_o28un"]
 [ext_resource type="Script" uid="uid://cy5vbga4r2jrf" path="res://Player/Scripts/escape_pod_pointer.gd" id="20_n471f"]
+[ext_resource type="Texture2D" uid="uid://cyjydv6a5pi0h" path="res://Sprites/ChestPointer.png" id="22_8ynux"]
 [ext_resource type="Script" uid="uid://xc6udvxxkovw" path="res://Player/Scripts/flightprogress.gd" id="22_hshwv"]
+[ext_resource type="Script" uid="uid://canp5pscdfvcf" path="res://Player/Scripts/chest_poiner.gd" id="23_d30e8"]
 [ext_resource type="Script" uid="uid://df0kejoimicrm" path="res://Player/Scripts/pickaxe_attack.gd" id="23_gpjlu"]
 [ext_resource type="AudioStream" uid="uid://c3do46qwqwxuk" path="res://Sounds/FootStep1.wav" id="25_efx54"]
 [ext_resource type="AudioStream" uid="uid://b023loldk6dob" path="res://Sounds/FootStep2.wav" id="26_755ss"]
@@ -39,6 +41,7 @@
 [ext_resource type="AudioStream" uid="uid://cy1knpo4rs24o" path="res://Sounds/MineRock.wav" id="38_iyprq"]
 [ext_resource type="AudioStream" uid="uid://csajwuiodqls1" path="res://Sounds/ShootFlare.wav" id="39_8ynux"]
 [ext_resource type="AudioStream" uid="uid://cn6l5ajgfb6nr" path="res://Sounds/Death.wav" id="39_f4lon"]
+[ext_resource type="AudioStream" uid="uid://dko2rbhvgrl0b" path="res://Sounds/BombBoom.wav" id="42_6pogt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_buux6"]
 size = Vector2(6, 13)
@@ -109,6 +112,35 @@ scale_max = 1.5
 scale_curve = SubResource("CurveTexture_gpjlu")
 color = Color(1, 0.42352942, 0.16078432, 1)
 color_initial_ramp = SubResource("GradientTexture1D_gpjlu")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = -2.2351742e-08
+
+[sub_resource type="Gradient" id="Gradient_6pogt"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ie76m"]
+gradient = SubResource("Gradient_6pogt")
+
+[sub_resource type="Curve" id="Curve_dy65m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_maysp"]
+curve = SubResource("Curve_dy65m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1l10g"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(3, 0, 1)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 150.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_maysp")
+color_initial_ramp = SubResource("GradientTexture1D_ie76m")
 hue_variation_min = -2.2351742e-08
 hue_variation_max = -2.2351742e-08
 
@@ -387,6 +419,9 @@ _data = {
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b1ygp"]
 light_mode = 1
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_d30e8"]
+light_mode = 1
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hshwv"]
 light_mode = 1
 
@@ -453,6 +488,11 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("39_8ynux")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dy65m"]
+random_pitch = 1.3
+streams_count = 1
+stream_0/stream = ExtResource("42_6pogt")
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 floor_constant_speed = true
@@ -475,6 +515,14 @@ collision_mask = 4
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_pisgm")
 
+[node name="BombHurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BombHurtbox"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_pisgm")
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inputBufferTimer", "jumpBufferTimer", "coyoteTimer", "ledgeRayCollision", "ledgeRaySpace", "initial_state", "parent")]
 script = ExtResource("2_od3ui")
 inputBufferTimer = NodePath("../Timers/InputBuffer")
@@ -485,11 +533,13 @@ ledgeRaySpace = NodePath("../LedgeRaycasts/LedgeRaycastSpaceCheck")
 initial_state = NodePath("Idle")
 parent = NodePath("..")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("anim", "particles", "landSound")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("anim", "particles", "landSound", "boomSound", "boomLight")]
 script = ExtResource("4_5mn5l")
 anim = NodePath("../../AnimationPlayer")
 particles = NodePath("../../ParticleEffects/LandParticles")
 landSound = NodePath("../../Sounds/Land")
+boomSound = NodePath("../../Sounds/BoomSound")
+boomLight = NodePath("../../ParticleEffects/BombBootsParticlesFall/BombBootLight")
 
 [node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("anim", "particles")]
 script = ExtResource("5_wwis0")
@@ -556,8 +606,8 @@ offsetAngle = 2.09240734641021
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
-position = Vector2(0, -4)
 texture = ExtResource("7_od3ui")
+offset = Vector2(0, -4)
 hframes = 31
 frame = 2
 
@@ -581,6 +631,22 @@ lifetime = 0.3
 trail_enabled = true
 trail_lifetime = 0.1
 process_material = SubResource("ParticleProcessMaterial_8mwp6")
+
+[node name="BombBootsParticlesFall" type="GPUParticles2D" parent="ParticleEffects"]
+material = SubResource("CanvasItemMaterial_gpjlu")
+position = Vector2(0, 6)
+emitting = false
+amount = 128
+lifetime = 0.3
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_1l10g")
+
+[node name="BombBootLight" type="PointLight2D" parent="ParticleEffects/BombBootsParticlesFall"]
+rotation = -1.5707964
+energy = 4.0
+texture = ExtResource("14_dkpta")
+texture_scale = 0.01
 
 [node name="WalkParticles" type="GPUParticles2D" parent="ParticleEffects"]
 position = Vector2(0, 7)
@@ -682,6 +748,15 @@ texture = ExtResource("19_o28un")
 script = ExtResource("20_n471f")
 player = NodePath("..")
 
+[node name="ChestPoiner" type="Sprite2D" parent="."]
+visible = false
+z_index = 5
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_d30e8")
+texture = ExtResource("22_8ynux")
+offset = Vector2(29, 0)
+script = ExtResource("23_d30e8")
+
 [node name="Flightprogress" type="ProgressBar" parent="."]
 z_index = 5
 material = SubResource("CanvasItemMaterial_hshwv")
@@ -727,14 +802,12 @@ max_polyphony = 4
 bus = &"SoundEffects"
 
 [node name="FlySound" type="AudioStreamPlayer2D" parent="Sounds"]
-process_mode = 3
 stream = SubResource("AudioStreamInteractive_6pogt")
 volume_db = -3.0
 bus = &"SoundEffects"
 script = ExtResource("36_f4lon")
 
 [node name="FlyEnd" type="AudioStreamPlayer2D" parent="Sounds"]
-process_mode = 3
 stream = ExtResource("34_qs4pp")
 volume_db = -3.0
 bus = &"SoundEffects"
@@ -754,7 +827,13 @@ process_mode = 3
 stream = SubResource("AudioStreamRandomizer_6pogt")
 bus = &"SoundEffects"
 
+[node name="BoomSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = SubResource("AudioStreamRandomizer_dy65m")
+max_distance = 300.0
+bus = &"SoundEffects"
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="BombHurtbox" to="." method="_on_bomb_hurtbox_area_entered"]
 [connection signal="timeout" from="Timers/InputBuffer" to="StateMachine" method="_on_input_buffer_timeout"]
 [connection signal="timeout" from="Timers/JumpBuffer" to="StateMachine" method="_on_jump_buffer_timeout"]
 [connection signal="timeout" from="Timers/CoyoteTimer" to="StateMachine" method="_on_coyote_timer_timeout"]

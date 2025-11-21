@@ -18,6 +18,8 @@ var escapePod : EscapePod
 var wormHight : float = 0.0
 var wormTravelSpeed : float = 10.0
 
+var chest : Array[UpgradeChest]
+
 func _ready() -> void:
 	wormHight = TerrainRendering.mapSize.y
 

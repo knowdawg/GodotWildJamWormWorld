@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://dogjnrbn0xtdu"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_ppqut"]
+[ext_resource type="Texture2D" uid="uid://dsk0fjhcoufp0" path="res://Sprites/UpgradIcons/UpgradeIcon8.png" id="2_ppqut"]
+
+[resource]
+script = ExtResource("1_ppqut")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"gravityMultiplier": -0.2
+})
+text = "- Gravity"
+tex = ExtResource("2_ppqut")
+rarity = 1
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://dnhk4h6o7a20g"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_8e4uc"]
+[ext_resource type="Texture2D" uid="uid://bmcwr1t0vf8c1" path="res://Sprites/UpgradIcons/UpgradeIcon7.png" id="2_8e4uc"]
+
+[resource]
+script = ExtResource("1_8e4uc")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"flareRecoverySpeed": -0.6
+})
+text = "+ Flare Recharge"
+tex = ExtResource("2_8e4uc")
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

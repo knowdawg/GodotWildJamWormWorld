@@ -152,23 +152,26 @@ process_mode = 3
 stream = SubResource("AudioStreamPlaylist_khnhk")
 volume_db = 15.0
 autoplay = true
-max_distance = 200.0
-attenuation = 2.297397
+max_distance = 300.0
+attenuation = 3.0
 bus = &"SoundEffects"
 
 [node name="RockNoises" type="Node2D" parent="."]
 
 [node name="WormRocksAmbience1" type="AudioStreamPlayer2D" parent="RockNoises"]
 stream = SubResource("AudioStreamPlaylist_sxa4n")
+volume_db = -5.0
 max_distance = 150.0
 bus = &"SoundEffects"
 
 [node name="WormRocksAmbience2" type="AudioStreamPlayer2D" parent="RockNoises"]
 stream = SubResource("AudioStreamPlaylist_lms1t")
+volume_db = -5.0
 max_distance = 150.0
 bus = &"SoundEffects"
 
 [node name="WormRocksAmbience3" type="AudioStreamPlayer2D" parent="RockNoises"]
 stream = SubResource("AudioStreamPlaylist_ltbn6")
+volume_db = -5.0
 max_distance = 150.0
 bus = &"SoundEffects"

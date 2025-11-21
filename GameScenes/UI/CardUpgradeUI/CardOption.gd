@@ -5,6 +5,8 @@ class_name CardOption
 
 @export var hoverSound : AudioStreamPlayer
 
+@export var particles : GPUParticles2D
+
 var upgrade : UpgradeResource
 
 var initPos : Vector2
@@ -44,3 +46,18 @@ func updateUpgrade():
 	if upgrade:
 		$MarginContainer/VBoxContainer/UpgradeIcon.texture = upgrade.tex
 		$MarginContainer/VBoxContainer/Label.text = upgrade.text
+		
+		match upgrade.rarity:
+			UpgradeResource.RARITY.COMMON:
+				particles.amount = 16
+				particles.modulate = Color(1.0, 1.0, 1.0, 0.5)
+			UpgradeResource.RARITY.UNCOMMON:
+				particles.amount = 32
+				particles.modulate = Color(0.5, 1.0, 1.0, 0.75)
+			UpgradeResource.RARITY.RARE:
+				particles.amount = 64
+				particles.modulate = Color(1.0, 1.0, 0.5, 1.0)
+			UpgradeResource.RARITY.MYTHIC:
+				particles.amount = 128
+				particles.modulate = Color(1.0, 0.0, 0.0, 1.0)
+			

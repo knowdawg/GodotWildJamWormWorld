@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://plocm8of85df"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_ghjak"]
+[ext_resource type="Texture2D" uid="uid://cjpouffm854gk" path="res://Sprites/UpgradIcons/UpgradeIcon26.png" id="2_ghjak"]
+
+[resource]
+script = ExtResource("1_ghjak")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"chestSence": true
+})
+text = "+ Chest Sense"
+tex = ExtResource("2_ghjak")
+unique = true
+rarity = 3
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

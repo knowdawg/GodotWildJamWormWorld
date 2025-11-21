@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://cpeon5x1pwlfa"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_84poq"]
+[ext_resource type="Texture2D" uid="uid://ddx2v400e558w" path="res://Sprites/UpgradIcons/UpgradeIcon21.png" id="2_84poq"]
+
+[resource]
+script = ExtResource("1_84poq")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"lantern": true
+})
+text = "- Flare
++ Lantern"
+tex = ExtResource("2_84poq")
+unique = true
+rarity = 2
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

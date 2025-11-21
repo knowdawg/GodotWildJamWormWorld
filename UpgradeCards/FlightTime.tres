@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://dee6fbrw0y15a"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_nbn8q"]
+[ext_resource type="Texture2D" uid="uid://dp6ls4nxqi4bk" path="res://Sprites/UpgradIcons/UpgradeIcon4.png" id="2_nbn8q"]
+
+[resource]
+script = ExtResource("1_nbn8q")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"maxFlightTime": 0.3
+})
+text = "+ Flight Time"
+tex = ExtResource("2_nbn8q")
+rarity = 1
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

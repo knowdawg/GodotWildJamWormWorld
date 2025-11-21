@@ -9,6 +9,16 @@ func _ready() -> void:
 	
 	var cs : CircleShape2D = $Hazard/CollisionShape2D.shape
 	cs.radius = PlayerStats.dynamiteExplosionRadius
+	
+	if PlayerStats.balloon:
+		gravity_scale = -0.1
+		$Balloon.visible = true
+	
+	if PlayerStats.stickyDynamite:
+		contact_monitor = true
+		max_contacts_reported = 1
+		
+		modulate = Color(0.3, 0.3, 10.0, 1.0)
 
 func explode():
 	exploded = true
@@ -32,3 +42,8 @@ func _draw() -> void:
 	if !exploded:
 		draw_circle(Vector2.ZERO, PlayerStats.dynamiteExplosionRadius, Color.RED, false, 1.0)
 		draw_circle(Vector2.ZERO, PlayerStats.dynamiteExplosionRadius, Color(1.0, 0.0, 0.0, 0.2), true)
+
+
+func _on_body_entered(_body: Node) -> void:
+	if PlayerStats.stickyDynamite:
+		sleeping = true

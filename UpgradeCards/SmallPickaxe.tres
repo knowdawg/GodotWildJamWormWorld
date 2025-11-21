@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://0eumhjb4m0qc"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_ea6ef"]
+[ext_resource type="Texture2D" uid="uid://c4ogsyfruoyem" path="res://Sprites/UpgradIcons/UpgradeIcon16.png" id="2_ea6ef"]
+
+[resource]
+script = ExtResource("1_ea6ef")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"picaxeRadius": -1,
+"picaxeUseSpeed": -0.15
+})
+text = "++ Pickaxe Speed
+- Pickaxe Radius"
+tex = ExtResource("2_ea6ef")
+rarity = 2
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

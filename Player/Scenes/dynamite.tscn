@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://dsdfoua5eysoq"]
+[gd_scene load_steps=19 format=3 uid="uid://dsdfoua5eysoq"]
 
 [ext_resource type="Texture2D" uid="uid://dcua2k7d360j3" path="res://Player/Sprites/Dynamite.png" id="1_pwkjs"]
 [ext_resource type="Script" uid="uid://dkqbcvoseljlo" path="res://Player/Scripts/dynamite.gd" id="1_u3hgy"]
 [ext_resource type="Texture2D" uid="uid://nurf06um3rbe" path="res://Sprites/PointLight128x128.tres" id="3_6ye6h"]
+[ext_resource type="Texture2D" uid="uid://blquc50tpm1jj" path="res://Sprites/Balloon.png" id="3_fapvg"]
 [ext_resource type="AudioStream" uid="uid://bml51i7opuclv" path="res://Sounds/BombTick1.wav" id="4_dqfqm"]
 [ext_resource type="AudioStream" uid="uid://dp32fbk25q0up" path="res://Sounds/BombTick2.wav" id="5_fapvg"]
 [ext_resource type="AudioStream" uid="uid://dko2rbhvgrl0b" path="res://Sounds/BombBoom.wav" id="5_xr63g"]
@@ -351,6 +352,12 @@ texture = ExtResource("3_6ye6h")
 texture_scale = 2.0
 height = 20.0
 
+[node name="Balloon" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, -8)
+texture = ExtResource("3_fapvg")
+
 [node name="DynamiteSprite" type="Sprite2D" parent="."]
 modulate = Color(18.892157, 0, 0, 1)
 texture_filter = 1
@@ -375,7 +382,7 @@ libraries = {
 }
 
 [node name="Hazard" type="Area2D" parent="."]
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hazard"]
@@ -398,4 +405,5 @@ bus = &"SoundEffects"
 stream = SubResource("AudioStreamRandomizer_dqfqm")
 bus = &"SoundEffects"
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

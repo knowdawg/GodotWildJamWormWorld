@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://bpk5xcek1pb4q"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_3ylbq"]
+[ext_resource type="Texture2D" uid="uid://dlelpvjg1ueyf" path="res://Sprites/UpgradIcons/UpgradeIcon29.png" id="2_3ylbq"]
+
+[resource]
+script = ExtResource("1_3ylbq")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"stickyDynamite": true
+})
+text = "+ Sticky Dynamite"
+tex = ExtResource("2_3ylbq")
+unique = true
+rarity = 2
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

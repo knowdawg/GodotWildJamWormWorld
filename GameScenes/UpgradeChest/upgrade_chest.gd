@@ -5,6 +5,7 @@ var destoryed : bool = false
 
 func _ready() -> void:
 	$AnimationPlayer.play("Idle")
+	Game.chest.append(self)
 
 func _process(_delta: float) -> void:
 	if is_instance_valid(PlayerStats.player):
@@ -27,6 +28,7 @@ func _on_area_2d_area_entered(_area: Area2D) -> void:
 func destroy():
 	if !destoryed:
 		destoryed = true
+		Game.chest.erase(self)
 		Game.createCardUpgrade.emit()
 		$IdleParticles.emitting = false
 		$DeathParticles.emitting = true

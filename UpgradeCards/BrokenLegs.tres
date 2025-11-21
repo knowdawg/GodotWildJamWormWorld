@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://b4pkuvb5jhmbs"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_14fao"]
+[ext_resource type="Texture2D" uid="uid://c6wwf5igtke5l" path="res://Sprites/UpgradIcons/UpgradeIcon27.png" id="2_14fao"]
+
+[resource]
+script = ExtResource("1_14fao")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"canMove": false,
+"maxFlightSpeed": -50.0,
+"maxFlightTime": 10.0,
+"maxMoveSpeedMultiplier": -0.5
+})
+text = "- Legs
++++ Flight Time
+--- Flight Power"
+tex = ExtResource("2_14fao")
+unique = true
+rarity = 3
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

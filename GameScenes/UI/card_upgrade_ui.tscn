@@ -1,25 +1,40 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfd1xw1pctdpi"]
+[gd_scene load_steps=19 format=3 uid="uid://bfd1xw1pctdpi"]
 
 [ext_resource type="Script" uid="uid://ythkm7kakmhm" path="res://GameScenes/UI/CardUpgradeUI/card_upgrade_ui.gd" id="1_5n6i1"]
 [ext_resource type="Script" uid="uid://h6ptlq0rqwft" path="res://GameScenes/UI/CardUpgradeUI/CardOption.gd" id="1_sg1hp"]
 [ext_resource type="Texture2D" uid="uid://n63fk72fuev1" path="res://Sprites/UpgradeIconTest.png" id="2_5n6i1"]
+[ext_resource type="StyleBox" uid="uid://b272b72o0sl2j" path="res://GameScenes/UI/CardUpgradeUI/CardFrames/CommonFrame.tres" id="2_6dmf7"]
+[ext_resource type="StyleBox" uid="uid://b0h1awwbrvbjs" path="res://GameScenes/UI/CardUpgradeUI/CardFrames/MythicFrame.tres" id="2_iqn8i"]
 [ext_resource type="FontFile" uid="uid://rdmkk73yo3ar" path="res://Fonts/chary___.ttf" id="3_qdaac"]
 [ext_resource type="AudioStream" uid="uid://ehf2nhhs3ei0" path="res://Sounds/CardPicked.wav" id="5_qdaac"]
 [ext_resource type="AudioStream" uid="uid://bs50sxck1m0i4" path="res://Sounds/CardFlick.wav" id="6_0bldb"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bldb"]
-bg_color = Color(0.03529412, 0.039215688, 0.078431375, 0.5882353)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(0.92156863, 0.92941177, 0.9137255, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_offset = Vector2(1, 1)
-anti_aliasing = false
+[sub_resource type="Curve" id="Curve_iqn8i"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7x7st"]
+curve = SubResource("Curve_iqn8i")
+
+[sub_resource type="Curve" id="Curve_fuigi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ql7lf"]
+curve = SubResource("Curve_fuigi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2xkkp"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 100.0
+radial_velocity_min = 199.99997
+radial_velocity_max = 499.99997
+radial_velocity_curve = SubResource("CurveTexture_7x7st")
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_ql7lf")
 
 [sub_resource type="Animation" id="Animation_qdaac"]
 resource_name = "HideCards"
@@ -100,6 +115,42 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1e-05, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RarityParticles1:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RarityParticles2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RarityParticles3:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_sg1hp"]
 resource_name = "ShowCards"
@@ -161,6 +212,84 @@ tracks/3/keys = {
 "method": &"play"
 }]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RarityParticles1:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RarityParticles2:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RarityParticles3:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RarityParticles1")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"restart"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RarityParticles2")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"restart"
+}]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("RarityParticles3")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"restart"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5n6i1"]
 _data = {
@@ -193,7 +322,15 @@ theme_override_constants/margin_bottom = 60
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="Option1" type="Panel" parent="." node_paths=PackedStringArray("UI", "hoverSound")]
+[node name="RarityParticles1" type="GPUParticles2D" parent="."]
+position = Vector2(131, 172)
+emitting = false
+amount = 128
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_2xkkp")
+
+[node name="Option1" type="Panel" parent="." node_paths=PackedStringArray("UI", "hoverSound", "particles")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(160, 240)
 offset_left = 50.0
@@ -204,10 +341,11 @@ scale = Vector2(1e-05, 1)
 pivot_offset = Vector2(80, 120)
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_0bldb")
+theme_override_styles/panel = ExtResource("2_iqn8i")
 script = ExtResource("1_sg1hp")
 UI = NodePath("..")
 hoverSound = NodePath("../CardFlick")
+particles = NodePath("../RarityParticles1")
 
 [node name="MarginContainer" type="MarginContainer" parent="Option1"]
 layout_mode = 1
@@ -244,7 +382,15 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 2
 
-[node name="Option2" type="Panel" parent="." node_paths=PackedStringArray("UI", "hoverSound")]
+[node name="RarityParticles2" type="GPUParticles2D" parent="."]
+position = Vector2(320, 172)
+emitting = false
+amount = 128
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_2xkkp")
+
+[node name="Option2" type="Panel" parent="." node_paths=PackedStringArray("UI", "hoverSound", "particles")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(160, 240)
 offset_left = 240.0
@@ -255,10 +401,11 @@ scale = Vector2(1e-05, 1)
 pivot_offset = Vector2(80, 120)
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_0bldb")
+theme_override_styles/panel = ExtResource("2_6dmf7")
 script = ExtResource("1_sg1hp")
 UI = NodePath("..")
 hoverSound = NodePath("../CardFlick")
+particles = NodePath("../RarityParticles2")
 
 [node name="MarginContainer" type="MarginContainer" parent="Option2"]
 layout_mode = 1
@@ -295,7 +442,15 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 2
 
-[node name="Option3" type="Panel" parent="." node_paths=PackedStringArray("UI", "hoverSound")]
+[node name="RarityParticles3" type="GPUParticles2D" parent="."]
+position = Vector2(510, 172)
+emitting = false
+amount = 128
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_2xkkp")
+
+[node name="Option3" type="Panel" parent="." node_paths=PackedStringArray("UI", "hoverSound", "particles")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(160, 240)
 offset_left = 430.0
@@ -306,10 +461,11 @@ scale = Vector2(1e-05, 1)
 pivot_offset = Vector2(80, 120)
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_0bldb")
+theme_override_styles/panel = ExtResource("2_6dmf7")
 script = ExtResource("1_sg1hp")
 UI = NodePath("..")
 hoverSound = NodePath("../CardFlick")
+particles = NodePath("../RarityParticles3")
 
 [node name="MarginContainer" type="MarginContainer" parent="Option3"]
 layout_mode = 1

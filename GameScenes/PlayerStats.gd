@@ -11,22 +11,33 @@ var maxFlightTime : float
 var flightPower : float
 var maxFlightSpeed : float
 
-
 var playerGlowScale : float
 var playerGlowEnergy : float
 
 var playerFlashLighScale : float
 var playerFlashLighEnergy : float
 
+
+var bombBootsRadius : int
+
+var blastProof : bool
+var chestSence : bool
+var canMove : bool
+var reverseGravity : bool
+
 #Picaxe
 var picaxeUseSpeed : float
 var picaxeRadius : int
+var canUsePick : bool
 
 #Dynamite
 var dynamiteExplosionSpeedScale : float
-var dynamiteExplosionRadius : float
+var dynamiteExplosionRadius : int
 var dynamiteRecoverySpeed : float
 var dynamiteMaxCount : int
+var infinateTNT : bool
+var balloon : bool
+var stickyDynamite : bool
 
 #Flares
 var flareTime : float
@@ -34,6 +45,10 @@ var flareRecoverySpeed : float
 var flareMaxCount : int
 var flareTextureScale : float
 var flareLightEnergy : float
+var lantern : bool
+var flareExplosionRadius : int
+var shotgunFlares : int
+var heavyFlares : bool
 
 #Resource Count
 var dynamiteCount : int
@@ -57,28 +72,49 @@ func resetPlayerStats():
 
 	playerFlashLighScale = 0.5
 	playerFlashLighEnergy = 0.5
+	
+	bombBootsRadius = 0
+	
+	blastProof = false
+	chestSence = false
+	canMove = true
+	reverseGravity = false
 
 	#Picaxe
-	picaxeUseSpeed = 0.35
+	picaxeUseSpeed = 0.45
 	picaxeRadius = 9
+	canUsePick = true
 
 	#Dynamite
 	dynamiteExplosionSpeedScale = 1.0
 	dynamiteExplosionRadius = 48
 	dynamiteRecoverySpeed = 30.0
 	dynamiteMaxCount = 1
+	infinateTNT = false
+	balloon = false
+	stickyDynamite = false
 
 	#Flares
 	flareTime = 5.0
-	flareRecoverySpeed = 3.0
+	flareRecoverySpeed = 5.0
 	flareMaxCount = 3
-	flareTextureScale = 1.0
-	flareLightEnergy = 2.0
+	flareTextureScale = 0.5
+	flareLightEnergy = 1.0
+	lantern = false
+	flareExplosionRadius = 0
+	shotgunFlares = 0
+	heavyFlares = false
 
 	#Resource Count
 	dynamiteCount = 1
 	flareCount = 3
 	flightLeft = 0.0
+
+
+func _process(_delta: float) -> void:
+	if infinateTNT:
+		dynamiteCount = dynamiteMaxCount
+
 
 
 func _ready() -> void:

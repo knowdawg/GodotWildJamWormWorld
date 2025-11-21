@@ -45,6 +45,9 @@ func destroyTerrain() -> void:
 func _process(_delta: float) -> void:
 	if player.dead: 
 		return
+	if !PlayerStats.canUsePick:
+		visible = false
+		return
 	rotation = getRotation()
 	match state:
 		STATES.IDLE1:

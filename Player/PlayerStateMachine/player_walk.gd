@@ -15,7 +15,7 @@ func update(_delta : float):
 	
 	p.align()
 	
-	if p.jumpVelocity.y > 0 and !p.is_on_floor():
+	if p.jumpVelocity.y * -p.up_direction.y > 0 and !p.is_on_floor():
 		transitioned.emit(self, "Fall")
 		return
 	

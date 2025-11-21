@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://beycr231ouxpx"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_7cs6a"]
+[ext_resource type="Texture2D" uid="uid://c2rpcijv45f2u" path="res://Sprites/UpgradIcons/UpgradeIcon3.png" id="2_7cs6a"]
+
+[resource]
+script = ExtResource("1_7cs6a")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"maxMoveSpeedMultiplier": 0.3
+})
+text = "+ Move Speed"
+tex = ExtResource("2_7cs6a")
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

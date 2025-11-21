@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://dgenb3prrnnen"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_0ou4t"]
+[ext_resource type="Texture2D" uid="uid://ngjfc45hpgxa" path="res://Sprites/UpgradIcons/UpgradeIcon2.png" id="2_0ou4t"]
+
+[resource]
+script = ExtResource("1_0ou4t")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"playerFlashLighEnergy": 0.3,
+"playerFlashLighScale": 0.3
+})
+text = "+ Flashlight"
+tex = ExtResource("2_0ou4t")
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://b87widqiipmb4"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_mwydy"]
+[ext_resource type="Texture2D" uid="uid://e4ti04sh21ny" path="res://Sprites/UpgradIcons/UpgradeIcon28.png" id="2_mwydy"]
+
+[resource]
+script = ExtResource("1_mwydy")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"reverseGravity": true
+})
+text = "+ Reverse Gravity"
+tex = ExtResource("2_mwydy")
+unique = true
+rarity = 3
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

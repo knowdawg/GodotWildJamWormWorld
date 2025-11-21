@@ -2,7 +2,7 @@ extends Panel
 class_name UpgradeCard
 
 var playerUI : PlayerUI
-var upgrade : UpgradeResource
+@export var upgrade : UpgradeResource
 
 func _on_mouse_entered() -> void:
 	playerUI.cardFocus(%UpgradeIcon.texture, %Label.text)
@@ -21,6 +21,9 @@ func setup() -> void:
 	for k : String in upgrade.playerStatsPropertyChanges.keys():
 		var value : Variant = upgrade.playerStatsPropertyChanges[k]
 		
-		PlayerStats.set(k, PlayerStats.get(k) + value)
+		if PlayerStats.get(k) is bool:
+			PlayerStats.set(k, value)
+		else:
+			PlayerStats.set(k, PlayerStats.get(k) + value)
 	
 	$SelectParticles.emitting = true

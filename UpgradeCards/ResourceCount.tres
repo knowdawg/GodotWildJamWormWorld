@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://c1mkh38i4hank"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_mb3or"]
+[ext_resource type="Texture2D" uid="uid://r1fnxe67do38" path="res://Sprites/UpgradIcons/UpgradeIcon12.png" id="2_mb3or"]
+
+[resource]
+script = ExtResource("1_mb3or")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"dynamiteMaxCount": 1,
+"flareMaxCount": 1
+})
+text = "+ Max Resources"
+tex = ExtResource("2_mb3or")
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

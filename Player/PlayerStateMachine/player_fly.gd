@@ -24,13 +24,16 @@ func update(delta : float):
 	
 	if Input.is_action_pressed("Jump") and SM.flightTime > 0:
 		SM.flightTime -= delta
-		p.jumpVelocity.y += -PlayerStats.flightPower * delta
-		p.jumpVelocity.y = clamp(p.jumpVelocity.y, -PlayerStats.maxFlightSpeed, 99999999.9)
+		p.jumpVelocity.y += PlayerStats.flightPower * delta * p.up_direction.y
+		if !PlayerStats.reverseGravity:
+			p.jumpVelocity.y = clamp(p.jumpVelocity.y, -PlayerStats.maxFlightSpeed, 99999999.9)
+		else:
+			p.jumpVelocity.y = clamp(p.jumpVelocity.y, -9999999.9, PlayerStats.maxFlightSpeed)
 		particles.emitting = true
 	else:
 		particles.emitting = false
 	
-	if p.jumpVelocity.y > 0 and !p.is_on_floor() and (!Input.is_action_pressed("Jump") or SM.flightTime <= 0):
+	if p.jumpVelocity.y * -p.up_direction.y > 0 and !p.is_on_floor() and (!Input.is_action_pressed("Jump") or SM.flightTime <= 0):
 		transitioned.emit(self, "Fall")
 		return
 	

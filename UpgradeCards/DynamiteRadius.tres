@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://b2x2snj22u5dy"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_d1mj7"]
+[ext_resource type="Texture2D" uid="uid://cxgx472fxyi1h" path="res://Sprites/UpgradIcons/UpgradeIcon14.png" id="2_d1mj7"]
+
+[resource]
+script = ExtResource("1_d1mj7")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"dynamiteExplosionRadius": 24,
+"dynamiteExplosionSpeedScale": -0.05
+})
+text = "++ Dynamite Power"
+tex = ExtResource("2_d1mj7")
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

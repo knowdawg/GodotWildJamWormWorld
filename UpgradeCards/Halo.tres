@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://w5fi2jyy6edl"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_r7dxq"]
+[ext_resource type="Texture2D" uid="uid://xgovixb0cpjw" path="res://Sprites/UpgradIcons/UpgradeIcon1.png" id="2_8gevv"]
+
+[resource]
+script = ExtResource("1_r7dxq")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"playerGlowEnergy": 0.3,
+"playerGlowScale": 0.3
+})
+text = "+ Glow"
+tex = ExtResource("2_8gevv")
+rarity = 1
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

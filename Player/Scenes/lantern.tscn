@@ -1,0 +1,153 @@
+[gd_scene load_steps=13 format=3 uid="uid://4rm30onutfmr"]
+
+[ext_resource type="Script" uid="uid://sqe1mtvtwq13" path="res://Player/Scripts/lantern.gd" id="1_qp2c7"]
+[ext_resource type="Texture2D" uid="uid://0yae7nn34gs6" path="res://Sprites/Lantern.png" id="2_rn10j"]
+[ext_resource type="Texture2D" uid="uid://nurf06um3rbe" path="res://Sprites/PointLight128x128.tres" id="3_75i63"]
+[ext_resource type="AudioStream" uid="uid://dko2rbhvgrl0b" path="res://Sounds/BombBoom.wav" id="4_75i63"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_75i63"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75i63"]
+size = Vector2(6, 10)
+
+[sub_resource type="Animation" id="Animation_b1pna"]
+resource_name = "Glow"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GlowLight:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [2.0, 1.8, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GlowLight:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_dvq5u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GlowLight:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GlowLight:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5gyoj"]
+resource_name = "Travel"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GlowLight:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GlowLight:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_acr0r"]
+_data = {
+&"Glow": SubResource("Animation_b1pna"),
+&"RESET": SubResource("Animation_dvq5u"),
+&"Travel": SubResource("Animation_5gyoj")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rn10j"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7uhu8"]
+random_pitch = 1.3
+streams_count = 1
+stream_0/stream = ExtResource("4_75i63")
+
+[node name="Lantern" type="RigidBody2D"]
+collision_layer = 0
+physics_material_override = SubResource("PhysicsMaterial_75i63")
+gravity_scale = 0.0
+script = ExtResource("1_qp2c7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_75i63")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_rn10j")
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_acr0r")
+}
+
+[node name="GlowLight" type="PointLight2D" parent="."]
+enabled = false
+color = Color(1, 0.78431374, 0.78431374, 1)
+energy = 0.0
+texture = ExtResource("3_75i63")
+texture_scale = 2.0
+height = 20.0
+
+[node name="Hazard" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hazard"]
+shape = SubResource("CircleShape2D_rn10j")
+disabled = true
+
+[node name="BoomSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_7uhu8")
+max_distance = 300.0
+bus = &"SoundEffects"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

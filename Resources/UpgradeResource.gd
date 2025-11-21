@@ -6,3 +6,22 @@ class_name UpgradeResource
 @export_multiline var text : String = ""
 
 @export var tex : Texture2D
+
+#If they should be removed from future selections after being picked
+@export var unique : bool = false
+
+
+static var rareityRate : Dictionary[RARITY, float] = {
+	RARITY.COMMON : 0.5,
+	RARITY.UNCOMMON : 0.8,
+	RARITY.RARE : 0.95,
+	RARITY.MYTHIC : 1.0
+}
+
+enum RARITY{
+	COMMON,
+	UNCOMMON,
+	RARE,
+	MYTHIC
+}
+@export var rarity : RARITY = RARITY.COMMON

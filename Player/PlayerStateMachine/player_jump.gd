@@ -6,6 +6,11 @@ class_name PlayerJump
 
 var jumpKilled : bool = false
 func enter(_prevState):
+	if !PlayerStats.canMove:
+		await get_tree().process_frame
+		transitioned.emit(self, "Fly")
+		return
+	
 	anim.play("StartOfJump")
 	var p : Player = parent as Player
 	p.jump()

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://chig85kk7jen5"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_il3oh"]
+[ext_resource type="Texture2D" uid="uid://dj3eedonqk761" path="res://Sprites/UpgradIcons/UpgradeIcon18.png" id="2_il3oh"]
+
+[resource]
+script = ExtResource("1_il3oh")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"canUsePick": false,
+"infinateTNT": true
+})
+text = "- Pickaxe
++ Infinite Dynamite"
+tex = ExtResource("2_il3oh")
+unique = true
+rarity = 3
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

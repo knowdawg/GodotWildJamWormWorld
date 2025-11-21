@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://ccln8frhsdaeh"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_yiget"]
+[ext_resource type="Texture2D" uid="uid://dflu4xvs8bob2" path="res://Sprites/UpgradIcons/UpgradeIcon20.png" id="2_yiget"]
+
+[resource]
+script = ExtResource("1_yiget")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"balloon": true
+})
+text = "+ Balloon"
+tex = ExtResource("2_yiget")
+unique = true
+rarity = 1
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

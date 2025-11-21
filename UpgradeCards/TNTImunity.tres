@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://lngsc47tg5bu"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_yrxrb"]
+[ext_resource type="Texture2D" uid="uid://jldt4nf1ecup" path="res://Sprites/UpgradIcons/UpgradeIcon19.png" id="2_yrxrb"]
+
+[resource]
+script = ExtResource("1_yrxrb")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"blastProof": true
+})
+text = "+ Blast Proof"
+tex = ExtResource("2_yrxrb")
+unique = true
+rarity = 3
+metadata/_custom_type_script = "uid://qdkq32pb85q1"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://bnhkgvedu3b0w"]
+
+[ext_resource type="Script" uid="uid://qdkq32pb85q1" path="res://Resources/UpgradeResource.gd" id="1_nrupu"]
+[ext_resource type="Texture2D" uid="uid://b88ww50jl5ji8" path="res://Sprites/UpgradIcons/UpgradeIcon22.png" id="2_nrupu"]
+
+[resource]
+script = ExtResource("1_nrupu")
+playerStatsPropertyChanges = Dictionary[String, Variant]({
+"flareExplosionRadius": 20.0
+})
+text = "+ Flare Explosion Power"
+tex = ExtResource("2_nrupu")
+rarity = 1
+metadata/_custom_type_script = "uid://qdkq32pb85q1"
