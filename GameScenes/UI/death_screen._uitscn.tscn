@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://msby4h2qknfh"]
+[gd_scene load_steps=23 format=3 uid="uid://msby4h2qknfh"]
 
 [ext_resource type="Shader" uid="uid://bd2jqx2d4u2dg" path="res://Shaders/BalatroNoiseWarpMask.gdshader" id="1_73mvn"]
 [ext_resource type="Script" uid="uid://b0bus8ljwjnkr" path="res://GameScenes/UI/death_screen.gd" id="1_dw1lh"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://sw5vqdv3ikpm" path="res://Sounds/ButtonHover.wav" id="5_m50rl"]
 [ext_resource type="AudioStream" uid="uid://blc2wijh2ecn3" path="res://Sounds/ButtonPressed.wav" id="6_h7fre"]
 [ext_resource type="AudioStream" uid="uid://b4vowumqiwx41" path="res://Sounds/PlayButtonPressed.wav" id="7_h7fre"]
+[ext_resource type="AudioStream" uid="uid://cjke5hhn0a7nx" path="res://Sounds/YouAreWormFood.wav" id="8_rqgo7"]
 
 [sub_resource type="Gradient" id="Gradient_dw1lh"]
 offsets = PackedFloat32Array(0, 0.09543569, 0.6897638, 0.813278)
@@ -164,6 +165,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WormFood")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sth3l"]
 _data = {
@@ -255,6 +270,11 @@ bus = &"SoundEffects"
 [node name="PlayButtonPressed" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_h7fre")
 volume_db = -5.0
+max_polyphony = 3
+bus = &"SoundEffects"
+
+[node name="WormFood" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_rqgo7")
 max_polyphony = 3
 bus = &"SoundEffects"
 

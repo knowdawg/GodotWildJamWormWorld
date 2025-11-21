@@ -8,7 +8,6 @@ var uncommonUpgrades : Array[UpgradeResource]
 var rareUpgrades : Array[UpgradeResource]
 var mythicUpgrades : Array[UpgradeResource]
 
-var upgradeFilePath : String = "res://UpgradeCards/"
 
 var inSelection : bool = false
 
@@ -17,16 +16,24 @@ var uncommonFrame : StyleBoxFlat = preload("res://GameScenes/UI/CardUpgradeUI/Ca
 var rareFrame : StyleBoxFlat = preload("res://GameScenes/UI/CardUpgradeUI/CardFrames/RareFrame.tres")
 var mythicFrame : StyleBoxFlat = preload("res://GameScenes/UI/CardUpgradeUI/CardFrames/MythicFrame.tres")
 
+var upgradeFilePath : String = "res://UpgradeCards/"
 func _ready() -> void:
 	Game.createCardUpgrade.connect(queueCardSelection)
 	
 	var dir : DirAccess = DirAccess.open(upgradeFilePath)
 	
 	for path : String in dir.get_files():
-		var up : UpgradeResource = ResourceLoader.load(upgradeFilePath + path)
-		upgrades.append(up)
+		if path.ends_with(".import"):
+			continue
 		
-		match up.rarity:
+		var up : UpgradeResource = ResourceLoader.load(upgradeFilePath + path)
+		
+		if up == null:
+			printerr("Failed to load resource : ", upgradeFilePath + path)
+		
+		upgrades.append(up) #in the end, upgrades's size is 1
+		
+		match up.rarity: #Hits an error, cant get rarity in non existant 'up'
 			UpgradeResource.RARITY.COMMON:
 				commonUpgrades.append(up)
 			UpgradeResource.RARITY.UNCOMMON:
@@ -36,6 +43,7 @@ func _ready() -> void:
 			UpgradeResource.RARITY.MYTHIC:
 				mythicUpgrades.append(up)
 	
+	#All this code still runs
 	print("Num of Upgrades: ", upgrades.size())
 	print("Num of Common Upgrades: ", commonUpgrades.size())
 	print("Num of Uncommon Upgrades: ", uncommonUpgrades.size())
@@ -52,22 +60,52 @@ var cardSelectionsQueued : int = 0
 func queueCardSelection():
 	cardSelectionsQueued += 1
 
+var curSelectedCard : CardOption
 func cardPicked(card : CardOption):
+	if $AnimationPlayer.current_animation == "ShowCards":
+		#if $AnimationPlayer.current_animation_position < 0.5:
+		return
+	
+	curSelectedCard = card
+	cardConfirmed()
+	
+	if curSelectedCard == null:
+		curSelectedCard = card
+		curSelectedCard.click()
+		return
+	
+	curSelectedCard.unclick()
+	if curSelectedCard == card:
+		curSelectedCard = null
+		return
+	
+	curSelectedCard = card
+	curSelectedCard.click()
+	
+	
+
+
+func cardConfirmed():
+	if curSelectedCard == null:
+		return
+	
 	Game.resumeGame()
-	Game.cardPicked.emit(card.upgrade)
+	Game.cardPicked.emit(curSelectedCard.upgrade)
 	
-	if card.upgrade.unique:
-		upgrades.erase(card.upgrade)
-		match card.upgrade.rarity:
+	if curSelectedCard.upgrade.unique:
+		upgrades.erase(curSelectedCard.upgrade)
+		match curSelectedCard.upgrade.rarity:
 			UpgradeResource.RARITY.COMMON:
-				commonUpgrades.erase(card.upgrade)
+				commonUpgrades.erase(curSelectedCard.upgrade)
 			UpgradeResource.RARITY.UNCOMMON:
-				uncommonUpgrades.erase(card.upgrade)
+				uncommonUpgrades.erase(curSelectedCard.upgrade)
 			UpgradeResource.RARITY.RARE:
-				rareUpgrades.erase(card.upgrade)
+				rareUpgrades.erase(curSelectedCard.upgrade)
 			UpgradeResource.RARITY.MYTHIC:
-				mythicUpgrades.erase(card.upgrade)
+				mythicUpgrades.erase(curSelectedCard.upgrade)
 	
+	curSelectedCard.unclick()
+	curSelectedCard = null
 	$AnimationPlayer.play("HideCards")
 	inSelection = false
 	$CardPicked.play()

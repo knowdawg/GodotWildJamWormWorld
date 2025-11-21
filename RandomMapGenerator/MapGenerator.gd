@@ -53,9 +53,12 @@ func createWorld():
 	
 	#generate random chests
 	randomize()
+	print("num of chests : ", TerrainRendering.mapSize.y / 10)
 	for i in range(TerrainRendering.mapSize.y / 10):
 		var chestPos = Vector2i(randi_range(0, TerrainRendering.mapSize.x), randi_range(0, TerrainRendering.mapSize.y))
 		if TerrainRendering.getPixel(chestPos, TerrainRendering.LAYER_TYPE.FOREGROUND) == -1:
 			var c : Node2D = chest.instantiate()
 			Game.addProjectile(c)
 			c.global_position = chestPos
+	
+	

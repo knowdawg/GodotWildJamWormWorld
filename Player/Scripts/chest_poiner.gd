@@ -10,6 +10,9 @@ func _process(delta: float) -> void:
 	var nearest : UpgradeChest
 	var nearestDis : float = 9999999999.9
 	for c : UpgradeChest in Game.chest:
+		if !is_instance_valid(c):
+			continue
+		
 		var dis = global_position.distance_to(c.global_position)
 		if dis < nearestDis:
 			nearest = c

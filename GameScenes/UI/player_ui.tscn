@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://e4wtjf2e806w"]
+[gd_scene load_steps=24 format=3 uid="uid://e4wtjf2e806w"]
 
 [ext_resource type="Script" uid="uid://cpsv2a07brojm" path="res://GameScenes/UI/player_ui.gd" id="1_blwpt"]
 [ext_resource type="Script" uid="uid://c2f2evba6vmki" path="res://GameScenes/UI/PlayerUI/dynamite_cooldown.gd" id="2_3pga3"]
@@ -10,7 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://n63fk72fuev1" path="res://Sprites/UpgradeIconTest.png" id="5_s8ryw"]
 [ext_resource type="Texture2D" uid="uid://4ovcxtvvkblp" path="res://Sprites/RadialProgressFlare.png" id="6_7ml2g"]
 [ext_resource type="Script" uid="uid://4tfm2bnfecya" path="res://GameScenes/UI/PlayerUI/flare_cooldown.gd" id="7_4efd6"]
+[ext_resource type="PackedScene" uid="uid://dbdv0k3gt74dl" path="res://GameScenes/UI/upgrade_card.tscn" id="10_b3efj"]
 [ext_resource type="AudioStream" uid="uid://bs50sxck1m0i4" path="res://Sounds/CardFlick.wav" id="11_4efd6"]
+[ext_resource type="Resource" uid="uid://cqlqoh63i1vow" path="res://UpgradeCards/BombBoots.tres" id="11_b3efj"]
+[ext_resource type="AudioStream" uid="uid://rrdxu81clqru" path="res://Sounds/WormsAreComing.wav" id="14_gsrkw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plbm5"]
 bg_color = Color(0.03529412, 0.039215688, 0.078431375, 0.5882353)
@@ -86,7 +89,60 @@ random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("11_4efd6")
 
+[sub_resource type="Animation" id="Animation_b3efj"]
+resource_name = "Show"
+length = 5.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/MarginContainer/WormsPSA:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WormsAreComing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_gsrkw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/MarginContainer/WormsPSA:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dd1yr"]
+_data = {
+&"RESET": SubResource("Animation_gsrkw"),
+&"Show": SubResource("Animation_b3efj")
+}
+
 [node name="PlayerUI" type="CanvasLayer"]
+process_mode = 1
 script = ExtResource("1_blwpt")
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
@@ -202,6 +258,24 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 40
+
+[node name="WormsPSA" type="RichTextLabel" parent="MarginContainer/MarginContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("2_6x3tm")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center][shake rate=30.0 level=10 connected=1]The Worms Are speeding up"
+fit_content = true
+scroll_active = false
+
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
@@ -246,6 +320,19 @@ text = "Find Escape Pod"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
+
+[node name="UpgradeCard" parent="MarginContainer/Upgrades" instance=ExtResource("10_b3efj")]
+layout_mode = 2
+upgrade = ExtResource("11_b3efj")
+
+[node name="UpgradeCard2" parent="MarginContainer/Upgrades" instance=ExtResource("10_b3efj")]
+layout_mode = 2
+
+[node name="UpgradeCard3" parent="MarginContainer/Upgrades" instance=ExtResource("10_b3efj")]
+layout_mode = 2
+
+[node name="UpgradeCard4" parent="MarginContainer/Upgrades" instance=ExtResource("10_b3efj")]
+layout_mode = 2
 
 [node name="DisplayCard" type="Panel" parent="."]
 custom_minimum_size = Vector2(200, 300)
@@ -307,5 +394,15 @@ libraries = {
 [node name="CardFlick" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_7ml2g")
 volume_db = -5.0
+max_polyphony = 3
+bus = &"SoundEffects"
+
+[node name="WormPSAAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dd1yr")
+}
+
+[node name="WormsAreComing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_gsrkw")
 max_polyphony = 3
 bus = &"SoundEffects"

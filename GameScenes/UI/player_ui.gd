@@ -4,9 +4,11 @@ class_name PlayerUI
 func _ready() -> void:
 	Game.cardPicked.connect(addUpgradeCard)
 	Game.playerDead.connect(onPlayerDeath)
+	Game.wormsSpeedingUp.connect(onWormsSpeedingUp)
+	Game.wormsStartingToMove.connect(onWormStartMoving)
 	for c : UpgradeCard in %Upgrades.get_children():
 		c.playerUI = self
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.1).timeout
 		c.setup()
 
 var upgradeCard : PackedScene = preload("uid://dbdv0k3gt74dl")
@@ -34,3 +36,11 @@ func cardUnFocused():
 
 func onPlayerDeath():
 	visible = false
+
+func onWormsSpeedingUp(_newSpeed : float):
+	$MarginContainer/MarginContainer/WormsPSA.text = "[center][shake rate=30.0 level=10 connected=1]The Worms Are speeding up"
+	$WormPSAAnimator.play("Show")
+
+func onWormStartMoving():
+	$MarginContainer/MarginContainer/WormsPSA.text = "[center][shake rate=30.0 level=10 connected=1]The Worms Are Comming"
+	$WormPSAAnimator.play("Show")

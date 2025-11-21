@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://d1uxb8p7iv5vm"]
+[gd_scene load_steps=109 format=3 uid="uid://d1uxb8p7iv5vm"]
 
 [ext_resource type="Script" uid="uid://v7jho3hsmjon" path="res://Player/player.gd" id="1_k53q1"]
 [ext_resource type="Script" uid="uid://up5bvm7rwjr2" path="res://Player/PlayerStateMachine/player_state_machine.gd" id="2_od3ui"]
@@ -141,6 +141,35 @@ scale_min = 0.5
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_maysp")
 color_initial_ramp = SubResource("GradientTexture1D_ie76m")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = -2.2351742e-08
+
+[sub_resource type="Gradient" id="Gradient_ie76m"]
+colors = PackedColorArray(1, 1, 1, 0.39215687, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dy65m"]
+gradient = SubResource("Gradient_ie76m")
+
+[sub_resource type="Curve" id="Curve_maysp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1l10g"]
+curve = SubResource("Curve_maysp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6rl0i"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(3, 0, 1)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 150.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_1l10g")
+color_initial_ramp = SubResource("GradientTexture1D_dy65m")
 hue_variation_min = -2.2351742e-08
 hue_variation_max = -2.2351742e-08
 
@@ -546,10 +575,13 @@ script = ExtResource("5_wwis0")
 anim = NodePath("../../AnimationPlayer")
 particles = NodePath("../../ParticleEffects/WalkParticles")
 
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("anim", "particles")]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("anim", "particles", "boomSound", "boomLight", "bombBootParticles")]
 script = ExtResource("6_1t7bj")
 anim = NodePath("../../AnimationPlayer")
 particles = NodePath("../../ParticleEffects/JumpParticles")
+boomSound = NodePath("../../Sounds/BoomSound")
+boomLight = NodePath("../../ParticleEffects/BombBootsParticlesFall/BombBootLight")
+bombBootParticles = NodePath("../../ParticleEffects/BombBootsParticlesFall")
 
 [node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("anim")]
 script = ExtResource("7_6pw7c")
@@ -636,8 +668,10 @@ process_material = SubResource("ParticleProcessMaterial_8mwp6")
 material = SubResource("CanvasItemMaterial_gpjlu")
 position = Vector2(0, 6)
 emitting = false
-amount = 128
+amount = 64
 lifetime = 0.3
+one_shot = true
+explosiveness = 0.7
 trail_enabled = true
 trail_lifetime = 0.1
 process_material = SubResource("ParticleProcessMaterial_1l10g")
@@ -647,6 +681,16 @@ rotation = -1.5707964
 energy = 4.0
 texture = ExtResource("14_dkpta")
 texture_scale = 0.01
+
+[node name="FallParticles" type="GPUParticles2D" parent="ParticleEffects"]
+material = SubResource("CanvasItemMaterial_gpjlu")
+position = Vector2(0, 6)
+emitting = false
+amount = 32
+lifetime = 0.3
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_6rl0i")
 
 [node name="WalkParticles" type="GPUParticles2D" parent="ParticleEffects"]
 position = Vector2(0, 7)

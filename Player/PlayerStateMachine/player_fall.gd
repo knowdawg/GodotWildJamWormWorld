@@ -17,7 +17,7 @@ func update(_delta : float):
 		transitioned.emit(self, "Jump")
 		return
 	
-	if Input.is_action_just_pressed("Jump") and SM.flightTime > 0:
+	if Input.is_action_pressed("Jump") and SM.flightTime > 0:
 		transitioned.emit(self, "Fly")
 		return
 	

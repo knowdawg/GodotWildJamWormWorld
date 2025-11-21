@@ -7,24 +7,23 @@ signal generateLevel
 signal playerDead 
 signal cardPicked(upgrade :  UpgradeResource)
 signal createCardUpgrade()
+signal wormsSpeedingUp(newSpeed : float)
+signal wormsStartingToMove()
 
 var gameManager : GameManager
 
 var amountOfFuel : int = 0
-var amoundOfFuelNeeded : int = 5000.0
+var amoundOfFuelNeeded : int = 2000.0
 
 var camera : GameCamera
 var escapePod : EscapePod
 var wormHight : float = 0.0
-var wormTravelSpeed : float = 10.0
+
 
 var chest : Array[UpgradeChest]
 
 func _ready() -> void:
 	wormHight = TerrainRendering.mapSize.y
-
-func _process(delta: float) -> void:
-	wormHight -= wormTravelSpeed * delta
 
 func addProjectile(p):
 	gameManager.addProjectile(p)

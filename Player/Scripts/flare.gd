@@ -59,7 +59,10 @@ func _process(_delta: float) -> void:
 	queue_redraw()
 
 func _draw() -> void:
-	draw_line(initPos - position, Vector2.ZERO, Color(1.0, 0.0, 0.0, t * 2.0), t * 5.0)
+	var mul : float = 5.0
+	if PlayerStats.heavyFlares:
+		mul = 20.0
+	draw_line(initPos - position, Vector2.ZERO, Color(1.0, 0.0, 0.0, t * 2.0), t * mul)
 	
 	if $Hazard/CollisionShape2D.disabled == false:
-		draw_circle(Vector2.ZERO, PlayerStats.flareExplosionRadius, Color(1.0, 0.0, 0.0, 1.0), true)
+		draw_circle(Vector2.ZERO, PlayerStats.flareExplosionRadius * 1.5, Color(1.0, 0.0, 0.0, 1.0), true)

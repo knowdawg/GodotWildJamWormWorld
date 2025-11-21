@@ -116,14 +116,14 @@ func fall(delta : float):
 	
 	if !PlayerStats.reverseGravity:
 		if velocity.y > 120.0 and PlayerStats.bombBootsRadius > 0:
-			$ParticleEffects/BombBootsParticlesFall.emitting = true
+			$ParticleEffects/FallParticles.emitting = true
 		else:
-			$ParticleEffects/BombBootsParticlesFall.emitting = false
+			$ParticleEffects/FallParticles.emitting = false
 	else:
 		if velocity.y < -120.0 and PlayerStats.bombBootsRadius > 0:
-			$ParticleEffects/BombBootsParticlesFall.emitting = true
+			$ParticleEffects/FallParticles.emitting = true
 		else:
-			$ParticleEffects/BombBootsParticlesFall.emitting = false
+			$ParticleEffects/FallParticles.emitting = false
 
 func jump():
 	if !PlayerStats.reverseGravity:
@@ -192,6 +192,7 @@ func enterEscapePod():
 	$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
 	
 
+var prevPos : Vector2 = Vector2.ZERO
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Glowstick"):
 		if PlayerStats.lantern:
@@ -203,6 +204,13 @@ func _process(_delta: float) -> void:
 		die()
 	
 	queue_redraw()
+	
+	if global_position.x > TerrainRendering.mapSize.x or global_position.x < 0:
+		position.x = prevPos.x
+	if global_position.y > TerrainRendering.mapSize.y or global_position.y < 0:
+		position.y = prevPos.y
+	
+	prevPos = position
 
 func _draw() -> void:
 	if dead:

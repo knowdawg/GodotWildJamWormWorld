@@ -52,6 +52,7 @@ scale_curve = SubResource("CurveTexture_e17lv")
 color_initial_ramp = SubResource("GradientTexture1D_khnhk")
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_khnhk"]
+shuffle = true
 stream_count = 1
 stream_0 = ExtResource("2_2tq7k")
 

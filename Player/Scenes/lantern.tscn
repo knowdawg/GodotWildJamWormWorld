@@ -10,7 +10,7 @@ friction = 0.0
 bounce = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75i63"]
-size = Vector2(6, 10)
+size = Vector2(6, 6)
 
 [sub_resource type="Animation" id="Animation_b1pna"]
 resource_name = "Glow"
@@ -113,6 +113,7 @@ stream_0/stream = ExtResource("4_75i63")
 collision_layer = 0
 physics_material_override = SubResource("PhysicsMaterial_75i63")
 gravity_scale = 0.0
+inertia = 1.0
 script = ExtResource("1_qp2c7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

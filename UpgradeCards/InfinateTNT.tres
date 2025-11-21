@@ -6,10 +6,13 @@
 [resource]
 script = ExtResource("1_il3oh")
 playerStatsPropertyChanges = Dictionary[String, Variant]({
-"canUsePick": false,
-"infinateTNT": true
+"canUsePick": true,
+"infinateTNT": true,
+"picaxeRadius": -1,
+"picaxeUseSpeed": 0.4
 })
-text = "- Pickaxe
+text = "- Pickaxe Size
+-- Pickaxe Speed
 + Infinite Dynamite"
 tex = ExtResource("2_il3oh")
 unique = true

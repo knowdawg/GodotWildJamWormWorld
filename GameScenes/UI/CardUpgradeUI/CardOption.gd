@@ -10,6 +10,8 @@ class_name CardOption
 var upgrade : UpgradeResource
 
 var initPos : Vector2
+
+var clicked : bool = false
 func _ready() -> void:
 	mouse_entered.connect(hover)
 	mouse_exited.connect(unHover)
@@ -20,12 +22,14 @@ func _ready() -> void:
 
 var t = 0.0
 func _process(delta: float) -> void:
-	if Rect2(Vector2(0.0, 0.0), Vector2(160.0, 240.0)).has_point(get_local_mouse_position()):
+	if Rect2(Vector2(0.0, 0.0), Vector2(160.0, 240.0)).has_point(get_local_mouse_position()) and !clicked:
 		t -= delta
 	else:
 		t = 0.0
 	
 	position.y = initPos.y + (sin(t * 2.0) * 5.0)
+	#if clicked:
+		#position = initPos + Vector2(0.0, -20.0)
 
 func hover():
 	modulate = Color(1.0, 1.0, 1.0, 1.0)
@@ -37,6 +41,12 @@ func unHover():
 func onInput(event : InputEvent):
 	if event.is_action_pressed("Use"):
 		UI.cardPicked(self)
+
+func click():
+	clicked = true
+
+func unclick():
+	clicked = false
 
 func setUpgrade(up: UpgradeResource):
 	upgrade = up

@@ -6,10 +6,13 @@
 [resource]
 script = ExtResource("1_84poq")
 playerStatsPropertyChanges = Dictionary[String, Variant]({
+"flareLightEnergy": 1.0,
+"flareTextureScale": 1.0,
 "lantern": true
 })
 text = "- Flare
-+ Lantern"
++ Lantern
++ Lantern Glow"
 tex = ExtResource("2_84poq")
 unique = true
 rarity = 2

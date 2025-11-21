@@ -6,9 +6,10 @@
 [resource]
 script = ExtResource("1_k4wfo")
 playerStatsPropertyChanges = Dictionary[String, Variant]({
-"bombBootsRadius": 15
+"bombBootsRadius": 15,
+"jumpForceMultiplier": 0.5
 })
-text = "+ Boots Explosion"
+text = "+ Bomb Boots"
 tex = ExtResource("2_k4wfo")
 rarity = 2
 metadata/_custom_type_script = "uid://qdkq32pb85q1"

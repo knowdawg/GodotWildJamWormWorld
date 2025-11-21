@@ -19,9 +19,9 @@ func enter(prevState : State):
 	else:
 		anim.play("Idle")
 	
-	if PlayerStats.bombBootsRadius > 0:
-		if abs(parent.prevVelocity.y) > 120.0:
-			explode()
+	#if PlayerStats.bombBootsRadius > 0:
+		#if Input.is_action_pressed("Jump"):# and abs(parent.prevVelocity.y) > 120.0:
+			#explode()
 		
 
 func update(_delta : float):
@@ -60,3 +60,12 @@ func explode():
 	
 	boomLight.texture_scale = 1.0
 	create_tween().tween_property(boomLight, "texture_scale", 0.0, 0.3)
+	
+	var p : Player = parent as Player
+	
+	p.knockbackVelocity = Vector2(0.0, p.jumpForce * PlayerStats.jumpForceMultiplier * 1.5)#p.prevVelocity * Vector2(1.0, -2.0)
+	p.jumpVelocity = Vector2.ZERO
+	print(p.knockbackVelocity)
+	
+	
+	

@@ -88,7 +88,7 @@ func resetPlayerStats():
 	#Dynamite
 	dynamiteExplosionSpeedScale = 1.0
 	dynamiteExplosionRadius = 48
-	dynamiteRecoverySpeed = 30.0
+	dynamiteRecoverySpeed = 20.0
 	dynamiteMaxCount = 1
 	infinateTNT = false
 	balloon = false
@@ -114,6 +114,22 @@ func resetPlayerStats():
 func _process(_delta: float) -> void:
 	if infinateTNT:
 		dynamiteCount = dynamiteMaxCount
+	
+	
+	gravityMultiplier = max(gravityMultiplier, 0.1)
+	playerGlowScale = max(playerGlowScale, 0.1)
+	playerGlowEnergy = max(playerGlowEnergy, 0.1)
+	playerFlashLighScale = max(playerFlashLighScale, 0.1)
+	playerFlashLighEnergy = max(playerFlashLighEnergy, 0.1)
+	picaxeUseSpeed = max(picaxeUseSpeed, 0.0)
+	picaxeRadius = max(picaxeRadius, 1)
+	dynamiteExplosionSpeedScale = max(dynamiteExplosionSpeedScale, 0.1)
+	dynamiteExplosionRadius = max(dynamiteExplosionRadius, 1)
+	dynamiteRecoverySpeed = max(dynamiteRecoverySpeed, 0.1)
+	flareTime = max(flareTime, 0.1)
+	flareRecoverySpeed = max(flareRecoverySpeed, 0.1)
+	flareTextureScale = max(flareTextureScale, 0.1)
+	flareLightEnergy = max(flareLightEnergy, 0.1)
 
 
 
