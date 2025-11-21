@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cngivas6c0xoj"]
+[gd_scene load_steps=40 format=3 uid="uid://cngivas6c0xoj"]
 
 [ext_resource type="Script" uid="uid://vulvoorx4fyh" path="res://GameScenes/EscapePod/escape_pod.gd" id="1_4sd1k"]
 [ext_resource type="Texture2D" uid="uid://dp5er5qex2xxj" path="res://GameScenes/EscapePod/EscapePod.png" id="2_87xhq"]
@@ -8,6 +8,11 @@
 [ext_resource type="Shader" uid="uid://5u246xyju60e" path="res://Shaders/WarpPortal.gdshader" id="5_xxpj6"]
 [ext_resource type="Texture2D" uid="uid://nurf06um3rbe" path="res://Sprites/PointLight128x128.tres" id="6_k1fc5"]
 [ext_resource type="FontFile" uid="uid://bovi0c1aecn1d" path="res://Fonts/Xirod.otf" id="6_krw4p"]
+[ext_resource type="AudioStream" uid="uid://smagjft4agh0" path="res://Sounds/TeleporterStart.wav" id="9_yd5k5"]
+[ext_resource type="AudioStream" uid="uid://ra6jd4w005ct" path="res://Sounds/TeleporterAmbience.wav" id="10_hl277"]
+[ext_resource type="AudioStream" uid="uid://bfhnw2q74yths" path="res://Sounds/TeleportAway.wav" id="11_kbmf7"]
+[ext_resource type="AudioStream" uid="uid://3ixehim06pkh" path="res://Sounds/DoorOpen.wav" id="12_lpyim"]
+[ext_resource type="AudioStream" uid="uid://flyr6ow4sd5e" path="res://Sounds/DoorShut.wav" id="13_gxl5f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_daknd"]
 size = Vector2(20, 22)
@@ -276,11 +281,35 @@ tracks/11/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("DoorClose:playing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("DoorOpen:playing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_daknd"]
 resource_name = "Spin"
 length = 3.5
-step = 0.05
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -364,6 +393,46 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 2.0]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TeleporterStart")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Ambience")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("DoorOpen:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(2.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_k1fc5"]
@@ -474,6 +543,46 @@ tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Ambience")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(2.85),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stop"
+}]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Takeoff")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("DoorClose:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -605,5 +714,25 @@ energy = 0.0
 texture = ExtResource("6_k1fc5")
 texture_scale = 4.0
 height = 20.0
+
+[node name="TeleporterStart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_yd5k5")
+bus = &"SoundEffects"
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_hl277")
+bus = &"SoundEffects"
+
+[node name="Takeoff" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_kbmf7")
+bus = &"SoundEffects"
+
+[node name="DoorOpen" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_lpyim")
+bus = &"SoundEffects"
+
+[node name="DoorClose" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_gxl5f")
+bus = &"SoundEffects"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

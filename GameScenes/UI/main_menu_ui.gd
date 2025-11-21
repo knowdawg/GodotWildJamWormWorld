@@ -6,6 +6,14 @@ var mainLevel : String = "uid://c5lmuy85ljtkk"
 
 var noMoreInput : bool = false
 
+func _ready() -> void:
+	$Settings/Panel/MarginContainer/VBoxContainer/HBoxContainer/ScreenShake.button_pressed = Game.screenShake
+	$Settings/Panel/MarginContainer/VBoxContainer/HBoxContainer/PreformanceMode.button_pressed = Game.performanceMode
+	
+	$Settings/Panel/MarginContainer/VBoxContainer/MasterSlider.value = AudioServer.get_bus_volume_linear(0) * 100.0
+	$Settings/Panel/MarginContainer/VBoxContainer/SoundSlider.value = AudioServer.get_bus_volume_linear(2) * 100.0
+	$Settings/Panel/MarginContainer/VBoxContainer/MusicSlider.value = AudioServer.get_bus_volume_linear(1) * 100.0
+
 func _process(delta: float) -> void:
 	$Sprite2D.position = lerp($Sprite2D.position, $Sprite2D.get_global_mouse_position(), 10.0 * delta)
 
@@ -55,3 +63,15 @@ func _on_settings_mouse_entered() -> void:
 
 func _on_quit_mouse_entered() -> void:
 	$ButtonHover.play()
+
+
+func _on_screen_shake_toggled(toggled_on: bool) -> void:
+	Game.screenShake = toggled_on
+
+
+func _on_preformance_mode_toggled(toggled_on: bool) -> void:
+	Game.performanceMode = toggled_on
+	if toggled_on:
+		Engine.max_fps = 30
+	else:
+		Engine.max_fps = 60

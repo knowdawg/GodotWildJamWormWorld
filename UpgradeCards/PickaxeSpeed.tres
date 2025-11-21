@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_knd35")
 playerStatsPropertyChanges = Dictionary[String, Variant]({
-"picaxeUseSpeed": -0.05
+"picaxeUseSpeed": -0.1
 })
 text = "+ Pickaxe Speed"
 tex = ExtResource("2_knd35")

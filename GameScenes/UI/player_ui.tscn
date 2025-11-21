@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://e4wtjf2e806w"]
+[gd_scene load_steps=33 format=3 uid="uid://e4wtjf2e806w"]
 
 [ext_resource type="Script" uid="uid://cpsv2a07brojm" path="res://GameScenes/UI/player_ui.gd" id="1_blwpt"]
 [ext_resource type="Script" uid="uid://c2f2evba6vmki" path="res://GameScenes/UI/PlayerUI/dynamite_cooldown.gd" id="2_3pga3"]
@@ -10,10 +10,47 @@
 [ext_resource type="Texture2D" uid="uid://n63fk72fuev1" path="res://Sprites/UpgradeIconTest.png" id="5_s8ryw"]
 [ext_resource type="Texture2D" uid="uid://4ovcxtvvkblp" path="res://Sprites/RadialProgressFlare.png" id="6_7ml2g"]
 [ext_resource type="Script" uid="uid://4tfm2bnfecya" path="res://GameScenes/UI/PlayerUI/flare_cooldown.gd" id="7_4efd6"]
-[ext_resource type="PackedScene" uid="uid://dbdv0k3gt74dl" path="res://GameScenes/UI/upgrade_card.tscn" id="10_b3efj"]
+[ext_resource type="Shader" uid="uid://b686ny7u2dj7k" path="res://Shaders/WormText.gdshader" id="9_dd1yr"]
 [ext_resource type="AudioStream" uid="uid://bs50sxck1m0i4" path="res://Sounds/CardFlick.wav" id="11_4efd6"]
-[ext_resource type="Resource" uid="uid://cqlqoh63i1vow" path="res://UpgradeCards/BombBoots.tres" id="11_b3efj"]
+[ext_resource type="Shader" uid="uid://dewt76ru3hshs" path="res://Shaders/minimapShader.gdshader" id="11_8gsg1"]
+[ext_resource type="Texture2D" uid="uid://bc8lopfiorph8" path="res://Sprites/CharectarIcons/Icons3.png" id="12_01wef"]
+[ext_resource type="Texture2D" uid="uid://fkqcw2jlh0kw" path="res://Sprites/CharectarIcons/Icons1.png" id="13_8gsg1"]
 [ext_resource type="AudioStream" uid="uid://rrdxu81clqru" path="res://Sounds/WormsAreComing.wav" id="14_gsrkw"]
+[ext_resource type="Texture2D" uid="uid://camhk1oxxkkhq" path="res://Sprites/CharectarIcons/Icons2.png" id="14_n0oaw"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dd1yr"]
+noise_type = 0
+frequency = 0.0541
+fractal_octaves = 4
+cellular_jitter = 0.4
+cellular_return_type = 0
+domain_warp_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_01wef"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_dd1yr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_01wef"]
+resource_local_to_scene = true
+shader = ExtResource("9_dd1yr")
+shader_parameter/noise = SubResource("NoiseTexture2D_01wef")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/progress = 0.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8gsg1"]
+frequency = 0.286
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_n0oaw"]
+width = 4
+height = 256
+noise = SubResource("FastNoiseLite_8gsg1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n0oaw"]
+resource_local_to_scene = true
+shader = ExtResource("11_8gsg1")
+shader_parameter/noise = SubResource("NoiseTexture2D_n0oaw")
+shader_parameter/progress = 0.70800003363
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plbm5"]
 bg_color = Color(0.03529412, 0.039215688, 0.078431375, 0.5882353)
@@ -89,6 +126,33 @@ random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("11_4efd6")
 
+[sub_resource type="Animation" id="Animation_gsrkw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/MarginContainer/WormsPSA:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/MarginContainer/WormsPSA:material:shader_parameter/progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_b3efj"]
 resource_name = "Show"
 length = 5.0
@@ -100,7 +164,7 @@ tracks/0/path = NodePath("MarginContainer/MarginContainer/WormsPSA:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 3, 5),
+"times": PackedFloat32Array(0, 1, 4, 5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -119,20 +183,17 @@ tracks/1/keys = {
 "method": &"play"
 }]
 }
-
-[sub_resource type="Animation" id="Animation_gsrkw"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/MarginContainer/WormsPSA:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/MarginContainer/WormsPSA:material:shader_parameter/progress")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 3, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [0.0, 0.450000021375, 0.50000002375, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dd1yr"]
@@ -264,6 +325,8 @@ theme_override_constants/margin_bottom = 40
 
 [node name="WormsPSA" type="RichTextLabel" parent="MarginContainer/MarginContainer"]
 modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+material = SubResource("ShaderMaterial_01wef")
 layout_mode = 2
 size_flags_vertical = 8
 mouse_filter = 2
@@ -272,7 +335,7 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("2_6x3tm")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "[center][shake rate=30.0 level=10 connected=1]The Worms Are speeding up"
+text = "[center][shake rate=30.0 level=10 connected=1]The Worms Are Comming"
 fit_content = true
 scroll_active = false
 
@@ -316,23 +379,24 @@ theme_override_fonts/font = ExtResource("3_v1mfh")
 theme_override_font_sizes/font_size = 16
 text = "Find Escape Pod"
 
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 40
+
+[node name="Minimap" type="ColorRect" parent="MarginContainer/MarginContainer3"]
+material = SubResource("ShaderMaterial_n0oaw")
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+
 [node name="Upgrades" type="HBoxContainer" parent="MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
-
-[node name="UpgradeCard" parent="MarginContainer/Upgrades" instance=ExtResource("10_b3efj")]
-layout_mode = 2
-upgrade = ExtResource("11_b3efj")
-
-[node name="UpgradeCard2" parent="MarginContainer/Upgrades" instance=ExtResource("10_b3efj")]
-layout_mode = 2
-
-[node name="UpgradeCard3" parent="MarginContainer/Upgrades" instance=ExtResource("10_b3efj")]
-layout_mode = 2
-
-[node name="UpgradeCard4" parent="MarginContainer/Upgrades" instance=ExtResource("10_b3efj")]
-layout_mode = 2
 
 [node name="DisplayCard" type="Panel" parent="."]
 custom_minimum_size = Vector2(200, 300)
@@ -349,6 +413,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1e-05, 1)
 pivot_offset = Vector2(100, 150)
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_plbm5")
 
 [node name="MarginContainer" type="MarginContainer" parent="DisplayCard"]
@@ -385,6 +450,48 @@ text = "+ Light Around You
 fit_content = true
 scroll_active = false
 autowrap_mode = 2
+
+[node name="EscapePodIcon" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(27, 118)
+scale = Vector2(2, 2)
+texture = ExtResource("12_01wef")
+
+[node name="ColorRect" type="ColorRect" parent="EscapePodIcon"]
+show_behind_parent = true
+custom_minimum_size = Vector2(6, 1)
+offset_left = -6.0
+offset_top = -0.5
+offset_bottom = 0.5
+mouse_filter = 2
+
+[node name="PlayerIcon" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(24, 297)
+scale = Vector2(2, 2)
+texture = ExtResource("13_8gsg1")
+
+[node name="ColorRect2" type="ColorRect" parent="PlayerIcon"]
+show_behind_parent = true
+custom_minimum_size = Vector2(6, 1)
+offset_left = -5.0
+offset_right = 1.0
+offset_bottom = 1.0
+mouse_filter = 2
+
+[node name="WormIcon" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(26, 314)
+scale = Vector2(2, 2)
+texture = ExtResource("14_n0oaw")
+
+[node name="ColorRect3" type="ColorRect" parent="WormIcon"]
+show_behind_parent = true
+custom_minimum_size = Vector2(6, 1)
+offset_left = -6.0
+offset_top = -0.5
+offset_bottom = 0.5
+mouse_filter = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

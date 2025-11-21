@@ -50,9 +50,9 @@ func _ready() -> void:
 	print("Num of Rare Upgrades: ", rareUpgrades.size())
 	print("Num of Mythic Upgrades: ", mythicUpgrades.size())
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("CreateSelection"):
-		queueCardSelection()
+#func _process(_delta: float) -> void:
+	#if Input.is_action_just_pressed("CreateSelection"):
+		#queueCardSelection()
 
 
 var cardSelectionsQueued : int = 0

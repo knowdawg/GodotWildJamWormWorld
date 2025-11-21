@@ -35,3 +35,5 @@ func destroy():
 		$PointLight2D.visible = false
 		$Sprite2D.visible = false
 		$ChestBreak.play()
+		
+		$CollisionShape2D.set_deferred("disabled", true)

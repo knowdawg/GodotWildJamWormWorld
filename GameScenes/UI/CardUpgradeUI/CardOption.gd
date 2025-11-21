@@ -22,7 +22,7 @@ func _ready() -> void:
 
 var t = 0.0
 func _process(delta: float) -> void:
-	if Rect2(Vector2(0.0, 0.0), Vector2(160.0, 240.0)).has_point(get_local_mouse_position()) and !clicked:
+	if Rect2(Vector2(0.0, 0.0), Vector2(160.0, 240.0)).has_point(get_local_mouse_position()):
 		t -= delta
 	else:
 		t = 0.0

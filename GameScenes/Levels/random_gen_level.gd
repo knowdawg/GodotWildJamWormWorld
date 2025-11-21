@@ -1,6 +1,7 @@
 extends Level
 
 func _ready() -> void:
+	Game.inTutorial = false
 	super._ready()
 	
 	Game.generateLevel.emit()

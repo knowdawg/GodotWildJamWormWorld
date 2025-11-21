@@ -12,9 +12,9 @@ class_name UpgradeResource
 
 
 static var rareityRate : Dictionary[RARITY, float] = {
-	RARITY.COMMON : 0.5,
-	RARITY.UNCOMMON : 0.8,
-	RARITY.RARE : 0.95,
+	RARITY.COMMON : 0.6,
+	RARITY.UNCOMMON : 0.85,
+	RARITY.RARE : 0.97,
 	RARITY.MYTHIC : 1.0
 }
 

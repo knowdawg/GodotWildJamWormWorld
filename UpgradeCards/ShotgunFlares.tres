@@ -6,10 +6,8 @@
 [resource]
 script = ExtResource("1_o2e16")
 playerStatsPropertyChanges = Dictionary[String, Variant]({
-"flareTime": -2.0,
 "shotgunFlares": 1
 })
-text = "+ Flares Shot
-- Flare Time"
+text = "+ Num Flares Shot"
 tex = ExtResource("2_o2e16")
 metadata/_custom_type_script = "uid://qdkq32pb85q1"

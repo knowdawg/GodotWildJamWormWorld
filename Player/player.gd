@@ -22,6 +22,12 @@ func _ready() -> void:
 	$Camera2D.limit_bottom = TerrainRendering.mapSize.y
 	
 
+func enterDialog():
+	$StateMachine.switchStates("Dialog")
+
+func exitDialog():
+	$StateMachine.switchStates("Idle")
+
 var prevVelocity := Vector2.ZERO
 
 var walkVelocity := Vector2.ZERO
@@ -184,7 +190,9 @@ func throwLantern(pos : Vector2):
 		
 		$Sounds/ShootFlare.play()
 
+var inEscapePod : bool = false
 func enterEscapePod():
+	inEscapePod = true
 	$StateMachine.switchStates("Stun")
 	visible = false
 	$CollisionShape2D.set_deferred("disabled", true)
@@ -235,6 +243,8 @@ func _on_bomb_hurtbox_area_entered(_area: Area2D) -> void:
 
 var dead : bool = false
 func die():
+	if inEscapePod:
+		return
 	if !dead:
 		$StateMachine.switchStates("Die")
 		

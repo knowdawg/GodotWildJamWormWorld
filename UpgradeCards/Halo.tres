@@ -7,7 +7,7 @@
 script = ExtResource("1_r7dxq")
 playerStatsPropertyChanges = Dictionary[String, Variant]({
 "playerGlowEnergy": 0.3,
-"playerGlowScale": 0.3
+"playerGlowScale": 0.5
 })
 text = "+ Glow"
 tex = ExtResource("2_8gevv")

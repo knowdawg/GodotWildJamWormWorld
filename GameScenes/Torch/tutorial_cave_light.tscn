@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxsb48p5lh3xl"]
+
+[ext_resource type="Texture2D" uid="uid://lrgqgjp2obgo" path="res://Sprites/TutorialLight.png" id="1_71joo"]
+[ext_resource type="Texture2D" uid="uid://f8npsbu1nkan" path="res://Sprites/DirectionalGradiant.png" id="2_f0pwv"]
+[ext_resource type="Texture2D" uid="uid://nurf06um3rbe" path="res://Sprites/PointLight128x128.tres" id="3_f0pwv"]
+
+[node name="TutorialCaveLight" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_71joo")
+
+[node name="DirectionLight" type="PointLight2D" parent="Sprite2D"]
+rotation = 1.5707964
+energy = 2.0
+texture = ExtResource("2_f0pwv")
+height = 40.0
+
+[node name="PointLight" type="PointLight2D" parent="Sprite2D"]
+rotation = 1.5707964
+texture = ExtResource("3_f0pwv")
+texture_scale = 2.0
+height = 40.0

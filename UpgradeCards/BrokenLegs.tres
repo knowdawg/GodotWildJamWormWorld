@@ -8,7 +8,7 @@ script = ExtResource("1_14fao")
 playerStatsPropertyChanges = Dictionary[String, Variant]({
 "canMove": false,
 "maxFlightSpeed": -50.0,
-"maxFlightTime": 10.0,
+"maxFlightTime": 5.0,
 "maxMoveSpeedMultiplier": -0.5
 })
 text = "- Legs

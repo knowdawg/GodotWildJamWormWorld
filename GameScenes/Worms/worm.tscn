@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://vab4ubmgfvhe" path="res://GameScenes/Worms/worm.gd" id="1_un2xt"]
 [ext_resource type="Texture2D" uid="uid://2s1qgbpa1jcb" path="res://Sprites/WormParts.png" id="2_06yhp"]
-[ext_resource type="Material" uid="uid://bxrj30vylkpy5" path="res://Shaders/raycast_lighting.tres" id="2_48ha7"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_un2xt"]
+light_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_un2xt"]
 radius = 8.0
@@ -67,7 +69,7 @@ script = ExtResource("1_un2xt")
 
 [node name="Head" type="Sprite2D" parent="Parts"]
 texture_filter = 1
-material = ExtResource("2_48ha7")
+material = SubResource("CanvasItemMaterial_un2xt")
 texture = ExtResource("2_06yhp")
 offset = Vector2(-2, -2)
 hframes = 2

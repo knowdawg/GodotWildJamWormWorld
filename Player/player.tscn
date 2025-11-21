@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://d1uxb8p7iv5vm"]
+[gd_scene load_steps=110 format=3 uid="uid://d1uxb8p7iv5vm"]
 
 [ext_resource type="Script" uid="uid://v7jho3hsmjon" path="res://Player/player.gd" id="1_k53q1"]
 [ext_resource type="Script" uid="uid://up5bvm7rwjr2" path="res://Player/PlayerStateMachine/player_state_machine.gd" id="2_od3ui"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://cqr57p4qxaqy4" path="res://Player/Scripts/picaxe.gd" id="10_apopc"]
 [ext_resource type="Script" uid="uid://btmuwgxyr3ptq" path="res://Player/PlayerStateMachine/player_stun.gd" id="10_pisgm"]
 [ext_resource type="Script" uid="uid://do0q3htxug8ov" path="res://Player/PlayerStateMachine/player_die.gd" id="11_b1ygp"]
+[ext_resource type="Script" uid="uid://dx5p06gseovw4" path="res://Player/PlayerStateMachine/dialog.gd" id="11_ie76m"]
 [ext_resource type="Script" uid="uid://cntla71dkr2lv" path="res://Player/Scripts/game_camera.gd" id="13_lfmf2"]
 [ext_resource type="Texture2D" uid="uid://f8npsbu1nkan" path="res://Sprites/DirectionalGradiant.png" id="14_dkpta"]
 [ext_resource type="Script" uid="uid://e06x8ygfbev6" path="res://Player/Scripts/directional_light.gd" id="15_lfmf2"]
@@ -604,6 +605,9 @@ flyEndSound = NodePath("../../Sounds/FlyEnd")
 
 [node name="Stun" type="Node" parent="StateMachine"]
 script = ExtResource("10_pisgm")
+
+[node name="Dialog" type="Node" parent="StateMachine"]
+script = ExtResource("11_ie76m")
 
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource("11_b1ygp")

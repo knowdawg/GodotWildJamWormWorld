@@ -3,13 +3,18 @@
 [sub_resource type="Gradient" id="Gradient_c6rys"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.0625, 0.9875)
-colors = PackedColorArray(0.047058824, 0, 0, 1, 0, 0, 0, 0, 0.047058824, 0, 0, 1)
+colors = PackedColorArray(0.047058824, 0, 0, 0, 0, 0, 0, 0, 0.047058824, 0, 0, 1)
 metadata/_snap_enabled = true
 metadata/_snap_count = 80
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_2nkd7"]
+seed = 7
+frequency = 0.015
 fractal_octaves = 1
+domain_warp_enabled = true
+domain_warp_amplitude = 10.0
 
 [resource]
 noise = SubResource("FastNoiseLite_2nkd7")
 color_ramp = SubResource("Gradient_c6rys")
+seamless = true

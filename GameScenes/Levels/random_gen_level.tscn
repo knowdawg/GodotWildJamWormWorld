@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bs3ob7drvovjj" path="res://addons/pixel_sandbox/Scenes/SDFGenerator/sdf_generator.tscn" id="5_f2wme"]
 [ext_resource type="PackedScene" uid="uid://b22snyd5lo4mp" path="res://addons/pixel_sandbox/Scenes/GlobalIllumination/global_illumination.tscn" id="6_3loc8"]
 [ext_resource type="PackedScene" uid="uid://cyrrk0ro0e0dd" path="res://GameScenes/Worms/worm_manager.tscn" id="6_dqge8"]
-[ext_resource type="PackedScene" uid="uid://bywyhourisvim" path="res://addons/pixel_sandbox/Scenes/Sun/sun.tscn" id="7_oetj4"]
+[ext_resource type="Texture2D" uid="uid://cjbwghgivmhyw" path="res://RandomMapGenerator/Noises/FuelNoiseTexture.tres" id="10_x40tl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cbb0s"]
 resource_local_to_scene = true
@@ -40,9 +40,9 @@ material = SubResource("ShaderMaterial_lyrup")
 [node name="GlobalIllumination" parent="SDFGenerator" node_paths=PackedStringArray("sdfGen") instance=ExtResource("6_3loc8")]
 sdfGen = NodePath("..")
 
-[node name="Sun" parent="." instance=ExtResource("7_oetj4")]
-visible = false
-rotation = -0.50963616
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-651, 256)
+texture = ExtResource("10_x40tl")

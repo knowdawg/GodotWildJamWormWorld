@@ -7,7 +7,7 @@
 script = ExtResource("1_ea6ef")
 playerStatsPropertyChanges = Dictionary[String, Variant]({
 "picaxeRadius": -1,
-"picaxeUseSpeed": -0.15
+"picaxeUseSpeed": -0.25
 })
 text = "++ Pickaxe Speed
 - Pickaxe Radius"

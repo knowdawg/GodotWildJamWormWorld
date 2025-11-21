@@ -147,7 +147,7 @@ max_distance = 300.0
 bus = &"SoundEffects"
 
 [node name="Hazard" type="Area2D" parent="."]
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hazard"]

@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://da3kci5b71wwp" path="res://Sounds/WormRocks3.wav" id="5_w6u0o"]
 [ext_resource type="AudioStream" uid="uid://dgtfiqt4d8wrv" path="res://Sounds/WormRocks4.wav" id="6_0mokq"]
 [ext_resource type="AudioStream" uid="uid://hcpcg1kytr5r" path="res://Sounds/WormRocks5.wav" id="7_dw66v"]
+[ext_resource type="AudioStream" uid="uid://vnkiyex04ov6" path="res://Music/WormChase.wav" id="8_m5lnl"]
 
 [sub_resource type="Gradient" id="Gradient_3oesc"]
 offsets = PackedFloat32Array(0.7250342, 1)
@@ -50,11 +51,6 @@ radial_velocity_max = -2.2351742e-05
 gravity = Vector3(0, 98, 0)
 scale_curve = SubResource("CurveTexture_e17lv")
 color_initial_ramp = SubResource("GradientTexture1D_khnhk")
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_khnhk"]
-shuffle = true
-stream_count = 1
-stream_0 = ExtResource("2_2tq7k")
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_sxa4n"]
 shuffle = true
@@ -150,9 +146,8 @@ process_material = SubResource("ParticleProcessMaterial_bot2k")
 
 [node name="WormAmbience" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
-stream = SubResource("AudioStreamPlaylist_khnhk")
+stream = ExtResource("2_2tq7k")
 volume_db = 15.0
-autoplay = true
 max_distance = 300.0
 attenuation = 3.0
 bus = &"SoundEffects"
@@ -161,18 +156,20 @@ bus = &"SoundEffects"
 
 [node name="WormRocksAmbience1" type="AudioStreamPlayer2D" parent="RockNoises"]
 stream = SubResource("AudioStreamPlaylist_sxa4n")
-volume_db = -5.0
-max_distance = 150.0
+max_distance = 300.0
 bus = &"SoundEffects"
 
 [node name="WormRocksAmbience2" type="AudioStreamPlayer2D" parent="RockNoises"]
 stream = SubResource("AudioStreamPlaylist_lms1t")
-volume_db = -5.0
-max_distance = 150.0
+max_distance = 300.0
 bus = &"SoundEffects"
 
 [node name="WormRocksAmbience3" type="AudioStreamPlayer2D" parent="RockNoises"]
 stream = SubResource("AudioStreamPlaylist_ltbn6")
-volume_db = -5.0
-max_distance = 150.0
+max_distance = 300.0
 bus = &"SoundEffects"
+
+[node name="WormChaseMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("8_m5lnl")
+bus = &"Music"

@@ -111,7 +111,6 @@ streams_count = 1
 stream_0/stream = ExtResource("5_778w8")
 
 [node name="UpgradeChest" type="RigidBody2D"]
-collision_layer = 0
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_ekny6")
 gravity_scale = 0.5

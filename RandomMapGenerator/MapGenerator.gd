@@ -53,12 +53,18 @@ func createWorld():
 	
 	#generate random chests
 	randomize()
-	print("num of chests : ", TerrainRendering.mapSize.y / 10)
-	for i in range(TerrainRendering.mapSize.y / 10):
+	for i in range(int(float(TerrainRendering.mapSize.y) / 10.0)):
 		var chestPos = Vector2i(randi_range(0, TerrainRendering.mapSize.x), randi_range(0, TerrainRendering.mapSize.y))
 		if TerrainRendering.getPixel(chestPos, TerrainRendering.LAYER_TYPE.FOREGROUND) == -1:
 			var c : Node2D = chest.instantiate()
 			Game.addProjectile(c)
 			c.global_position = chestPos
+	
+	var numOfDeposits = int(float(TerrainRendering.mapSize.y) / 30.0)
+	print("num of deposists: ", numOfDeposits)
+	for i in range(numOfDeposits):
+		var vienPos = Vector2i(randi_range(0, TerrainRendering.mapSize.x), randi_range(0, TerrainRendering.mapSize.y))
+		var rad : float = randf_range(8.0, 12.0)
+		TerrainDestruction.addTileRadius(vienPos, 2, rad, TerrainRendering.LAYER_TYPE.FOREGROUND)
 	
 	

@@ -29,7 +29,8 @@ func _ready() -> void:
 		s.hframes = 2
 		s.frame = 1
 		s.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		s.material = lightingMaterial
+		#s.material = lightingMaterial
+		s.material = $Parts/Head.material
 		parts.append(s)
 		$Parts.add_child(s)
 	
