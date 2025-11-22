@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=3 format=3 uid="uid://cwaue64g6hn8p"]
+
+[ext_resource type="Resource" uid="uid://c07qsjqhor5y6" path="res://Dialogs/CaveInDialog/CaveIn3.tres" id="1_5hojp"]
+[ext_resource type="Script" uid="uid://1ajn4rhu81hb" path="res://Resources/DialogResource.gd" id="1_yp0q3"]
+
+[resource]
+script = ExtResource("1_yp0q3")
+text = "Anyone other than us, that is."
+progressType = 1
+nextDialog = ExtResource("1_5hojp")
+metadata/_custom_type_script = "uid://1ajn4rhu81hb"

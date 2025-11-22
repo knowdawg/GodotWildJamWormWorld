@@ -3,11 +3,15 @@ class_name DeathScreenUI
 
 var mainGame : String = "uid://c5lmuy85ljtkk"
 var mainMenu : String = "uid://1ptq38jqhvir"
+var tutorialLevel : String = "uid://dvk83gspj5nvl"
 
 var noMoreInput : bool = false
 
 func _ready() -> void:
 	Game.playerDead.connect(animate)
+	
+	if Game.inTutorial:
+		$MarginContainer/RichTextLabel.text = "[center]Dead"
 
 func animate():
 	await get_tree().create_timer(2.0).timeout
@@ -19,7 +23,10 @@ func _on_play_pressed() -> void:
 		return
 	noMoreInput = true
 	
-	Game.gameManager.switchScene(mainGame, 1.0, true)
+	if Game.inTutorial:
+		Game.gameManager.switchScene(tutorialLevel, 1.0, true)
+	else:
+		Game.gameManager.switchScene(mainGame, 1.0, true)
 
 
 func _on_menu_pressed() -> void:

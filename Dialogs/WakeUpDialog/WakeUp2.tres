@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=3 format=3 uid="uid://b8duh75xguw3v"]
+
+[ext_resource type="Script" uid="uid://1ajn4rhu81hb" path="res://Resources/DialogResource.gd" id="1_hx8aq"]
+[ext_resource type="Resource" uid="uid://burnkpu1elfyl" path="res://Dialogs/WakeUpDialog/WakeUp3.tres" id="1_k2nhv"]
+
+[resource]
+script = ExtResource("1_hx8aq")
+text = "There you go, up and at ‘em!"
+progressType = 1
+nextDialog = ExtResource("1_k2nhv")
+metadata/_custom_type_script = "uid://1ajn4rhu81hb"

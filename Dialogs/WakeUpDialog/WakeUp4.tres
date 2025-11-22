@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=2 format=3 uid="uid://drpu177oxopqs"]
+
+[ext_resource type="Script" uid="uid://1ajn4rhu81hb" path="res://Resources/DialogResource.gd" id="1_255fc"]
+
+[resource]
+script = ExtResource("1_255fc")
+text = "You go on ahead. I need to check up on something over here real quick."
+identifier = "WakeUpEnd"
+metadata/_custom_type_script = "uid://1ajn4rhu81hb"

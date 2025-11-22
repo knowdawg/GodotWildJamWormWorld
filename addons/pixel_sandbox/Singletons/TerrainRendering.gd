@@ -317,9 +317,13 @@ func updateLoadedRect() -> void:
 		if topLeftChunkCoord.x < 0:
 			newLoadedRect.position.x = 0.0
 			newLoadedRect.size.x += topLeftChunkCoord.x * chunkSize
+		else:
+			newLoadedRect.position.x = topLeftChunkCoord.x * chunkSize
 		if topLeftChunkCoord.y < 0:
 			newLoadedRect.position.y = 0.0
 			newLoadedRect.size.y += topLeftChunkCoord.y * chunkSize
+		else:
+			newLoadedRect.position.y = topLeftChunkCoord.y * chunkSize
 		if topLeftChunkCoord.x >= 0 and topLeftChunkCoord.y >= 0:
 			newLoadedRect.position = chunksForeground[topLeftChunkCoord.x][topLeftChunkCoord.y].global_position
 		loadedRect = newLoadedRect

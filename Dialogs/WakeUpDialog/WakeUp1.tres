@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=3 format=3 uid="uid://dvnk03kr1bhxu"]
+
+[ext_resource type="Resource" uid="uid://b8duh75xguw3v" path="res://Dialogs/WakeUpDialog/WakeUp2.tres" id="1_5jqbe"]
+[ext_resource type="Script" uid="uid://1ajn4rhu81hb" path="res://Resources/DialogResource.gd" id="1_pmrnj"]
+
+[resource]
+script = ExtResource("1_pmrnj")
+text = "Hate to interrupt your beauty sleep, but I want to get back up to the surface. And I would prefer to get there before sundown."
+progressType = 2
+nextDialog = ExtResource("1_5jqbe")
+functionCallName = "playerSitUp"
+metadata/_custom_type_script = "uid://1ajn4rhu81hb"

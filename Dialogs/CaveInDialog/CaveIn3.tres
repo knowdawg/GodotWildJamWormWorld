@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=2 format=3 uid="uid://c07qsjqhor5y6"]
+
+[ext_resource type="Script" uid="uid://1ajn4rhu81hb" path="res://Resources/DialogResource.gd" id="1_ggv3v"]
+
+[resource]
+script = ExtResource("1_ggv3v")
+text = "Say, I'm tired. Why don't you go clear this out for us?"
+metadata/_custom_type_script = "uid://1ajn4rhu81hb"

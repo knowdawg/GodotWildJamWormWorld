@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=3 format=3 uid="uid://eho6l77b5nbm"]
+
+[ext_resource type="Script" uid="uid://1ajn4rhu81hb" path="res://Resources/DialogResource.gd" id="1_6ubka"]
+[ext_resource type="Resource" uid="uid://dqh64mv4n3v7p" path="res://Dialogs/TestDialog/TestDialogEnd.tres" id="1_577wo"]
+
+[resource]
+script = ExtResource("1_6ubka")
+text = "This is the middle of the test dialog.
+Neat!"
+progressType = 1
+nextDialog = ExtResource("1_577wo")
+metadata/_custom_type_script = "uid://1ajn4rhu81hb"

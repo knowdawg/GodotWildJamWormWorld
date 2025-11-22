@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=3 uid="uid://d1uxb8p7iv5vm"]
+[gd_scene load_steps=112 format=3 uid="uid://d1uxb8p7iv5vm"]
 
 [ext_resource type="Script" uid="uid://v7jho3hsmjon" path="res://Player/player.gd" id="1_k53q1"]
 [ext_resource type="Script" uid="uid://up5bvm7rwjr2" path="res://Player/PlayerStateMachine/player_state_machine.gd" id="2_od3ui"]
@@ -56,14 +56,14 @@ light_mode = 1
 [sub_resource type="Gradient" id="Gradient_b1ygp"]
 colors = PackedColorArray(0.5254902, 0.5647059, 0.5529412, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_o28un"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ie76m"]
 gradient = SubResource("Gradient_b1ygp")
 
 [sub_resource type="Curve" id="Curve_b1ygp"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_o28un"]
+[sub_resource type="CurveTexture" id="CurveTexture_dy65m"]
 curve = SubResource("Curve_b1ygp")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n471f"]
@@ -77,9 +77,9 @@ angular_velocity_max = 99.999985
 gravity = Vector3(0, 98, 0)
 scale_min = 4.0
 scale_max = 8.0
-scale_curve = SubResource("CurveTexture_o28un")
+scale_curve = SubResource("CurveTexture_dy65m")
 color = Color(1, 0, 0, 1)
-color_initial_ramp = SubResource("GradientTexture1D_o28un")
+color_initial_ramp = SubResource("GradientTexture1D_ie76m")
 hue_variation_min = -2.2351742e-08
 hue_variation_max = -2.2351742e-08
 
@@ -89,14 +89,14 @@ light_mode = 1
 [sub_resource type="Gradient" id="Gradient_hshwv"]
 colors = PackedColorArray(1, 1, 1, 1, 0.44705883, 0.4745098, 0.4627451, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_gpjlu"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_maysp"]
 gradient = SubResource("Gradient_hshwv")
 
 [sub_resource type="Curve" id="Curve_hshwv"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_gpjlu"]
+[sub_resource type="CurveTexture" id="CurveTexture_1l10g"]
 curve = SubResource("Curve_hshwv")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8mwp6"]
@@ -110,23 +110,23 @@ initial_velocity_max = 150.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_gpjlu")
+scale_curve = SubResource("CurveTexture_1l10g")
 color = Color(1, 0.42352942, 0.16078432, 1)
-color_initial_ramp = SubResource("GradientTexture1D_gpjlu")
+color_initial_ramp = SubResource("GradientTexture1D_maysp")
 hue_variation_min = -2.2351742e-08
 hue_variation_max = -2.2351742e-08
 
 [sub_resource type="Gradient" id="Gradient_6pogt"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ie76m"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6rl0i"]
 gradient = SubResource("Gradient_6pogt")
 
 [sub_resource type="Curve" id="Curve_dy65m"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_maysp"]
+[sub_resource type="CurveTexture" id="CurveTexture_7x5p2"]
 curve = SubResource("Curve_dy65m")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1l10g"]
@@ -140,22 +140,22 @@ initial_velocity_max = 150.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_maysp")
-color_initial_ramp = SubResource("GradientTexture1D_ie76m")
+scale_curve = SubResource("CurveTexture_7x5p2")
+color_initial_ramp = SubResource("GradientTexture1D_6rl0i")
 hue_variation_min = -2.2351742e-08
 hue_variation_max = -2.2351742e-08
 
 [sub_resource type="Gradient" id="Gradient_ie76m"]
 colors = PackedColorArray(1, 1, 1, 0.39215687, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_dy65m"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6eb1q"]
 gradient = SubResource("Gradient_ie76m")
 
 [sub_resource type="Curve" id="Curve_maysp"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_1l10g"]
+[sub_resource type="CurveTexture" id="CurveTexture_wvbyc"]
 curve = SubResource("Curve_maysp")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6rl0i"]
@@ -169,8 +169,8 @@ initial_velocity_max = 150.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_1l10g")
-color_initial_ramp = SubResource("GradientTexture1D_dy65m")
+scale_curve = SubResource("CurveTexture_wvbyc")
+color_initial_ramp = SubResource("GradientTexture1D_6eb1q")
 hue_variation_min = -2.2351742e-08
 hue_variation_max = -2.2351742e-08
 
@@ -178,7 +178,7 @@ hue_variation_max = -2.2351742e-08
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_8mwp6"]
+[sub_resource type="CurveTexture" id="CurveTexture_gvnt1"]
 curve = SubResource("Curve_gpjlu")
 
 [sub_resource type="Curve" id="Curve_qemgg"]
@@ -186,7 +186,7 @@ _limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_8viyr"]
+[sub_resource type="CurveTexture" id="CurveTexture_1kmt7"]
 curve = SubResource("Curve_qemgg")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sm0op"]
@@ -196,14 +196,14 @@ spread = 90.0
 initial_velocity_max = 20.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
-scale_curve = SubResource("CurveTexture_8viyr")
-alpha_curve = SubResource("CurveTexture_8mwp6")
+scale_curve = SubResource("CurveTexture_1kmt7")
+alpha_curve = SubResource("CurveTexture_gvnt1")
 
 [sub_resource type="Curve" id="Curve_8mwp6"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_qemgg"]
+[sub_resource type="CurveTexture" id="CurveTexture_c4i3b"]
 curve = SubResource("Curve_8mwp6")
 
 [sub_resource type="Curve" id="Curve_8viyr"]
@@ -211,7 +211,7 @@ _limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_sm0op"]
+[sub_resource type="CurveTexture" id="CurveTexture_uvbbp"]
 curve = SubResource("Curve_8viyr")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_76lrf"]
@@ -223,14 +223,14 @@ spread = 25.0
 initial_velocity_max = 20.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
-scale_curve = SubResource("CurveTexture_sm0op")
-alpha_curve = SubResource("CurveTexture_qemgg")
+scale_curve = SubResource("CurveTexture_uvbbp")
+alpha_curve = SubResource("CurveTexture_c4i3b")
 
 [sub_resource type="Curve" id="Curve_sm0op"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_76lrf"]
+[sub_resource type="CurveTexture" id="CurveTexture_7v2uk"]
 curve = SubResource("Curve_sm0op")
 
 [sub_resource type="Curve" id="Curve_efx54"]
@@ -238,7 +238,7 @@ _limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_755ss"]
+[sub_resource type="CurveTexture" id="CurveTexture_m6nl3"]
 curve = SubResource("Curve_efx54")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bbimk"]
@@ -251,21 +251,21 @@ radial_velocity_min = -2.2351742e-05
 radial_velocity_max = 14.999977
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
-scale_curve = SubResource("CurveTexture_755ss")
-alpha_curve = SubResource("CurveTexture_76lrf")
+scale_curve = SubResource("CurveTexture_m6nl3")
+alpha_curve = SubResource("CurveTexture_7v2uk")
 
 [sub_resource type="Gradient" id="Gradient_gpjlu"]
 offsets = PackedFloat32Array(0.4404332, 1)
 colors = PackedColorArray(0.19607843, 0.19607843, 0.19607843, 1, 0.78431374, 0.78431374, 0.78431374, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_8mwp6"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8hx1r"]
 gradient = SubResource("Gradient_gpjlu")
 
 [sub_resource type="Curve" id="Curve_76lrf"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_gooyy"]
+[sub_resource type="CurveTexture" id="CurveTexture_qas3k"]
 curve = SubResource("Curve_76lrf")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_efx54"]
@@ -277,8 +277,8 @@ initial_velocity_max = 50.0
 gravity = Vector3(0, 98, 0)
 scale_min = 2.0
 scale_max = 4.0
-scale_curve = SubResource("CurveTexture_gooyy")
-color_initial_ramp = SubResource("GradientTexture1D_8mwp6")
+scale_curve = SubResource("CurveTexture_qas3k")
+color_initial_ramp = SubResource("GradientTexture1D_8hx1r")
 hue_variation_min = -2.2351742e-08
 hue_variation_max = -2.2351742e-08
 
@@ -335,37 +335,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [17, 18, 19]
-}
-
-[sub_resource type="Animation" id="Animation_5htga"]
-resource_name = "PlaceBomb"
-length = 0.7
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [25, 26, 27, 28, 29, 30]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("StateMachine/PlaceBomb")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"placeBomb"
-}]
 }
 
 [sub_resource type="Animation" id="Animation_wwis0"]
@@ -435,13 +404,80 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_5htga"]
+resource_name = "PlaceBomb"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [25, 26, 27, 28, 29, 30]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/PlaceBomb")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"placeBomb"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ie76m"]
+resource_name = "SitUp"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [31, 32, 33, 34]
+}
+
+[sub_resource type="Animation" id="Animation_dy65m"]
+resource_name = "LayDown"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [31]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1t7bj"]
 _data = {
 &"Idle": SubResource("Animation_5mn5l"),
 &"JumpLand": SubResource("Animation_p3d0d"),
+&"LayDown": SubResource("Animation_dy65m"),
 &"PeakOfJump": SubResource("Animation_cwjem"),
 &"PlaceBomb": SubResource("Animation_5htga"),
 &"RESET": SubResource("Animation_wwis0"),
+&"SitUp": SubResource("Animation_ie76m"),
 &"StartOfJump": SubResource("Animation_6pw7c"),
 &"Walk": SubResource("Animation_1t7bj")
 }
@@ -606,8 +642,9 @@ flyEndSound = NodePath("../../Sounds/FlyEnd")
 [node name="Stun" type="Node" parent="StateMachine"]
 script = ExtResource("10_pisgm")
 
-[node name="Dialog" type="Node" parent="StateMachine"]
+[node name="Dialog" type="Node" parent="StateMachine" node_paths=PackedStringArray("anim")]
 script = ExtResource("11_ie76m")
+anim = NodePath("../../AnimationPlayer")
 
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource("11_b1ygp")
@@ -644,7 +681,7 @@ unique_name_in_owner = true
 texture_filter = 1
 texture = ExtResource("7_od3ui")
 offset = Vector2(0, -4)
-hframes = 31
+hframes = 35
 frame = 2
 
 [node name="ParticleEffects" type="Node2D" parent="."]

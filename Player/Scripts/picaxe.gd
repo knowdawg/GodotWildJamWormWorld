@@ -43,7 +43,15 @@ func destroyTerrain() -> void:
 	particles.emitting = true
 
 func _process(_delta: float) -> void:
+	visible = true
+	if player.inDialog:
+		visible = false
+		return
+	if player.inEscapePod:
+		visible = false
+		return
 	if player.dead: 
+		visible = false
 		return
 	if !PlayerStats.canUsePick:
 		visible = false

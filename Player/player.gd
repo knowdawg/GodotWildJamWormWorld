@@ -22,11 +22,14 @@ func _ready() -> void:
 	$Camera2D.limit_bottom = TerrainRendering.mapSize.y
 	
 
+var inDialog : bool = false
 func enterDialog():
 	$StateMachine.switchStates("Dialog")
+	inDialog = true
 
 func exitDialog():
 	$StateMachine.switchStates("Idle")
+	inDialog = false
 
 var prevVelocity := Vector2.ZERO
 
@@ -221,6 +224,8 @@ func _process(_delta: float) -> void:
 	prevPos = position
 
 func _draw() -> void:
+	if inDialog:
+		return
 	if dead:
 		return
 	
@@ -258,3 +263,10 @@ func die():
 		Game.playerDead.emit()
 		dead = true
 		$Sounds/Death.play()
+
+
+func layDown():
+	$AnimationPlayer.play("LayDown")
+
+func sitUp():
+	$AnimationPlayer.play("SitUp")

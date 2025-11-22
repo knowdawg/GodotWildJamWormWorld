@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=3 format=3 uid="uid://c8qyat8ufdpy2"]
+
+[ext_resource type="Resource" uid="uid://eho6l77b5nbm" path="res://Dialogs/TestDialog/TestDialogBridge.tres" id="1_138bu"]
+[ext_resource type="Script" uid="uid://1ajn4rhu81hb" path="res://Resources/DialogResource.gd" id="2_ilm66"]
+
+[resource]
+script = ExtResource("2_ilm66")
+text = "This is the start of the test dialog.
+Hello!"
+progressType = 2
+nextDialog = ExtResource("1_138bu")
+functionCallName = "shakeScreen"
+metadata/_custom_type_script = "uid://1ajn4rhu81hb"

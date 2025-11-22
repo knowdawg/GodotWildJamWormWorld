@@ -53,12 +53,12 @@ func addTile(worldPosition : Vector2, tileIndex : int, tilemapType : int) -> int
 	var prevTile : int
 	if tilemapType == FOREGROUND:
 		prevTile = TerrainRendering.getPixel(worldPosition, TerrainRendering.LAYER_TYPE.FOREGROUND)
-		if prevTile == 3:
+		if prevTile >= 3:
 			return 1
 		TerrainRendering.setPixel(worldPosition, tileIndex, TerrainRendering.LAYER_TYPE.FOREGROUND)
 	if tilemapType == BACKGROUND:
 		prevTile = TerrainRendering.getPixel(worldPosition, TerrainRendering.LAYER_TYPE.BACKGROUND)
-		if prevTile == 3:
+		if prevTile >= 3:
 			return 1
 		TerrainRendering.setPixel(worldPosition, tileIndex, TerrainRendering.LAYER_TYPE.BACKGROUND)
 	return prevTile

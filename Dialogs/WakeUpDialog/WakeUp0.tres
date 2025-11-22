@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=3 format=3 uid="uid://djcalahkd7c3p"]
+
+[ext_resource type="Resource" uid="uid://dvnk03kr1bhxu" path="res://Dialogs/WakeUpDialog/WakeUp1.tres" id="1_64lbm"]
+[ext_resource type="Script" uid="uid://1ajn4rhu81hb" path="res://Resources/DialogResource.gd" id="2_sf7af"]
+
+[resource]
+script = ExtResource("2_sf7af")
+text = "Hey, sleepyhead! Shift ended an hour ago!"
+progressType = 2
+nextDialog = ExtResource("1_64lbm")
+functionCallName = "playerWakeUp"
+metadata/_custom_type_script = "uid://1ajn4rhu81hb"
