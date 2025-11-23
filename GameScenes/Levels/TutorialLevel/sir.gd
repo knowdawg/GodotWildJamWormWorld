@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Sir
 
+signal gotToTargetPos
+
 @export var jumpHeight : float = 25.0
 @export var jumpDistance : float = 20.0
 @export var maxMoveSpeed : float = 70.0
@@ -22,6 +24,12 @@ var curState : STATES = STATES.IDLE
 var walkTimer : float = 0.0
 func walk(duration : float):
 	walkTimer = duration
+
+var walkTargetPos := Vector2.ZERO
+var walkingToTarget : bool = false
+func walkToPoint(targetPos : Vector2):
+	walkTargetPos = targetPos
+	walkingToTarget = true
 
 func _process(_delta: float) -> void:
 	match curState:
@@ -46,10 +54,18 @@ var walkVelocity := Vector2.ZERO
 var jumpVelocity := Vector2.ZERO
 var xInput : float = 0.0
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
 	if walkTimer > 0.0:
 		walkTimer -= delta
 		xInput = 1.0
 		curState = STATES.WALK
+	elif walkingToTarget:
+		xInput = 1.0
+		curState = STATES.WALK
+		if global_position.distance_to(walkTargetPos) < 4.0:
+			walkingToTarget = false
+			gotToTargetPos.emit()
 	else:
 		xInput = 0.0
 		curState = STATES.IDLE
@@ -83,7 +99,7 @@ func align():
 var dead : bool = false
 func die():
 	if !dead:
-		$StateMachine.switchStates("Stun")
+		curState = STATES.DEAD
 		
 		%PlayerSprite.visible = false
 		$ParticleEffects/DeathParticles.emitting = true

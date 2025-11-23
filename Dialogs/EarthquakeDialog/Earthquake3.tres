@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=3 format=3 uid="uid://drjkklpxsvn5d"]
+
+[ext_resource type="Script" uid="uid://1ajn4rhu81hb" path="res://Resources/DialogResource.gd" id="1_dg77i"]
+[ext_resource type="Resource" uid="uid://sju2yghkv0ts" path="res://Dialogs/EarthquakeDialog/Earthquake4.tres" id="1_s4ynl"]
+
+[resource]
+script = ExtResource("1_dg77i")
+text = "Check in with the E.I.T.A. We need to make sure there was no dangerous cargo or fuel on that vessel."
+progressType = 1
+nextDialog = ExtResource("1_s4ynl")
+metadata/_custom_type_script = "uid://1ajn4rhu81hb"

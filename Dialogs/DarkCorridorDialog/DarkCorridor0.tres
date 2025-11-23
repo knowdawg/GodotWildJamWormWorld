@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_matdt")
-text = "Power outage again?"
+text = "Light out again?"
 progressType = 2
 nextDialog = ExtResource("1_3stvs")
 functionCallName = "sirWalk"

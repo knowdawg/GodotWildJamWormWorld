@@ -1,7 +1,7 @@
 extends Node2D
 class_name WormManager
 
-var worm : PackedScene = preload("res://GameScenes/Worms/worm.tscn")
+var worm : PackedScene = preload("uid://cpk55ujp27tih")
 var worms : Array[Worm]
 
 

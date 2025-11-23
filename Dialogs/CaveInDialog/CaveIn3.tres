@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_ggv3v")
 text = "Say, I'm tired. Why don't you go clear this out for us?"
+identifier = "CaveInEnd"
 metadata/_custom_type_script = "uid://1ajn4rhu81hb"

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=3 format=3 uid="uid://bapsasmgenn6o"]
+
+[ext_resource type="Resource" uid="uid://drjkklpxsvn5d" path="res://Dialogs/EarthquakeDialog/Earthquake3.tres" id="1_3xu5c"]
+[ext_resource type="Script" uid="uid://1ajn4rhu81hb" path="res://Resources/DialogResource.gd" id="1_f7fun"]
+
+[resource]
+script = ExtResource("1_f7fun")
+text = "A trade ship detonated right outside our atmosphere. The surface is getting pelted by its corpse."
+progressType = 1
+nextDialog = ExtResource("1_3xu5c")
+icon = 1
+metadata/_custom_type_script = "uid://1ajn4rhu81hb"

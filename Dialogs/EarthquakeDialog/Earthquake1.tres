@@ -1,7 +1,11 @@
-[gd_resource type="Resource" script_class="DialogResource" load_steps=2 format=3 uid="uid://xwqlbp28l61m"]
+[gd_resource type="Resource" script_class="DialogResource" load_steps=3 format=3 uid="uid://xwqlbp28l61m"]
 
 [ext_resource type="Script" uid="uid://1ajn4rhu81hb" path="res://Resources/DialogResource.gd" id="1_5p3qm"]
+[ext_resource type="Resource" uid="uid://bapsasmgenn6o" path="res://Dialogs/EarthquakeDialog/Earthquake2.tres" id="1_x3300"]
 
 [resource]
 script = ExtResource("1_5p3qm")
+text = "Yeah. Is everything fine up there?"
+progressType = 1
+nextDialog = ExtResource("1_x3300")
 metadata/_custom_type_script = "uid://1ajn4rhu81hb"

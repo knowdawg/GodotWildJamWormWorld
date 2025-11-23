@@ -35,7 +35,7 @@ func addTileBitmap(worldPosition : Vector2, tileIndex : int, bitmap : BitMap, ti
 				var curPos := worldPosition + Vector2(x, y) - offset
 				addTile(curPos, tileIndex, tilemapType)
 
-func addTileRadius(worldPosition : Vector2, tileIndex : int, radius : int, tilemapType : int) -> Dictionary[int, int]:
+func addTileRadius(worldPosition : Vector2, tileIndex : int, radius : int, tilemapType : int, forceDesruction : bool = false) -> Dictionary[int, int]:
 	var prevTiles : Dictionary[int, int] = destroyedTileDictionary.duplicate()
 	
 	for x in range(-radius, radius + 1):
@@ -43,22 +43,22 @@ func addTileRadius(worldPosition : Vector2, tileIndex : int, radius : int, tilem
 			var offset = Vector2(x, y)
 			if offset.length() <= radius + 0.5:
 				var p = worldPosition + offset
-				var prevTile : int = addTile(p, tileIndex, tilemapType)
+				var prevTile : int = addTile(p, tileIndex, tilemapType, forceDesruction)
 				
 				prevTiles[prevTile] = prevTiles[prevTile] + 1
 	
 	return prevTiles
 
-func addTile(worldPosition : Vector2, tileIndex : int, tilemapType : int) -> int:
+func addTile(worldPosition : Vector2, tileIndex : int, tilemapType : int, forceDesruction : bool = false) -> int:
 	var prevTile : int
 	if tilemapType == FOREGROUND:
 		prevTile = TerrainRendering.getPixel(worldPosition, TerrainRendering.LAYER_TYPE.FOREGROUND)
-		if prevTile >= 3:
+		if prevTile >= 3 and !forceDesruction:
 			return 1
 		TerrainRendering.setPixel(worldPosition, tileIndex, TerrainRendering.LAYER_TYPE.FOREGROUND)
 	if tilemapType == BACKGROUND:
 		prevTile = TerrainRendering.getPixel(worldPosition, TerrainRendering.LAYER_TYPE.BACKGROUND)
-		if prevTile >= 3:
+		if prevTile >= 3 and !forceDesruction:
 			return 1
 		TerrainRendering.setPixel(worldPosition, tileIndex, TerrainRendering.LAYER_TYPE.BACKGROUND)
 	return prevTile

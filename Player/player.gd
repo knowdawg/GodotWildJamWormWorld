@@ -202,6 +202,7 @@ func enterEscapePod():
 	
 	$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
 	
+	$AnimationPlayer.stop()
 
 var prevPos : Vector2 = Vector2.ZERO
 func _process(_delta: float) -> void:
@@ -270,3 +271,10 @@ func layDown():
 
 func sitUp():
 	$AnimationPlayer.play("SitUp")
+
+func disableCamera():
+	$Camera2D.enabled = false
+
+func jumpUp():
+	exitDialog()
+	$StateMachine.switchStates("Jump")

@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_ckn0x")
 text = "Well, we’ve got these flares for a reason. Go ahead and light the way for us."
+identifier = "DarkCorridorEnd"
 metadata/_custom_type_script = "uid://1ajn4rhu81hb"

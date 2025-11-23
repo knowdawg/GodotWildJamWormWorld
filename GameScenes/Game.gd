@@ -12,7 +12,26 @@ signal wormsStartingToMove()
 
 var gameManager : GameManager
 
-var amountOfFuel : int = 0
+
+var fuelSoundPlayer : AudioStreamPlayer
+var fuelSoundTime : float = 0.0
+var fuelSoundCooldown : float = 0.0
+
+var fuelAudio : AudioStreamRandomizer = preload("res://Sounds/FuelRandomAudio.tres")
+func _process(delta: float) -> void:
+	if fuelSoundTime > 0:
+		fuelSoundTime -= delta
+		fuelSoundCooldown -= delta
+		if fuelSoundCooldown <= 0.0:
+			fuelSoundCooldown = randf_range(0.05, 0.1)
+			fuelSoundPlayer.play()
+
+
+var amountOfFuel : int = 0:
+	set(amount):
+		if amount > 0 and amount > amountOfFuel:
+			fuelSoundTime += float(amount - amountOfFuel) * 0.003
+		amountOfFuel = amount
 var amoundOfFuelNeeded : int = 3000.0
 
 var camera : GameCamera
@@ -30,6 +49,11 @@ var inTutorial : bool = false
 func _ready() -> void:
 	AudioServer.set_bus_volume_linear(0, 0.6)
 	wormHight = TerrainRendering.mapSize.y
+	
+	fuelSoundPlayer = AudioStreamPlayer.new()
+	fuelSoundPlayer.bus = "SoundEffects"
+	fuelSoundPlayer.stream = fuelAudio
+	add_child(fuelSoundPlayer)
 
 func addProjectile(p):
 	gameManager.addProjectile(p)

@@ -16,7 +16,6 @@ var bodyTex = preload("res://Sprites/WormParts.png")
 var lightingMaterial : ShaderMaterial = preload("res://Shaders/raycast_lighting.tres")
 
 func _ready() -> void:
-	$AnimationPlayer.speed_scale = randf_range(0.8, 1.2)
 	
 	for p in $Parts.get_children():
 		if p.name == "Head":
@@ -34,6 +33,9 @@ func _ready() -> void:
 		parts.append(s)
 		$Parts.add_child(s)
 	
+	if Game.inTutorial:
+		return
+	$AnimationPlayer.speed_scale = randf_range(0.8, 1.2)
 	$AnimationPlayer.play("Dig")
 	$AnimationPlayer.seek(randf_range(0.0, 2.0))
 	
@@ -41,6 +43,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	updateParts(delta)
+	
+	if Game.inTutorial:
+		TerrainDestruction.addTileRadius(head.global_position, -1, 10, TerrainRendering.LAYER_TYPE.FOREGROUND, true)
 
 var prevHeadPos : Vector2 = Vector2.ZERO
 func updateParts(_delta):
@@ -72,6 +77,8 @@ func resetWormPosition():
 
 
 func _on_terrain_destroy_timer_timeout() -> void:
+	if Game.inTutorial:
+		return
 	var curTime = $AnimationPlayer.current_animation_position
 	if curTime > 0.7 and curTime < 1.3:
-		TerrainDestruction.addTileRadius(head.global_position, -1, 10, TerrainRendering.LAYER_TYPE.FOREGROUND)
+		TerrainDestruction.addTileRadius(head.global_position, -1, 10, TerrainRendering.LAYER_TYPE.FOREGROUND, true)

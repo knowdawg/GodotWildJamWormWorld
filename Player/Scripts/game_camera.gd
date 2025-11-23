@@ -15,6 +15,9 @@ func setMinimumShake(shake : float):
 
 
 func _process(delta: float) -> void:
+	if is_current():
+		Game.camera = self
+	
 	screenShake = lerp(screenShake, 0.0, delta * 5.0)
 	
 	offset = Vector2(randf_range(-screenShake, screenShake), randf_range(-screenShake, screenShake))

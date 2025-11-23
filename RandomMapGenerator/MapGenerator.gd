@@ -8,7 +8,6 @@ var torch = preload("res://GameScenes/Torch/torch.tscn")
 var chest = preload("uid://c2lk7shvmrjj3")
 
 func _ready() -> void:
-	return
 	terrainNoise.width = TerrainRendering.mapSize.x
 	terrainNoise.height = TerrainRendering.mapSize.y
 	

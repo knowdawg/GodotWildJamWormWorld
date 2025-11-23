@@ -1,7 +1,12 @@
-[gd_resource type="Resource" script_class="DialogResource" load_steps=2 format=3 uid="uid://c71ajpxidn7vb"]
+[gd_resource type="Resource" script_class="DialogResource" load_steps=3 format=3 uid="uid://c71ajpxidn7vb"]
 
+[ext_resource type="Resource" uid="uid://xwqlbp28l61m" path="res://Dialogs/EarthquakeDialog/Earthquake1.tres" id="1_4h1sy"]
 [ext_resource type="Script" uid="uid://1ajn4rhu81hb" path="res://Resources/DialogResource.gd" id="1_gh2gy"]
 
 [resource]
 script = ExtResource("1_gh2gy")
+text = "Sir, did you feel that?"
+progressType = 1
+nextDialog = ExtResource("1_4h1sy")
+icon = 1
 metadata/_custom_type_script = "uid://1ajn4rhu81hb"

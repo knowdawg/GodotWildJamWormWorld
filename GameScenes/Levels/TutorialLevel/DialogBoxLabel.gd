@@ -1,9 +1,10 @@
 extends RichTextLabel
+class_name DialogBox
 
 @export var proceedLabel : Label
 
 var done : bool = false
-func setTest(newText : String, speedPerCharectar : float = 0.01):
+func setTest(newText : String, speedPerCharectar : float = 0.015):
 	done = false
 	visible_characters = 0
 	proceedLabel.visible = false

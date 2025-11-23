@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=2 format=3 uid="uid://cxtuh4qrgy4ud"]
+
+[ext_resource type="Script" uid="uid://1ajn4rhu81hb" path="res://Resources/DialogResource.gd" id="1_cf7r0"]
+
+[resource]
+script = ExtResource("1_cf7r0")
+text = "Grace, What was on the ship?"
+identifier = "earthquakeOver"
+metadata/_custom_type_script = "uid://1ajn4rhu81hb"

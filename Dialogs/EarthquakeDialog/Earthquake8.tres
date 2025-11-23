@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=3 format=3 uid="uid://xvip0pw5kwym"]
+
+[ext_resource type="Resource" uid="uid://bhvsunbbbcqbh" path="res://Dialogs/EarthquakeDialog/Earthquake9.tres" id="1_idek5"]
+[ext_resource type="Script" uid="uid://1ajn4rhu81hb" path="res://Resources/DialogResource.gd" id="1_my8ec"]
+
+[resource]
+script = ExtResource("1_my8ec")
+text = "What's the damage, Grace?"
+progressType = 1
+nextDialog = ExtResource("1_idek5")
+metadata/_custom_type_script = "uid://1ajn4rhu81hb"

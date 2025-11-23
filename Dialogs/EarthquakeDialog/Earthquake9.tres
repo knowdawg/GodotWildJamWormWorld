@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=3 format=3 uid="uid://bhvsunbbbcqbh"]
+
+[ext_resource type="Script" uid="uid://1ajn4rhu81hb" path="res://Resources/DialogResource.gd" id="1_d4svj"]
+[ext_resource type="Resource" uid="uid://cxtuh4qrgy4ud" path="res://Dialogs/EarthquakeDialog/Earthquake10.tres" id="1_oggo6"]
+
+[resource]
+script = ExtResource("1_d4svj")
+text = "[shake]Oh dear God."
+progressType = 1
+nextDialog = ExtResource("1_oggo6")
+icon = 1
+metadata/_custom_type_script = "uid://1ajn4rhu81hb"

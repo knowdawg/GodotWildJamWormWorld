@@ -1,0 +1,150 @@
+[gd_scene load_steps=9 format=3 uid="uid://boja0e5oqogn2"]
+
+[ext_resource type="Script" uid="uid://byjx4g3k32odk" path="res://GameScenes/UI/settings.gd" id="1_twvr3"]
+[ext_resource type="FontFile" uid="uid://bovi0c1aecn1d" path="res://Fonts/Xirod.otf" id="2_p0s2t"]
+[ext_resource type="Theme" uid="uid://caw1xmgv8ypp5" path="res://Fonts/ButtonTheme.tres" id="3_hl6nw"]
+[ext_resource type="AudioStream" uid="uid://blc2wijh2ecn3" path="res://Sounds/ButtonPressed.wav" id="4_p0s2t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mcyb3"]
+bg_color = Color(0.08235294, 0.11372549, 0.15686275, 0.78431374)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.03529412, 0.039215688, 0.078431375, 1)
+corner_radius_top_left = 50
+corner_radius_bottom_right = 50
+shadow_size = 8
+shadow_offset = Vector2(8, 8)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pehnv"]
+
+[sub_resource type="Gradient" id="Gradient_pehnv"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.60784316, 0.59607846, 0.6313726, 0.49803922)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6v5ye"]
+gradient = SubResource("Gradient_pehnv")
+width = 16
+height = 16
+
+[node name="Settings" type="MarginContainer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 65
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 65
+script = ExtResource("1_twvr3")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mcyb3")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="SettingsLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_p0s2t")
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Master" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_p0s2t")
+text = "Master Volume"
+
+[node name="MasterSlider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+value = 100.0
+
+[node name="Sound" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_p0s2t")
+text = "Sound Effect Volume"
+
+[node name="SoundSlider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+value = 100.0
+
+[node name="Music" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_p0s2t")
+text = "Music Volume"
+
+[node name="MusicSlider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+value = 100.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScreenShake" type="CheckBox" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_p0s2t")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pehnv")
+theme_override_icons/unchecked = SubResource("GradientTexture2D_6v5ye")
+button_pressed = true
+text = "Screen Shake"
+
+[node name="PreformanceMode" type="CheckBox" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_p0s2t")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pehnv")
+theme_override_icons/unchecked = SubResource("GradientTexture2D_6v5ye")
+text = "Performance mode"
+
+[node name="SettingsExit" type="Button" parent="Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("3_hl6nw")
+theme_override_fonts/font = ExtResource("2_p0s2t")
+theme_override_font_sizes/font_size = 16
+text = "X"
+
+[node name="ButtonPressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_p0s2t")
+volume_db = -20.0
+max_polyphony = 3
+bus = &"SoundEffects"
+
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/SoundSlider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="toggled" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScreenShake" to="." method="_on_screen_shake_toggled"]
+[connection signal="toggled" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/PreformanceMode" to="." method="_on_preformance_mode_toggled"]
+[connection signal="pressed" from="Panel/MarginContainer/SettingsExit" to="." method="_on_settings_exit_pressed"]

@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=3 format=3 uid="uid://copcdyrllx81v"]
+
+[ext_resource type="AudioStream" uid="uid://c5bhvadl5nacd" path="res://Sounds/FuelPickup1.wav" id="1_6lwgm"]
+[ext_resource type="AudioStream" uid="uid://cbyfvu8q5bolf" path="res://Sounds/FuelPickup2.wav" id="2_5igny"]
+
+[resource]
+playback_mode = 1
+random_pitch = 1.3
+streams_count = 2
+stream_0/stream = ExtResource("1_6lwgm")
+stream_1/stream = ExtResource("2_5igny")

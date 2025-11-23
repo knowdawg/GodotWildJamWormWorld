@@ -35,9 +35,10 @@ func addUpgradeCard(upgrade : UpgradeResource):
 	%Upgrades.add_child(c)
 	c.setup()
 
-
+var displayFuel : int = 0
 func _process(_delta: float) -> void:
-	%FuelLabel.text = "Gather Fuel : " + str(Game.amountOfFuel) + " / " + str(Game.amoundOfFuelNeeded)
+	displayFuel = int(move_toward(float(displayFuel), float(Game.amountOfFuel), 3.0))
+	%FuelLabel.text = "Gather Fuel : " + str(displayFuel) + " / " + str(Game.amoundOfFuelNeeded)
 	if Game.amountOfFuel > Game.amoundOfFuelNeeded:
 		%FuelLabel.visible = false
 		#%FuelLabel.text = "Fuel Full"

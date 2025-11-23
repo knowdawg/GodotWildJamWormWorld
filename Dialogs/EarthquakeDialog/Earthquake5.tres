@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=3 format=3 uid="uid://dr568vrxbvt05"]
+
+[ext_resource type="Resource" uid="uid://3kddvlvyuv0f" path="res://Dialogs/EarthquakeDialog/Earthquake6.tres" id="1_fopnf"]
+[ext_resource type="Script" uid="uid://1ajn4rhu81hb" path="res://Resources/DialogResource.gd" id="1_lhewd"]
+
+[resource]
+script = ExtResource("1_lhewd")
+text = "Anything of note?"
+progressType = 1
+nextDialog = ExtResource("1_fopnf")
+metadata/_custom_type_script = "uid://1ajn4rhu81hb"

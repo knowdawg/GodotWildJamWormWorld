@@ -23,7 +23,7 @@ fill_from = Vector2(1, 1)
 offsets = PackedFloat32Array(0.09747292, 1)
 colors = PackedColorArray(0.53333336, 0.29411766, 0.16862746, 1, 0.9098039, 0.75686276, 0.4392157, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_khnhk"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m5lnl"]
 gradient = SubResource("Gradient_2tq7k")
 
 [sub_resource type="Curve" id="Curve_d2vlb"]
@@ -31,7 +31,7 @@ _limits = [0.0, 4.0, 0.0, 1.0]
 _data = [Vector2(0, 4), 0.0, 0.0, 0, 0, Vector2(0.75528705, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_e17lv"]
+[sub_resource type="CurveTexture" id="CurveTexture_w6u0o"]
 curve = SubResource("Curve_d2vlb")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bot2k"]
@@ -49,8 +49,8 @@ angular_velocity_max = 499.99997
 radial_velocity_min = -2.2351742e-05
 radial_velocity_max = -2.2351742e-05
 gravity = Vector3(0, 98, 0)
-scale_curve = SubResource("CurveTexture_e17lv")
-color_initial_ramp = SubResource("GradientTexture1D_khnhk")
+scale_curve = SubResource("CurveTexture_w6u0o")
+color_initial_ramp = SubResource("GradientTexture1D_m5lnl")
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_sxa4n"]
 shuffle = true
