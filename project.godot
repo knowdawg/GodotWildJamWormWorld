@@ -30,6 +30,9 @@ PlayerStats="*res://GameScenes/PlayerStats.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
+window/size/mode=3
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/stretch/mode="viewport"
 
 [editor]
@@ -123,3 +126,7 @@ CreateSelection={
 2d_physics/layer_3="Hazard"
 2d_physics/layer_4="PlayerAttack"
 2d_physics/layer_5="Bomb"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true

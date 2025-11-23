@@ -24,6 +24,16 @@ var curState : STATES = STATES.WAKE_UP
 func _ready() -> void:
 	
 	Game.inTutorial = true
+	Game.wormHight = TerrainRendering.mapSize.y
+	
+	
+	var reverb : AudioEffectReverb = AudioServer.get_bus_effect(1, 0) as AudioEffectReverb
+	reverb.wet = 0.0
+	reverb.dry = 1.0
+	
+	var lowPass : AudioEffectLowPassFilter = AudioServer.get_bus_effect(1, 1) as AudioEffectLowPassFilter
+	lowPass.cutoff_hz = 20500
+	
 	super._ready()
 	PlayerStats.resetPlayerStats()
 	%Dialog.visible = false

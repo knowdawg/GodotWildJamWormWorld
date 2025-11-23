@@ -25,6 +25,12 @@ func _process(delta: float) -> void:
 		if fuelSoundCooldown <= 0.0:
 			fuelSoundCooldown = randf_range(0.05, 0.1)
 			fuelSoundPlayer.play()
+	
+	#if Input.is_action_just_pressed("CreateSelection"):
+		#if pauseInstances == 0:
+			#pauseGame()
+		#else:
+			#resumeGame()
 
 
 var amountOfFuel : int = 0:
@@ -32,7 +38,7 @@ var amountOfFuel : int = 0:
 		if amount > 0 and amount > amountOfFuel:
 			fuelSoundTime += float(amount - amountOfFuel) * 0.003
 		amountOfFuel = amount
-var amoundOfFuelNeeded : int = 3000.0
+var amoundOfFuelNeeded : int = 4000.0
 
 var camera : GameCamera
 var escapePod : EscapePod
@@ -47,6 +53,8 @@ var chest : Array[UpgradeChest]
 var inTutorial : bool = false
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 	AudioServer.set_bus_volume_linear(0, 0.6)
 	wormHight = TerrainRendering.mapSize.y
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5lmuy85ljtkk"]
+[gd_scene load_steps=11 format=3 uid="uid://c5lmuy85ljtkk"]
 
 [ext_resource type="PackedScene" uid="uid://b5mwxvmfxtn33" path="res://addons/pixel_sandbox/Scenes/TerrainTexture/terrain_texture.tscn" id="1_salk0"]
 [ext_resource type="Script" uid="uid://do6mu1m2u6kq3" path="res://GameScenes/Levels/random_gen_level.gd" id="1_u6sqo"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bs3ob7drvovjj" path="res://addons/pixel_sandbox/Scenes/SDFGenerator/sdf_generator.tscn" id="5_f2wme"]
 [ext_resource type="PackedScene" uid="uid://b22snyd5lo4mp" path="res://addons/pixel_sandbox/Scenes/GlobalIllumination/global_illumination.tscn" id="6_3loc8"]
 [ext_resource type="PackedScene" uid="uid://cyrrk0ro0e0dd" path="res://GameScenes/Worms/worm_manager.tscn" id="6_dqge8"]
-[ext_resource type="Texture2D" uid="uid://cjbwghgivmhyw" path="res://RandomMapGenerator/Noises/FuelNoiseTexture.tres" id="10_x40tl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cbb0s"]
 resource_local_to_scene = true
@@ -42,7 +41,3 @@ sdfGen = NodePath("..")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-651, 256)
-texture = ExtResource("10_x40tl")

@@ -1,10 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://bdyt18qrq6ne1"]
+[gd_scene load_steps=23 format=3 uid="uid://bdyt18qrq6ne1"]
 
 [ext_resource type="Script" uid="uid://ucyeyjm2m8kc" path="res://GameScenes/UI/main_menu_ui.gd" id="1_5scu0"]
 [ext_resource type="FontFile" uid="uid://bovi0c1aecn1d" path="res://Fonts/Xirod.otf" id="1_mcyb3"]
 [ext_resource type="Theme" uid="uid://caw1xmgv8ypp5" path="res://Fonts/ButtonTheme.tres" id="2_5scu0"]
 [ext_resource type="Shader" uid="uid://jstwmauhr8e3" path="res://Shaders/BalatroNoiseWarp.gdshader" id="2_u0thu"]
 [ext_resource type="Texture2D" uid="uid://dvyasrxem1qj5" path="res://Sprites/Worm.png" id="3_tcsvs"]
+[ext_resource type="Texture2D" uid="uid://cl0hoaao0lvey" path="res://Sprites/WildCards/out-out-brief-candle.png" id="4_a2jls"]
+[ext_resource type="Texture2D" uid="uid://b1tdyqmh8qhj2" path="res://Sprites/WildCards/skill-issue.png" id="5_cpo0o"]
 [ext_resource type="PackedScene" uid="uid://boja0e5oqogn2" path="res://GameScenes/UI/settings.tscn" id="6_6v5ye"]
 [ext_resource type="AudioStream" uid="uid://sw5vqdv3ikpm" path="res://Sounds/ButtonHover.wav" id="6_pehnv"]
 [ext_resource type="AudioStream" uid="uid://blc2wijh2ecn3" path="res://Sounds/ButtonPressed.wav" id="7_6v5ye"]
@@ -108,6 +110,38 @@ texture = ExtResource("3_tcsvs")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(360, 180)
 texture = SubResource("GradientTexture2D_0nny5")
+
+[node name="WildCards" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WildCards"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="WildCards/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.39215687)
+texture_filter = 1
+custom_minimum_size = Vector2(54, 80)
+layout_mode = 2
+texture = ExtResource("4_a2jls")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="WildCards/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.39215687)
+texture_filter = 1
+custom_minimum_size = Vector2(54, 80)
+layout_mode = 2
+texture = ExtResource("5_cpo0o")
+expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
